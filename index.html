@@ -700,25 +700,24 @@
     </style>
 </head>
 <body>
-   <!-- Hintergrundmusik -->
-<audio
-  id="bg-music"
-  src="audio/oneofthegirl.mp3"
-  autoplay
-  loop
-></audio>
+    <!-- Hintergrundmusik -->
+    <audio
+      id="bg-music"
+      src="bg-oneofthegirl.mp3"
+      autoplay
+      loop
+    ></audio>
 
+    <script>
+      window.addEventListener('load', function () {
+        const audio = document.getElementById('bg-music');
+        if (!audio) return;
 
-<script>
-  window.addEventListener('load', function () {
-    const audio = document.getElementById('bg-music');
-    if (!audio) return;
+        // Lautstärke (0.0 - 1.0)
+        audio.volume = 0.4;
 
-    // Lautstärke (0.0 - 1.0)
-    audio.volume = 0.4;
-
-    const playPromise = audio.play();
-    
+        const playPromise = audio.play();
+          
     <!-- ANIMATED STARS CANVAS -->
     <canvas class="stars-canvas" id="starsCanvas"></canvas>
     
