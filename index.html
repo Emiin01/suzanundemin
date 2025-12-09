@@ -23,6 +23,46 @@
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="24">🐥</text></svg>'), auto;
         }
         
+        /* MUSIC CONTROL BUTTON */
+        .music-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.2), rgba(199, 21, 133, 0.2));
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 105, 180, 0.5);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 20, 147, 0.3);
+        }
+        
+        .music-control.show {
+            display: flex;
+        }
+        
+        .music-control:hover {
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.4), rgba(199, 21, 133, 0.4));
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(255, 20, 147, 0.5);
+        }
+        
+        .music-control.playing {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 5px 20px rgba(255, 20, 147, 0.3); }
+            50% { box-shadow: 0 5px 30px rgba(255, 20, 147, 0.6); }
+        }
+        
         /* FLOATING HEARTS */
         .floating-hearts {
             position: fixed;
@@ -700,10 +740,15 @@
     </style>
 </head>
 <body>
+    <!-- MUSIC CONTROL BUTTON -->
+    <div class="music-control" id="musicControl">
+        <span id="musicIcon">🎵</span>
+    </div>
+    
     <!-- BACKGROUND MUSIC -->
     <audio id="bgMusic" loop>
         <!-- The Weeknd - One of the Girls -->
-        <source src="https://drive.google.com/uc?export=download&id=1rMiZzxwe6k1uwWtUA0ueY1qjDOuY2xIP" type="audio/mpeg">
+        <source src="https://raw.githubusercontent.com/Emiin01/suzanundemin/refs/heads/main/oneofthegirl.mp3" type="audio/mpeg">
     </audio>
     
     <!-- ANIMATED STARS CANVAS -->
@@ -1107,17 +1152,46 @@
         
         // BACKGROUND MUSIC - Startet nach Code-Eingabe
         const bgMusic = document.getElementById('bgMusic');
+        const musicControl = document.getElementById('musicControl');
+        const musicIcon = document.getElementById('musicIcon');
+        let isPlaying = false;
         
         function playMusic() {
-            bgMusic.play().catch(e => {
-                console.log('Musik konnte nicht automatisch abgespielt werden:', e);
-                // Fallback: Spiele Musik beim ersten Klick
-                document.body.addEventListener('click', function playOnce() {
-                    bgMusic.play();
-                    document.body.removeEventListener('click', playOnce);
-                }, { once: true });
-            });
+            bgMusic.play()
+                .then(() => {
+                    isPlaying = true;
+                    musicControl.classList.add('show');
+                    musicControl.classList.add('playing');
+                    musicIcon.textContent = '🔊';
+                    console.log('Musik spielt automatisch!');
+                })
+                .catch(e => {
+                    console.log('Autoplay blockiert - zeige Play Button');
+                    musicControl.classList.add('show');
+                    musicIcon.textContent = '▶️';
+                });
         }
+        
+        // Music Control Button
+        musicControl.addEventListener('click', function() {
+            if (isPlaying) {
+                bgMusic.pause();
+                isPlaying = false;
+                musicIcon.textContent = '▶️';
+                musicControl.classList.remove('playing');
+            } else {
+                bgMusic.play()
+                    .then(() => {
+                        isPlaying = true;
+                        musicIcon.textContent = '🔊';
+                        musicControl.classList.add('playing');
+                    })
+                    .catch(e => {
+                        console.log('Error:', e);
+                        alert('Musik konnte nicht gestartet werden. Bitte erlaube Audio im Browser!');
+                    });
+            }
+        });
         
         // LOCK SCREEN CODE
         const d1 = document.getElementById('d1');
@@ -1149,7 +1223,27 @@
                     setTimeout(() => {
                         lockScreen.classList.add('hide');
                         mainPage.classList.add('show');
-                        playMusic(); // Starte Musik!
+                        
+                        // MUSIK STARTEN - NEUE METHODE
+                        setTimeout(() => {
+                            const music = document.getElementById('bgMusic');
+                            const control = document.getElementById('musicControl');
+                            
+                            // Zeige Button immer
+                            control.classList.add('show');
+                            
+                            // Versuche zu starten
+                            music.play()
+                                .then(() => {
+                                    console.log('Musik läuft!');
+                                    document.getElementById('musicIcon').textContent = '🔊';
+                                    control.classList.add('playing');
+                                })
+                                .catch(() => {
+                                    console.log('Klick auf Button nötig');
+                                    document.getElementById('musicIcon').textContent = '▶️';
+                                });
+                        }, 500);
                     }, 1000);
                 } else {
                     msg.textContent = '❌ Falscher Code!';
