@@ -700,11 +700,23 @@
     </style>
 </head>
 <body>
-    <!-- BACKGROUND MUSIC -->
-    <audio id="bgMusic" loop>
-        <!-- The Weeknd - One of the Girls -->
-        <source src="https://drive.google.com/uc?export=download&id=1rMiZzxwe6k1uwWtUA0ueY1qjDOuY2xIP" type="audio/mpeg">
-    </audio>
+   <!-- Hintergrundmusik -->
+<audio
+  id="bg-music"
+  src="https://docs.google.com/uc?export=download&id=1rMiZzxwe6k1uwWtUA0ueY1qjDOuY2xIP"
+  autoplay
+  loop
+></audio>
+
+<script>
+  window.addEventListener('load', function () {
+    const audio = document.getElementById('bg-music');
+    if (!audio) return;
+
+    // Lautstärke (0.0 - 1.0)
+    audio.volume = 0.4;
+
+    const playPromise = audio.play();
     
     <!-- ANIMATED STARS CANVAS -->
     <canvas class="stars-canvas" id="starsCanvas"></canvas>
