@@ -26,21 +26,22 @@
         /* MUSIC CONTROL BUTTON */
         .music-control {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            top: 20px;
+            right: 20px;
             z-index: 10000;
-            background: linear-gradient(135deg, #FF1493, #C71585);
-            border: 3px solid rgba(255, 255, 255, 0.3);
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.2), rgba(199, 21, 133, 0.2));
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 105, 180, 0.5);
             border-radius: 50%;
-            width: 80px;
-            height: 80px;
-            display: flex;
+            width: 60px;
+            height: 60px;
+            display: none;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 2rem;
+            font-size: 1.5rem;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 40px rgba(255, 20, 147, 0.6);
+            box-shadow: 0 5px 20px rgba(255, 20, 147, 0.3);
         }
         
         .music-control.show {
@@ -48,17 +49,18 @@
         }
         
         .music-control:hover {
-            transform: scale(1.15);
-            box-shadow: 0 15px 50px rgba(255, 20, 147, 0.8);
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.4), rgba(199, 21, 133, 0.4));
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(255, 20, 147, 0.5);
         }
         
         .music-control.playing {
-            animation: spin 3s linear infinite;
+            animation: pulse 2s ease-in-out infinite;
         }
         
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 5px 20px rgba(255, 20, 147, 0.3); }
+            50% { box-shadow: 0 5px 30px rgba(255, 20, 147, 0.6); }
         }
         
         /* FLOATING HEARTS */
@@ -744,10 +746,9 @@
     </div>
     
     <!-- BACKGROUND MUSIC -->
-    <audio id="bgMusic" loop preload="auto">
+    <audio id="bgMusic" loop>
         <!-- The Weeknd - One of the Girls -->
-        <source src="oneofthegirl.mp3" type="audio/mpeg">
-        <source src="./oneofthegirl.mp3" type="audio/mpeg">
+        <source src="https://raw.githubusercontent.com/Emiin01/suzanundemin/refs/heads/main/oneofthegirl.mp3" type="audio/mpeg">
     </audio>
     
     <!-- ANIMATED STARS CANVAS -->
@@ -1155,33 +1156,34 @@
         const musicIcon = document.getElementById('musicIcon');
         let isPlaying = false;
         
-        // Zeige Button SOFORT beim Laden (für Tests)
-        console.log('Music Control:', musicControl);
-        console.log('Music Element:', bgMusic);
+        function playMusic() {
+            bgMusic.play()
+                .then(() => {
+                    isPlaying = true;
+                    musicControl.classList.add('show');
+                    musicControl.classList.add('playing');
+                    musicIcon.textContent = '🔊';
+                    console.log('Musik spielt automatisch!');
+                })
+                .catch(e => {
+                    console.log('Autoplay blockiert - zeige Play Button');
+                    musicControl.classList.add('show');
+                    musicIcon.textContent = '▶️';
+                });
+        }
         
-        // Music Control Button - EINFACH!
+        // Music Control Button
         musicControl.addEventListener('click', function() {
-            console.log('Button geklickt! isPlaying:', isPlaying);
-            
-            if (!isPlaying) {
-                console.log('Versuche Musik zu starten...');
-                bgMusic.play()
-                    .then(() => {
-                        console.log('✅ MUSIK LÄUFT!');
-                        isPlaying = true;
-                        musicIcon.textContent = '⏸️';
-                        musicControl.classList.add('playing');
-                    })
-                    .catch(error => {
-                        console.error('❌ FEHLER beim Abspielen:', error);
-                        alert('Fehler: ' + error.message);
-                    });
-            } else {
-                console.log('Pausiere Musik...');
+            if (isPlaying) {
                 bgMusic.pause();
                 isPlaying = false;
                 musicIcon.textContent = '▶️';
                 musicControl.classList.remove('playing');
+            } else {
+                bgMusic.play();
+                isPlaying = true;
+                musicIcon.textContent = '🔊';
+                musicControl.classList.add('playing');
             }
         });
         
@@ -1215,13 +1217,7 @@
                     setTimeout(() => {
                         lockScreen.classList.add('hide');
                         mainPage.classList.add('show');
-                        
-                        // Zeige Musik Button
-                        setTimeout(() => {
-                            musicControl.classList.add('show');
-                            musicIcon.textContent = '▶️';
-                            console.log('Button sollte jetzt sichtbar sein!');
-                        }, 500);
+                        playMusic(); // Starte Musik!
                     }, 1000);
                 } else {
                     msg.textContent = '❌ Falscher Code!';
