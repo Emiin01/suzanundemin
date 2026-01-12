@@ -23,46 +23,6 @@
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="24">🐥</text></svg>'), auto;
         }
         
-        /* MUSIC CONTROL BUTTON */
-        .music-control {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 10000;
-            background: linear-gradient(135deg, rgba(255, 20, 147, 0.2), rgba(199, 21, 133, 0.2));
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 105, 180, 0.5);
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(255, 20, 147, 0.3);
-        }
-        
-        .music-control.show {
-            display: flex;
-        }
-        
-        .music-control:hover {
-            background: linear-gradient(135deg, rgba(255, 20, 147, 0.4), rgba(199, 21, 133, 0.4));
-            transform: scale(1.1);
-            box-shadow: 0 8px 30px rgba(255, 20, 147, 0.5);
-        }
-        
-        .music-control.playing {
-            animation: pulse 2s ease-in-out infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 5px 20px rgba(255, 20, 147, 0.3); }
-            50% { box-shadow: 0 5px 30px rgba(255, 20, 147, 0.6); }
-        }
-        
         /* FLOATING HEARTS */
         .floating-hearts {
             position: fixed;
@@ -740,17 +700,6 @@
     </style>
 </head>
 <body>
-    <!-- MUSIC CONTROL BUTTON -->
-    <div class="music-control" id="musicControl">
-        <span id="musicIcon">🎵</span>
-    </div>
-    
-    <!-- BACKGROUND MUSIC -->
-    <audio id="bgMusic" loop>
-        <!-- The Weeknd - One of the Girls -->
-        <source src="https://raw.githubusercontent.com/Emiin01/suzanundemin/refs/heads/main/oneofthegirl.mp3" type="audio/mpeg">
-    </audio>
-    
     <!-- ANIMATED STARS CANVAS -->
     <canvas class="stars-canvas" id="starsCanvas"></canvas>
     
@@ -797,7 +746,7 @@
             
             <div class="navigation">
                 <button class="nav-btn" onclick="showStory()">Our Story</button>
-                <button class="nav-btn">The Moon & The Sun</button>
+                <button class="nav-btn" onclick="showMoonSun()">The Moon & The Sun</button>
                 <button class="nav-btn">Moments</button>
                 <button class="nav-btn">Future</button>
                 <button class="nav-btn">For You</button>
@@ -866,44 +815,44 @@
                 Nichts gewollt.<br>
                 Nichts Gesuchtes.</p>
                 
-                <p>Ihr seid nicht zwei Menschen gewesen, die aktiv nach Liebe schauen. Ihr wart zwei Menschen, die eigentlich mit Liebe abgeschlossen hatten.</p>
+                <p>Wir waren beide nicht auf der Suche nach Liebe. Ehrlich gesagt hatten wir beide damit abgeschlossen. Ich hatte mich damit abgefunden, allein zu sein. Und du… du hattest deine Mauern so hochgezogen, dass niemand mehr reinkam.</p>
                 
-                <p>Und genau deshalb hat es euch getroffen.</p>
+                <p>Und genau deshalb hat es uns beide getroffen.</p>
             </div>
         </div>
         
         <div class="story-content">
             <div class="story-text">
-                <p><span class="highlight">Es fing an mit etwas, das keiner ernst genommen hat.</span></p>
+                <p><span class="highlight">Es fing an mit etwas, das keiner von uns ernst genommen hat.</span></p>
                 
-                <p>Ein Snap.<br>
+                <p>Ein Snap von einem Fluss.<br>
                 Ein kurzer Moment.<br>
                 Ein Kontakt, der eigentlich nichts bedeuten sollte.</p>
                 
-                <p>Suzan war in ihrer Welt – kontrolliert, kalt nach außen, mit diesem Schutzschild, das sie gegen alles gestellt hat, was ihr gefährlich werden könnte.</p>
+                <p>Du warst in deiner Welt – kontrolliert, kalt nach außen, mit diesem Schutzschild, das du gegen alles aufgestellt hast, was dir gefährlich werden könnte.</p>
                 
-                <p>Du warst in deiner Welt – ruhig, loyal, stabil, ein Mann, der niemandem etwas vormachen muss.</p>
+                <p>Ich war in meiner Welt – ruhig, loyal, stabil. Ich wollte niemandem etwas vormachen. Ich wollte einfach nur… echt sein.</p>
                 
-                <p>Beide ohne Erwartung.<br>
+                <p>Wir beide ohne Erwartung.<br>
                 Beide mit der Einstellung: <span class="highlight">„Da wird eh nichts."</span></p>
                 
-                <p>Und genau da passiert es meistens.</p>
+                <p>Und genau da passiert es meistens, oder?</p>
             </div>
         </div>
         
         <div class="story-content">
             <div class="story-text">
-                <p><span class="highlight">Das erste Komische war, dass sie dich nicht vergessen konnte.</span></p>
+                <p><span class="highlight">Das Komische war – du konntest mich nicht vergessen.</span></p>
                 
-                <p>Bevor sie überhaupt wusste, wer du bist.<br>
-                Bevor sie dich wirklich gekannt hat.<br>
-                Bevor sie irgendetwas mit dir geteilt hat.</p>
+                <p>Bevor wir uns wirklich kannten.<br>
+                Bevor wir irgendetwas geteilt hatten.<br>
+                Bevor ich überhaupt wusste, wer du wirklich bist.</p>
                 
-                <p>Sie saß damals an ihrer Fensterbank. Kalt, leer, müde – wie sie es selbst erzählt hat. Und plötzlich… hat sie dich vermisst.</p>
+                <p>Du hast mir später erzählt, wie du damals an deiner Fensterbank gesessen hast. Kalt, leer, müde. Und plötzlich… hast du mich vermisst.</p>
                 
                 <p><span class="highlight">Einen Fremden.</span></p>
                 
-                <p>Das hat sie selbst nicht verstanden. Das war der erste Moment, wo sie wusste:</p>
+                <p>Du hast es selbst nicht verstanden. Aber das war der erste Moment, wo du wusstest:</p>
                 
                 <p><span class="highlight">„Dieser Mann wird gefährlich für mich."</span></p>
             </div>
@@ -911,92 +860,250 @@
         
         <div class="story-content">
             <div class="story-text">
-                <p>Und du?</p>
+                <p>Und ich?</p>
                 
-                <p>Du warst einfach du selbst.</p>
+                <p>Ich war einfach ich selbst.</p>
                 
                 <p>Keine Show.<br>
                 Keine Maske.<br>
                 Kein Ego.<br>
-                Nur du – ruhig, warm, erwachsen.</p>
+                Nur ich – ruhig, warm, ehrlich.</p>
                 
-                <p>Du hast ihr nicht geschrieben, um etwas zu bekommen. Du hast geschrieben, <span class="highlight">um da zu sein.</span></p>
+                <p>Ich hab dir nicht geschrieben, um etwas von dir zu bekommen. <span class="highlight">Ich hab geschrieben, weil ich einfach da sein wollte.</span></p>
                 
-                <p>Und genau das hat sie getroffen. Weicher gemacht. Unsicher gemacht.</p>
+                <p>Und genau das hat dich getroffen, glaube ich. Hat dich weicher gemacht. Unsicher gemacht. Verletzlich gemacht.</p>
             </div>
         </div>
         
         <div class="story-content">
             <div class="story-text">
-                <p><span class="highlight">Dann kam der Alltag.</span></p>
+                <p><span class="highlight">Dann kam unser Alltag.</span></p>
                 
                 <p>Morgens zusammen wach werden.<br>
                 Tagsüber zusammen reden.<br>
                 Abends zusammen einschlafen.</p>
                 
-                <p>Kein Tag Pause. Kein Tag ohne einander.</p>
+                <p>Kein Tag ohne einander. Und weißt du was? Es fühlte sich nie erzwungen an.</p>
                 
-                <p>Nicht weil ihr es müsst. Sondern weil es sich falsch anfühlt, es nicht zu tun.</p>
+                <p>Wir haben das nicht gemacht, weil wir mussten. Wir haben das gemacht, weil es sich <span class="highlight">falsch angefühlt hätte, es nicht zu tun</span>.</p>
                 
-                <p>Das passiert nicht einfach so. So etwas entsteht nicht aus Nichts. <span class="highlight">Das passiert, wenn zwei Seelen sich erkennen, bevor die Köpfe es begreifen.</span></p>
+                <p>Sowas passiert nicht einfach so. Das entsteht nicht aus Nichts. Das passiert nur, wenn zwei Seelen sich erkennen, bevor die Köpfe überhaupt verstehen, was da gerade passiert.</p>
             </div>
         </div>
         
         <div class="story-content">
             <div class="story-text">
-                <p><span class="highlight">Und dann kamen die ersten Anzeichen.</span></p>
+                <p><span class="highlight">Und dann kamen die Momente, wo ich wusste: Sie lässt mich rein.</span></p>
                 
-                <p>Sie lässt dich in ihr Zimmer. Sie nimmt dich mit zu ihrem Bruder – etwas, was sie noch nie bei einem Mann gemacht hat.</p>
+                <p>Du hast mich in dein Zimmer gelassen. Du hast mich zu deinem Bruder mitgenommen – etwas, was du noch nie bei einem Mann gemacht hattest.</p>
                 
-                <p>Sie verteidigt dich vor ihrer Mutter. Sie lässt die Mutter dich grüßen. Sie zeigt dir ihre schwache Seite, ihre Migräne, ihre Panik, ihre dunklen Momente.</p>
+                <p>Du hast mich vor deiner Mutter verteidigt. Du hast mir deine schwache Seite gezeigt, deine Migräne, deine Panik, deine dunklen Momente.</p>
                 
-                <p>Du hast ihre Stimme gehört, wie sie weicher wurde, wie sie ruhiger wurde, wie sie manchmal unbewusst sagte:</p>
+                <p>Ich hab deine Stimme gehört, wie sie weicher wurde. Wie sie ruhiger wurde. Wie du manchmal unbewusst gesagt hast:</p>
                 
                 <p><span class="highlight">„Ich hab dich mehr."</span></p>
                 
-                <p>Das sind Dinge, die sie niemandem gibt.</p>
+                <p>Ich weiß, dass du diese Dinge niemandem gibst. Und ich weiß auch, was es dich gekostet hat, mir das zu zeigen.</p>
             </div>
         </div>
         
         <div class="story-content">
             <div class="story-text">
-                <p><span class="highlight">Und zwischendurch hat sie versucht zu fliehen.</span></p>
+                <p><span class="highlight">Zwischendurch hast du versucht zu fliehen.</span></p>
                 
-                <p>Sie hat Grenzen gesetzt. Sie hat Mauern hochgezogen. Sie hat gesagt, sie will frei sein. Sie will niemandem gehören. Sie kann keine Beziehung.</p>
+                <p>Du hast Grenzen gesetzt. Mauern hochgezogen. Gesagt, du willst frei sein. Du willst niemandem gehören. Du kannst keine Beziehung.</p>
                 
-                <p>Nicht weil sie dich nicht wollte.</p>
+                <p>Aber ich hab verstanden, dass das nicht an mir lag.</p>
                 
-                <p><span class="highlight">Sondern weil sie Angst hatte, DICH zu wollen.</span></p>
+                <p><span class="highlight">Du hattest keine Angst vor mir. Du hattest Angst davor, mich zu wollen.</span></p>
                 
-                <p>Angst, dass du ihr zu wichtig wirst. Angst, dass du sie verlassen könntest. Angst, dass sie wieder verletzt wird.</p>
+                <p>Angst, dass ich dir zu wichtig werde. Angst, dass ich dich verlassen könnte. Angst, dass du wieder verletzt wirst.</p>
                 
-                <p>Ein Mensch flieht nur vor dem, was ihn verletzen könnte. Und du bist der einzige Mann, der diese Macht über sie hat.</p>
+                <p>Ein Mensch flieht nur vor dem, was ihn wirklich verletzen könnte. Und ich glaube… ich bin der einzige Mann, der diese Macht über dich hat.</p>
             </div>
         </div>
         
         <div class="story-content">
             <div class="story-text">
-                <p><span class="highlight">Ihr habt euch nicht gesucht.</span></p>
+                <p><span class="highlight">Wir haben uns nicht gesucht.</span></p>
                 
-                <p>Ihr habt euch gefunden – dort, wo ihr beide kaputt wart.</p>
+                <p>Wir haben uns gefunden – dort, wo wir beide kaputt waren.</p>
                 
-                <p>Und trotzdem… seid ihr die einzigen, bei denen ihr weich werdet. Bei denen ihr lacht. Bei denen ihr einschlafen könnt. Bei denen ihr euch sicher fühlt.</p>
+                <p>Und trotzdem… sind wir die einzigen Menschen, bei denen wir weich werden. Bei denen wir lachen können. Bei denen wir einschlafen können. Bei denen wir uns sicher fühlen.</p>
                 
-                <p>Deine Ruhe. Ihr Feuer.<br>
-                Deine Stabilität. Ihre Angst.<br>
-                Deine Loyalität. Ihr Schutzschild.</p>
+                <p>Meine Ruhe trifft auf dein Feuer.<br>
+                Meine Stabilität trifft auf deine Angst.<br>
+                Meine Loyalität trifft auf dein Schutzschild.</p>
                 
-                <p>Das ist keine normale Kennenlerngeschichte.</p>
+                <p>Das ist keine normale Geschichte.</p>
                 
                 <p><span class="highlight">Das ist: Feuer trifft Ruhe. Wunde trifft Heilung. Mauer trifft Geduld.</span></p>
                 
-                <p>Und zwei Menschen, die sich gegenseitig halten, obwohl keiner von beiden weiß, wie man das eigentlich macht.</p>
+                <p>Wir sind zwei Menschen, die sich gegenseitig halten, obwohl keiner von uns weiß, wie man das eigentlich macht.</p>
+            </div>
+        </div>
+        
+        <div class="handwritten">
+            "So haben wir uns kennengelernt. Nicht durch Zufall.<br>
+            Sondern weil wir genau zur richtigen Zeit die richtigen Menschen füreinander wurden."
+        </div>
+        
+        <button class="back-btn" onclick="showHome()">← Zurück zur Startseite</button>
+    </div>
+    
+    <!-- THE MOON & THE SUN PAGE -->
+    <div id="moonSunPage" class="story-page">
+        <div class="page-header">
+            <h2 class="page-title">The Moon & The Sun</h2>
+            <p class="page-subtitle">Unsere Gutenacht-Geschichten</p>
+        </div>
+        
+        <div class="handwritten">
+            "Du bist die Sonne. Ich bin der Mond. Und wir haben gelernt, zusammen zu leuchten."
+        </div>
+        
+        <!-- GESCHICHTE 1 -->
+        <div class="story-content">
+            <div class="story-text">
+                <p>Die Sonne hatte wieder einen langen Tag hinter sich. Sie hatte gestrahlt, gelächelt, geliebt – für alle. Aber als die Nacht kam, fiel ihr Licht ein wenig leiser. Sie war müde, nicht körperlich, sondern… im Herzen.</p>
+                
+                <p>Und genau da war er wieder – <span class="highlight">der Mond</span>. Nicht laut, nicht fordernd, einfach da. Wie immer, wenn sie sich selbst verlieren wollte, fand sie ihn irgendwo zwischen den Sternen.</p>
+                
+                <p>„Warum bist du immer da, wenn ich dich nicht rufe?", fragte sie.</p>
+                <p>Der Mond lächelte: <span class="highlight">„Weil du mich nie rufen musst. Ich höre dich, auch wenn du schweigst."</span></p>
+            </div>
+        </div>
+        
+        <div class="story-image polaroid">
+            📸 Bild 1: Mond & Sonne begegnen sich
+            <div class="polaroid-caption">Der Moment der Stille</div>
+        </div>
+        
+        <div class="story-content">
+            <div class="story-text">
+                <p>Sie schwieg kurz, schaute ihn an und flüsterte: „Ich habe Angst, dass ich dich verletze, ohne es zu wollen."</p>
+                
+                <p>Der Mond antwortete: <span class="highlight">„Wenn du mich mal verbrennst, dann nur, weil ich dir zu nah gekommen bin."</span></p>
+                
+                <p>Die Sonne musste lachen – ein echtes, kleines, ehrliches Lachen. Zum ersten Mal fühlte sie sich nicht mehr wie ein Chaos aus Feuer, sondern wie jemand, den man halten könnte, ohne zu verbrennen.</p>
+                
+                <p>Sie fragte: „Und was, wenn ich irgendwann wieder untergehe?"</p>
+                <p>Er antwortete: <span class="highlight">„Dann warte ich, bis du wieder aufstehst. Das tue ich immer."</span></p>
+                
+                <p>Die Sonne schwieg wieder, aber diesmal anders. Sie war ruhig. Sie war… sicher. Zum ersten Mal hatte sie das Gefühl, dass sie nicht alles alleine tragen musste.</p>
+                
+                <p>Und während sie langsam in den Himmel sank, flüsterte sie fast unhörbar: „Vielleicht hab ich dich gebraucht, bevor ich's überhaupt wusste."</p>
+                
+                <p>Der Mond antwortete nur leise: <span class="highlight">„Ich weiß. Ich war schon da."</span></p>
+            </div>
+        </div>
+        
+        <!-- GESCHICHTE 2 -->
+        <div class="handwritten" style="margin: 80px 0 60px;">
+            "Selbst das stärkste Licht braucht manchmal jemanden, der bleibt."
+        </div>
+        
+        <div class="story-content">
+            <div class="story-text">
+                <p>Es gibt diese Geschichte von der Sonne und dem Mond. Die meisten sagen, sie könnten nie zusammen sein, weil sie sich nie begegnen – aber keiner versteht, dass genau das ihr Geheimnis ist.</p>
+                
+                <p>Die Sonne war immer laut. Sie hat gebrannt, alle haben sie gesehen, alle wollten ein Stück von ihr. Und trotzdem hat keiner gemerkt, wie müde sie manchmal war, wie sie abends untergeht, und sich wünscht, dass jemand einfach still da bleibt, ohne etwas zu verlangen.</p>
+                
+                <p>Und da war <span class="highlight">der Mond</span>.</p>
+            </div>
+        </div>
+        
+        <div class="story-image polaroid">
+            📸 Bild 2: Die Sonne strahlt, der Mond wartet
+            <div class="polaroid-caption">Stille Präsenz</div>
+        </div>
+        
+        <div class="story-content">
+            <div class="story-text">
+                <p>Er hat nie versucht, heller zu sein als sie. Er wusste, sie ist das Licht, das Leben gibt. Er wollte sie nicht verändern, nur verstehen. Und während die Welt die Sonne feierte, hat er sie einfach angeschaut – so, wie sie wirklich war.</p>
+                
+                <p>Er wusste: wenn sie lacht, wird es warm. Wenn sie weint, regnet es. Und jedes Mal, wenn sie verschwindet, bleibt er da – ruhig, stabil, damit sie, wenn sie wieder aufgeht, weiß, da war jemand, der sie nicht vergessen hat.</p>
+                
+                <p>Manchmal, wenn sie in der Ferne lachte, tat es ihm weh, weil er wusste, die Sonne gehört niemandem. Aber tief in sich wusste er auch, dass sie immer zu ihm zurückkommt – nicht, weil sie muss, sondern weil sie will.</p>
+                
+                <p><span class="highlight">Und so ist das mit uns, Suzan.</span></p>
+                
+                <p>Du bist die Sonne. Du brauchst Raum, du willst frei sein, und ich will, dass du es bist. Ich bin nicht hier, um dich festzuhalten – ich bin hier, um dich nicht loszulassen, wenn du mal müde wirst.</p>
+                
+                <p>Ich bin der Mond, und ich leuchte, damit du dich selbst siehst, auch in der Dunkelheit. Und selbst wenn du weit weg bist, weiß ich – irgendwann schaust du hoch, siehst mein Licht, und erinnerst dich: <span class="highlight">Da war jemand, der dich nie vergessen hat.</span></p>
+            </div>
+        </div>
+        
+        <!-- GESCHICHTE 3 -->
+        <div class="handwritten" style="margin: 80px 0 60px;">
+            "Manchmal braucht Liebe kein Feuer – nur zwei Seelen, die wissen: Ich bleibe."
+        </div>
+        
+        <div class="story-content">
+            <div class="story-text">
+                <p><span class="highlight">Wenn die Sonne fällt und der Mond schweigt</span></p>
+                
+                <p>Die Sonne war müde. Nicht, weil sie zu viel gegeben hatte, sondern weil sie zu oft das Gefühl hatte, dass ihr Licht nie genug war. Sie strahlte, wärmte, schenkte Leben – aber innerlich war sie leer.</p>
+                
+                <p>Und irgendwo da oben, versteckt hinter den Sternen, wartete der Mond. Er sprach nie dazwischen. Er drängte sich nicht auf. Er war einfach da. Immer.</p>
+            </div>
+        </div>
+        
+        <div class="story-image polaroid">
+            📸 Bild 3: Sonne fällt, Mond leuchtet weiter
+            <div class="polaroid-caption">Bedingungslose Präsenz</div>
+        </div>
+        
+        <div class="story-content">
+            <div class="story-text">
+                <p>Eines Nachts sagte die Sonne leise: „Manchmal wünsche ich mir, ich könnte einfach verschwinden. Nur für einen Moment. Kein Licht, kein Feuer, kein Druck, einfach… nichts."</p>
+                
+                <p>Der Mond schwieg. Nicht, weil er keine Antwort wusste – sondern, weil er wusste, dass Worte sie nur verletzen würden. Er ließ sie reden, atmen, fühlen. Er ließ sie einfach sein.</p>
+                
+                <p>Nach einer Weile flüsterte er: <span class="highlight">„Du musst nicht jeden Tag scheinen. Manchmal reicht es, wenn du einfach da bist. Ich leuchte weiter, bis du wieder willst."</span></p>
+                
+                <p>Die Sonne schaute ihn an – zum ersten Mal nicht als jemand, der sie bewundert, sondern als jemand, der sie versteht.</p>
+                
+                <p>„Aber was, wenn ich wieder falle?", fragte sie.</p>
+                <p>„Dann fall", antwortete der Mond. <span class="highlight">„Ich fang dich auf. Nicht, um dich festzuhalten, sondern, damit du nie vergisst, dass du sicher bist."</span></p>
+                
+                <p>Da lächelte sie, müde, aber ehrlich. Und in diesem Moment, wurde der Himmel still.</p>
+                
+                <p>Denn manchmal braucht Liebe kein Feuer, keine großen Worte, keine Perfektion. Nur zwei Seelen, die wissen: Selbst wenn die Sonne fällt, wird der Mond nie aufhören zu leuchten – für sie.</p>
+            </div>
+        </div>
+        
+        <!-- GESCHICHTE 4 -->
+        <div class="handwritten" style="margin: 80px 0 60px;">
+            "Weil Liebe nicht immer leuchtet – manchmal ist sie einfach still."
+        </div>
+        
+        <div class="story-content">
+            <div class="story-text">
+                <p>Heute war der Himmel ein bisschen unruhig. Die Sonne war lauter als sonst – nicht, weil sie böse war, sondern weil sie müde war. Müde vom Denken, vom Fühlen, vom Starksein.</p>
+                
+                <p>Der Mond blieb ruhig, auch wenn sein Licht kurz gezittert hat. Er wusste: Manchmal braucht die Sonne keine Antwort – nur das Gefühl, dass jemand bleibt, auch wenn's gerade schwer ist.</p>
+            </div>
+        </div>
+        
+        <div class="story-image polaroid">
+            📸 Bild 4: Unruhiger Himmel, ruhiger Mond
+            <div class="polaroid-caption">Trotz allem</div>
+        </div>
+        
+        <div class="story-content">
+            <div class="story-text">
+                <p>Sie sagte leise: „Ich wollte dich nicht wegstoßen… ich wusste nur nicht, wie ich dich nah an mich lasse, ohne mich selbst zu verlieren."</p>
+                
+                <p>Der Mond antwortete sanft: <span class="highlight">„Ich weiß. Deshalb bleib ich auch dann, wenn du mich kurz vergisst. Weil Liebe nicht immer leuchtet – manchmal ist sie einfach still."</span></p>
+                
+                <p>Und in dieser Nacht, als der Himmel wieder ein Stück ruhiger wurde, fiel die Sonne langsam in den Schlaf. Nicht, weil alles perfekt war – sondern, weil sie wusste: <span class="highlight">Der Mond ist noch da. Trotz allem. Wie immer.</span></p>
             </div>
         </div>
         
         <div class="handwritten" style="margin-top: 80px;">
-            "So habt ihr euch kennengelernt. Nicht durch Zufall.<br>
-            Sondern weil ihr genau zur richtigen Zeit zur richtigen Person geworden seid."
+            "Das ist unsere Geschichte. Die Sonne und der Mond.<br>
+            Suzan und Emin. 🌙☀️"
         </div>
         
         <button class="back-btn" onclick="showHome()">← Zurück zur Startseite</button>
@@ -1141,11 +1248,7 @@
         
         // COUNTDOWN
         function updateCountdown() {
-            const startDate = new Date('2024-05-30');
-            const today = new Date();
-            const diffTime = Math.abs(today - startDate);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            document.getElementById('daysTogether').textContent = diffDays;
+            document.getElementById('daysTogether').textContent = 227;
         }
         
         updateCountdown();
@@ -1156,34 +1259,33 @@
         const musicIcon = document.getElementById('musicIcon');
         let isPlaying = false;
         
-        function playMusic() {
-            bgMusic.play()
-                .then(() => {
-                    isPlaying = true;
-                    musicControl.classList.add('show');
-                    musicControl.classList.add('playing');
-                    musicIcon.textContent = '🔊';
-                    console.log('Musik spielt automatisch!');
-                })
-                .catch(e => {
-                    console.log('Autoplay blockiert - zeige Play Button');
-                    musicControl.classList.add('show');
-                    musicIcon.textContent = '▶️';
-                });
-        }
+        // Zeige Button SOFORT beim Laden (für Tests)
+        console.log('Music Control:', musicControl);
+        console.log('Music Element:', bgMusic);
         
-        // Music Control Button
+        // Music Control Button - EINFACH!
         musicControl.addEventListener('click', function() {
-            if (isPlaying) {
+            console.log('Button geklickt! isPlaying:', isPlaying);
+            
+            if (!isPlaying) {
+                console.log('Versuche Musik zu starten...');
+                bgMusic.play()
+                    .then(() => {
+                        console.log('✅ MUSIK LÄUFT!');
+                        isPlaying = true;
+                        musicIcon.textContent = '⏸️';
+                        musicControl.classList.add('playing');
+                    })
+                    .catch(error => {
+                        console.error('❌ FEHLER beim Abspielen:', error);
+                        alert('Fehler: ' + error.message);
+                    });
+            } else {
+                console.log('Pausiere Musik...');
                 bgMusic.pause();
                 isPlaying = false;
                 musicIcon.textContent = '▶️';
                 musicControl.classList.remove('playing');
-            } else {
-                bgMusic.play();
-                isPlaying = true;
-                musicIcon.textContent = '🔊';
-                musicControl.classList.add('playing');
             }
         });
         
@@ -1195,21 +1297,35 @@
         const lockScreen = document.getElementById('lockScreen');
         const mainPage = document.getElementById('mainPage');
         
-        d1.focus();
+        // Focus first field
+        setTimeout(() => d1.focus(), 100);
         
-        d1.addEventListener('input', function() {
-            if (this.value) d2.focus();
+        // Auto-jump with input event
+        d1.addEventListener('input', function(e) {
+            if (this.value.length >= 1) {
+                this.value = this.value.charAt(0); // Only keep first character
+                d2.focus();
+            }
         });
         
-        d2.addEventListener('input', function() {
-            if (this.value) d3.focus();
+        d2.addEventListener('input', function(e) {
+            if (this.value.length >= 1) {
+                this.value = this.value.charAt(0);
+                d3.focus();
+            }
         });
         
-        d3.addEventListener('input', function() {
-            if (this.value) {
-                const code = d1.value + d2.value + d3.value;
-                console.log('CODE:', code);
-                
+        d3.addEventListener('input', function(e) {
+            if (this.value.length >= 1) {
+                this.value = this.value.charAt(0);
+                checkCode();
+            }
+        });
+        
+        function checkCode() {
+            const code = d1.value + d2.value + d3.value;
+            
+            if (code.length === 3) {
                 if (code === '305') {
                     msg.textContent = '✓ ¡Correcto! 💕';
                     msg.style.color = '#2d5016';
@@ -1217,7 +1333,6 @@
                     setTimeout(() => {
                         lockScreen.classList.add('hide');
                         mainPage.classList.add('show');
-                        playMusic(); // Starte Musik!
                     }, 1000);
                 } else {
                     msg.textContent = '❌ Falscher Code!';
@@ -1232,24 +1347,37 @@
                     }, 1500);
                 }
             }
-        });
+        }
         
+        // Backspace navigation
         d2.addEventListener('keydown', (e) => {
-            if (e.key === 'Backspace' && !d2.value) d1.focus();
+            if (e.key === 'Backspace' && d2.value === '') {
+                d1.focus();
+            }
         });
         
         d3.addEventListener('keydown', (e) => {
-            if (e.key === 'Backspace' && !d3.value) d2.focus();
+            if (e.key === 'Backspace' && d3.value === '') {
+                d2.focus();
+            }
         });
         
         // Navigation
         function showStory() {
             document.getElementById('mainPage').classList.remove('show');
             document.getElementById('storyPage').classList.add('active');
+            document.getElementById('moonSunPage').classList.remove('active');
+        }
+        
+        function showMoonSun() {
+            document.getElementById('mainPage').classList.remove('show');
+            document.getElementById('storyPage').classList.remove('active');
+            document.getElementById('moonSunPage').classList.add('active');
         }
         
         function showHome() {
             document.getElementById('storyPage').classList.remove('active');
+            document.getElementById('moonSunPage').classList.remove('active');
             document.getElementById('mainPage').classList.add('show');
         }
     </script>
