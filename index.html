@@ -23,44 +23,6 @@
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="24">🐥</text></svg>'), auto;
         }
         
-        /* MUSIC CONTROL BUTTON */
-        .music-control {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 10000;
-            background: linear-gradient(135deg, #FF1493, #C71585);
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            width: 80px;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 2rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 40px rgba(255, 20, 147, 0.6);
-        }
-        
-        .music-control.show {
-            display: flex;
-        }
-        
-        .music-control:hover {
-            transform: scale(1.15);
-            box-shadow: 0 15px 50px rgba(255, 20, 147, 0.8);
-        }
-        
-        .music-control.playing {
-            animation: spin 3s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
         /* FLOATING HEARTS */
         .floating-hearts {
             position: fixed;
@@ -679,6 +641,103 @@
             color: #e2e8f0;
             line-height: 1.6;
         }
+
+        /* QUESTION PAGE - YES/NO */
+        .question-container {
+            text-align: center;
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .question-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            line-height: 1.8;
+            color: #FFB6D9;
+            margin-bottom: 60px;
+            max-width: 700px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .question-text .big {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #FF1493, #FF69B4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            margin-top: 30px;
+        }
+
+        .choice-buttons {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .choice-btn {
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.2), rgba(199, 21, 133, 0.2));
+            border: 3px solid rgba(255, 20, 147, 0.6);
+            color: #fff;
+            border-radius: 50px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 20, 147, 0.3);
+        }
+
+        .choice-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 20, 147, 0.5);
+        }
+
+        #yesBtn {
+            padding: 20px 60px;
+            font-size: 1.8rem;
+        }
+
+        #noBtn {
+            padding: 15px 40px;
+            font-size: 1.3rem;
+        }
+
+        .celebration {
+            display: none;
+            text-align: center;
+            animation: fadeIn 1s ease;
+        }
+
+        .celebration.show {
+            display: block;
+        }
+
+        .celebration-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #FF1493, #FFD700, #FF69B4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+            animation: shimmer 2s ease-in-out infinite;
+        }
+
+        .celebration-emoji {
+            font-size: 5rem;
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
         
             @media (max-width: 768px) {
             .title {
@@ -734,38 +793,36 @@
             .timeline-dot {
                 left: 20px;
             }
+            .question-text {
+                font-size: 1.5rem;
+            }
+            .question-text .big {
+                font-size: 1.8rem;
+            }
+            #yesBtn {
+                padding: 15px 40px;
+                font-size: 1.5rem;
+            }
+            #noBtn {
+                padding: 12px 30px;
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- MUSIC CONTROL BUTTON -->
-    <div class="music-control" id="musicControl">
-        <span id="musicIcon">🎵</span>
-    </div>
-    
-    <!-- BACKGROUND MUSIC -->
-    <audio id="bgMusic" loop preload="auto">
-        <!-- The Weeknd - One of the Girls -->
-        <source src="oneofthegirl.mp3" type="audio/mpeg">
-        <source src="./oneofthegirl.mp3" type="audio/mpeg">
-    </audio>
-    
-    <!-- ANIMATED STARS CANVAS -->
     <canvas class="stars-canvas" id="starsCanvas"></canvas>
-    
-    <!-- FLOATING HEARTS -->
     <div class="floating-hearts" id="floatingHearts"></div>
     
-    <!-- LOCK SCREEN -->
     <div id="lockScreen">
         <div>
             <div class="lock-shackle"></div>
             <div class="lock-box">
                 <div class="hearts">🐻 🐣</div>
                 <div class="code-inputs">
-                    <input type="text" maxlength="1" class="code-input" id="d1">
-                    <input type="text" maxlength="1" class="code-input" id="d2">
-                    <input type="text" maxlength="1" class="code-input" id="d3">
+                    <input type="text" maxlength="1" class="code-input" id="d1" inputmode="numeric">
+                    <input type="text" maxlength="1" class="code-input" id="d2" inputmode="numeric">
+                    <input type="text" maxlength="1" class="code-input" id="d3" inputmode="numeric">
                 </div>
                 <div class="message" id="msg"></div>
                 <div class="bottom-text">Te amo, mi corazón</div>
@@ -773,7 +830,6 @@
         </div>
     </div>
     
-    <!-- MAIN PAGE -->
     <div id="mainPage">
         <div class="cover">
             <div class="moon-sun-container">
@@ -785,7 +841,6 @@
             <h1 class="title">Suzan & Emin</h1>
             <p class="subtitle">UNSERE GESCHICHTE</p>
             
-            <!-- COUNTDOWN -->
             <div class="countdown">
                 <div class="countdown-box">
                     <span class="countdown-label">Since</span>
@@ -798,25 +853,23 @@
                 <button class="nav-btn" onclick="showStory()">Our Story</button>
                 <button class="nav-btn" onclick="showMoonSun()">The Moon & The Sun</button>
                 <button class="nav-btn">Moments</button>
+                <button class="nav-btn" onclick="showQuestion()">A Question</button>
                 <button class="nav-btn">Future</button>
                 <button class="nav-btn">For You</button>
             </div>
         </div>
     </div>
     
-    <!-- OUR STORY PAGE -->
     <div id="storyPage" class="story-page">
         <div class="page-header">
             <h2 class="page-title">Our Story</h2>
             <p class="page-subtitle">Wie alles begann...</p>
         </div>
         
-        <!-- HANDWRITTEN QUOTE -->
         <div class="handwritten">
             "Ihr habt euch nicht gesucht. Ihr habt euch gefunden."
         </div>
         
-        <!-- TIMELINE -->
         <div class="timeline">
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
@@ -1001,7 +1054,6 @@
         <button class="back-btn" onclick="showHome()">← Zurück zur Startseite</button>
     </div>
     
-    <!-- THE MOON & THE SUN PAGE -->
     <div id="moonSunPage" class="story-page">
         <div class="page-header">
             <h2 class="page-title">The Moon & The Sun</h2>
@@ -1012,7 +1064,6 @@
             "Du bist die Sonne. Ich bin der Mond. Und wir haben gelernt, zusammen zu leuchten."
         </div>
         
-        <!-- GESCHICHTE 1 -->
         <div class="story-content">
             <div class="story-text">
                 <p>Die Sonne hatte wieder einen langen Tag hinter sich. Sie hatte gestrahlt, gelächelt, geliebt – für alle. Aber als die Nacht kam, fiel ihr Licht ein wenig leiser. Sie war müde, nicht körperlich, sondern… im Herzen.</p>
@@ -1048,7 +1099,6 @@
             </div>
         </div>
         
-        <!-- GESCHICHTE 2 -->
         <div class="handwritten" style="margin: 80px 0 60px;">
             "Selbst das stärkste Licht braucht manchmal jemanden, der bleibt."
         </div>
@@ -1084,7 +1134,6 @@
             </div>
         </div>
         
-        <!-- GESCHICHTE 3 -->
         <div class="handwritten" style="margin: 80px 0 60px;">
             "Manchmal braucht Liebe kein Feuer – nur zwei Seelen, die wissen: Ich bleibe."
         </div>
@@ -1123,7 +1172,6 @@
             </div>
         </div>
         
-        <!-- GESCHICHTE 4 -->
         <div class="handwritten" style="margin: 80px 0 60px;">
             "Weil Liebe nicht immer leuchtet – manchmal ist sie einfach still."
         </div>
@@ -1158,12 +1206,40 @@
         
         <button class="back-btn" onclick="showHome()">← Zurück zur Startseite</button>
     </div>
+
+    <!-- QUESTION PAGE -->
+    <div id="questionPage" class="story-page">
+        <div class="question-container">
+            <div id="questionContent">
+                <div class="question-text">
+                    Du bist das Schönste, was mir je passiert ist.<br>
+                    Jeden Tag mit dir fühlt sich an wie ein Geschenk.<br>
+                    Du machst mich zu einem besseren Menschen.<br><br>
+                    Ich will nicht nur 227 Tage mit dir...<br>
+                    Ich will ein Leben lang.<br><br>
+                    <span class="big">Do you wanna be my girlfriend? 💍</span>
+                </div>
+                
+                <div class="choice-buttons">
+                    <button class="choice-btn" id="yesBtn" onclick="handleYes()">YES! 💕</button>
+                    <button class="choice-btn" id="noBtn" onclick="handleNo()">No</button>
+                </div>
+            </div>
+
+            <div id="celebration" class="celebration">
+                <div class="celebration-emoji">🎉 💕 🎊 💖 ✨</div>
+                <div class="celebration-text">
+                    SHE SAID YES!!!
+                </div>
+                <div class="celebration-emoji">🌙 ☀️ 💑 🐻 🐣</div>
+                <button class="back-btn" onclick="showHome()" style="margin-top: 50px;">← Zurück zur Startseite</button>
+            </div>
+        </div>
+    </div>
     
     <script>
-        // ANIMATED STARS BACKGROUND
         const canvas = document.getElementById('starsCanvas');
         const ctx = canvas.getContext('2d');
-        
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         
@@ -1175,14 +1251,10 @@
                 this.opacity = Math.random();
                 this.twinkleSpeed = Math.random() * 0.02 + 0.01;
             }
-            
             update() {
                 this.opacity += this.twinkleSpeed;
-                if (this.opacity >= 1 || this.opacity <= 0.3) {
-                    this.twinkleSpeed = -this.twinkleSpeed;
-                }
+                if (this.opacity >= 1 || this.opacity <= 0.3) this.twinkleSpeed = -this.twinkleSpeed;
             }
-            
             draw() {
                 ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
                 ctx.beginPath();
@@ -1200,33 +1272,27 @@
                 this.opacity = 1;
                 this.angle = Math.PI / 4;
             }
-            
             update() {
                 this.x += Math.cos(this.angle) * this.speed;
                 this.y += Math.sin(this.angle) * this.speed;
                 this.opacity -= 0.008;
             }
-            
             draw() {
                 ctx.save();
                 ctx.translate(this.x, this.y);
                 ctx.rotate(this.angle);
-                
                 const gradient = ctx.createLinearGradient(0, 0, -this.length, 0);
                 gradient.addColorStop(0, `rgba(255, 255, 255, ${this.opacity})`);
                 gradient.addColorStop(0.5, `rgba(255, 182, 193, ${this.opacity * 0.5})`);
                 gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
-                
                 ctx.strokeStyle = gradient;
                 ctx.lineWidth = 2;
                 ctx.beginPath();
                 ctx.moveTo(0, 0);
                 ctx.lineTo(-this.length, 0);
                 ctx.stroke();
-                
                 ctx.restore();
             }
-            
             isFinished() {
                 return this.opacity <= 0 || this.x > canvas.width + 100 || this.y > canvas.height + 100;
             }
@@ -1234,41 +1300,22 @@
         
         const stars = [];
         const shootingStars = [];
+        for (let i = 0; i < 400; i++) stars.push(new Star());
         
-        // Create stars
-        for (let i = 0; i < 400; i++) {
-            stars.push(new Star());
-        }
-        
-        // Create shooting stars periodically - VIEL MEHR!
         setInterval(() => {
-            if (Math.random() < 0.8) { // 80% Chance statt 30%!
-                shootingStars.push(new ShootingStar());
-            }
-        }, 1500); // Alle 1.5 Sekunden statt 3 Sekunden!
+            if (Math.random() < 0.8) shootingStars.push(new ShootingStar());
+        }, 1500);
         
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // Draw and update stars
-            stars.forEach(star => {
-                star.update();
-                star.draw();
-            });
-            
-            // Draw and update shooting stars
+            stars.forEach(star => { star.update(); star.draw(); });
             for (let i = shootingStars.length - 1; i >= 0; i--) {
                 shootingStars[i].update();
                 shootingStars[i].draw();
-                
-                if (shootingStars[i].isFinished()) {
-                    shootingStars.splice(i, 1);
-                }
+                if (shootingStars[i].isFinished()) shootingStars.splice(i, 1);
             }
-            
             requestAnimationFrame(animate);
         }
-        
         animate();
         
         window.addEventListener('resize', () => {
@@ -1276,11 +1323,9 @@
             canvas.height = window.innerHeight;
         });
         
-        // FLOATING HEARTS
         function createFloatingHearts() {
             const container = document.getElementById('floatingHearts');
             const hearts = ['💕', '💖', '💗', '💓', '💝', '💘'];
-            
             setInterval(() => {
                 const heart = document.createElement('div');
                 heart.className = 'heart-float';
@@ -1289,98 +1334,73 @@
                 heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
                 heart.style.animationDuration = (Math.random() * 5 + 10) + 's';
                 container.appendChild(heart);
-                
                 setTimeout(() => heart.remove(), 15000);
             }, 2000);
         }
-        
         createFloatingHearts();
         
-        // COUNTDOWN
         function updateCountdown() {
             document.getElementById('daysTogether').textContent = 227;
         }
-        
         updateCountdown();
         
-        // BACKGROUND MUSIC - Startet nach Code-Eingabe
-        const bgMusic = document.getElementById('bgMusic');
-        const musicControl = document.getElementById('musicControl');
-        const musicIcon = document.getElementById('musicIcon');
-        let isPlaying = false;
-        
-        // Zeige Button SOFORT beim Laden (für Tests)
-        console.log('Music Control:', musicControl);
-        console.log('Music Element:', bgMusic);
-        
-        // Music Control Button - EINFACH!
-        musicControl.addEventListener('click', function() {
-            console.log('Button geklickt! isPlaying:', isPlaying);
-            
-            if (!isPlaying) {
-                console.log('Versuche Musik zu starten...');
-                bgMusic.play()
-                    .then(() => {
-                        console.log('✅ MUSIK LÄUFT!');
-                        isPlaying = true;
-                        musicIcon.textContent = '⏸️';
-                        musicControl.classList.add('playing');
-                    })
-                    .catch(error => {
-                        console.error('❌ FEHLER beim Abspielen:', error);
-                        alert('Fehler: ' + error.message);
-                    });
-            } else {
-                console.log('Pausiere Musik...');
-                bgMusic.pause();
-                isPlaying = false;
-                musicIcon.textContent = '▶️';
-                musicControl.classList.remove('playing');
-            }
-        });
-        
-        // LOCK SCREEN CODE
+        // CODE INPUT
         const d1 = document.getElementById('d1');
         const d2 = document.getElementById('d2');
         const d3 = document.getElementById('d3');
         const msg = document.getElementById('msg');
         const lockScreen = document.getElementById('lockScreen');
         const mainPage = document.getElementById('mainPage');
+        let isProcessing = false;
         
-        d1.focus();
+        setTimeout(() => d1.focus(), 100);
         
         d1.addEventListener('input', function() {
-            if (this.value) d2.focus();
+            if (isProcessing) return;
+            isProcessing = true;
+            if (this.value.length > 1) this.value = this.value.charAt(0);
+            if (this.value.length === 1) {
+                setTimeout(() => { d2.focus(); isProcessing = false; }, 50);
+            } else {
+                isProcessing = false;
+            }
         });
         
         d2.addEventListener('input', function() {
-            if (this.value) d3.focus();
+            if (isProcessing) return;
+            isProcessing = true;
+            if (this.value.length > 1) this.value = this.value.charAt(0);
+            if (this.value.length === 1) {
+                setTimeout(() => { d3.focus(); isProcessing = false; }, 50);
+            } else {
+                isProcessing = false;
+            }
         });
         
         d3.addEventListener('input', function() {
-            if (this.value) {
-                const code = d1.value + d2.value + d3.value;
-                console.log('CODE:', code);
-                
+            if (isProcessing) return;
+            isProcessing = true;
+            if (this.value.length > 1) this.value = this.value.charAt(0);
+            if (this.value.length === 1) {
+                setTimeout(() => { checkCode(); isProcessing = false; }, 50);
+            } else {
+                isProcessing = false;
+            }
+        });
+        
+        function checkCode() {
+            const code = d1.value + d2.value + d3.value;
+            if (code.length === 3) {
                 if (code === '305') {
                     msg.textContent = '✓ ¡Correcto! 💕';
                     msg.style.color = '#2d5016';
-                    
                     setTimeout(() => {
                         lockScreen.classList.add('hide');
                         mainPage.classList.add('show');
-                        
-                        // Zeige Musik Button
-                        setTimeout(() => {
-                            musicControl.classList.add('show');
-                            musicIcon.textContent = '▶️';
-                            console.log('Button sollte jetzt sichtbar sein!');
-                        }, 500);
                     }, 1000);
                 } else {
                     msg.textContent = '❌ Falscher Code!';
                     msg.style.color = '#8B0000';
-                    
                     setTimeout(() => {
                         d1.value = '';
                         d2.value = '';
@@ -1390,32 +1410,124 @@
                     }, 1500);
                 }
             }
-        });
+        }
         
         d2.addEventListener('keydown', (e) => {
-            if (e.key === 'Backspace' && !d2.value) d1.focus();
+            if (e.key === 'Backspace' && d2.value === '') {
+                e.preventDefault();
+                d1.focus();
+            }
         });
         
         d3.addEventListener('keydown', (e) => {
-            if (e.key === 'Backspace' && !d3.value) d2.focus();
+            if (e.key === 'Backspace' && d3.value === '') {
+                e.preventDefault();
+                d2.focus();
+            }
         });
+
+        // YES/NO LOGIC
+        let noClickCount = 0;
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+
+        function handleNo() {
+            noClickCount++;
+            
+            // YES wird größer
+            const currentYesFontSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+            yesBtn.style.fontSize = (currentYesFontSize + 0.3) + 'rem';
+            yesBtn.style.padding = (20 + noClickCount * 3) + 'px ' + (60 + noClickCount * 5) + 'px';
+            
+            // NO wird kleiner
+            const currentNoFontSize = parseFloat(window.getComputedStyle(noBtn).fontSize);
+            const currentNoPaddingV = 15 - noClickCount * 1.5;
+            const currentNoPaddingH = 40 - noClickCount * 3;
+            
+            if (currentNoFontSize > 0.5) {
+                noBtn.style.fontSize = (currentNoFontSize - 0.15) + 'rem';
+            }
+            if (currentNoPaddingV > 3 && currentNoPaddingH > 10) {
+                noBtn.style.padding = currentNoPaddingV + 'px ' + currentNoPaddingH + 'px';
+            }
+
+            // Nach 5 Clicks wird NO fast unsichtbar
+            if (noClickCount >= 5) {
+                noBtn.style.opacity = Math.max(0.1, 1 - (noClickCount - 5) * 0.15);
+            }
+
+            // Shake animation für NO
+            noBtn.style.animation = 'none';
+            setTimeout(() => {
+                noBtn.style.animation = 'shake 0.3s';
+            }, 10);
+        }
+
+        function handleYes() {
+            document.getElementById('questionContent').style.display = 'none';
+            document.getElementById('celebration').classList.add('show');
+            
+            // Extra Herzen für die Feier!
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart-float';
+                    heart.textContent = ['💕', '💖', '💗', '💓', '💝', '💘'][Math.floor(Math.random() * 6)];
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
+                    heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                    document.getElementById('floatingHearts').appendChild(heart);
+                }, i * 100);
+            }
+        }
+
+        // Shake animation CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                75% { transform: translateX(10px); }
+            }
+        `;
+        document.head.appendChild(style);
         
         // Navigation
         function showStory() {
             document.getElementById('mainPage').classList.remove('show');
             document.getElementById('storyPage').classList.add('active');
             document.getElementById('moonSunPage').classList.remove('active');
+            document.getElementById('questionPage').classList.remove('active');
         }
         
         function showMoonSun() {
             document.getElementById('mainPage').classList.remove('show');
             document.getElementById('storyPage').classList.remove('active');
             document.getElementById('moonSunPage').classList.add('active');
+            document.getElementById('questionPage').classList.remove('active');
+        }
+
+        function showQuestion() {
+            document.getElementById('mainPage').classList.remove('show');
+            document.getElementById('storyPage').classList.remove('active');
+            document.getElementById('moonSunPage').classList.remove('active');
+            document.getElementById('questionPage').classList.add('active');
+            
+            // Reset für wiederholtes Aufrufen
+            noClickCount = 0;
+            yesBtn.style.fontSize = '';
+            yesBtn.style.padding = '';
+            noBtn.style.fontSize = '';
+            noBtn.style.padding = '';
+            noBtn.style.opacity = '';
+            document.getElementById('questionContent').style.display = 'block';
+            document.getElementById('celebration').classList.remove('show');
         }
         
         function showHome() {
             document.getElementById('storyPage').classList.remove('active');
             document.getElementById('moonSunPage').classList.remove('active');
+            document.getElementById('questionPage').classList.remove('active');
             document.getElementById('mainPage').classList.add('show');
         }
     </script>
