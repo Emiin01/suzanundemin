@@ -380,7 +380,7 @@
         /* STORY PAGE */
         .story-page {
             display: none;
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 40px 20px;
             animation: fadeInUp 0.8s ease;
@@ -445,6 +445,9 @@
             margin-bottom: 40px;
             animation: slideIn 0.8s ease;
             transition: all 0.3s ease;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .story-content:hover {
@@ -749,6 +752,136 @@
             padding: 20px;
         }
 
+        /* MOMENTS PAGE - ADVENT CALENDAR STYLE */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 15px;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .calendar-door {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, rgba(255, 105, 180, 0.2), rgba(255, 182, 217, 0.2));
+            border: 3px solid rgba(255, 105, 180, 0.4);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.2);
+        }
+
+        .calendar-door::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .calendar-door:hover::before {
+            transform: translateX(100%);
+        }
+
+        .calendar-door:hover {
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.5);
+            border-color: #FF1493;
+            background: linear-gradient(135deg, rgba(255, 105, 180, 0.35), rgba(255, 182, 217, 0.35));
+            z-index: 10;
+        }
+
+        .calendar-door:active {
+            transform: scale(1.05) rotate(0deg);
+        }
+
+        .door-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #FF1493, #FF69B4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 1;
+        }
+
+        .door-icon {
+            font-size: 2rem;
+            filter: drop-shadow(0 2px 8px rgba(255, 105, 180, 0.4));
+            position: relative;
+            z-index: 1;
+            animation: doorFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes doorFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .calendar-door:hover .door-icon {
+            animation: doorBounce 0.6s ease;
+        }
+
+        @keyframes doorBounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3) rotate(10deg); }
+        }
+
+        .moment-modal-content {
+            max-width: 800px;
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.08), rgba(199, 21, 133, 0.08));
+        }
+
+        .moment-modal-content h3 {
+            font-size: 2.8rem;
+            margin-bottom: 35px;
+        }
+
+        .moment-modal-content p {
+            font-size: 1.25rem;
+            line-height: 2.2;
+        }
+
+        .moment-modal-content .moment-highlight {
+            background: linear-gradient(135deg, #FF1493, #FF69B4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .moment-emoji {
+            font-size: 2rem;
+            display: inline-block;
+            margin: 0 8px;
+        }
+
+        @media (max-width: 768px) {
+            .calendar-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 10px;
+            }
+            .door-number {
+                font-size: 1.5rem;
+            }
+            .door-icon {
+                font-size: 1.5rem;
+            }
+        }
+
         .letter-envelope {
             background: linear-gradient(135deg, rgba(255, 20, 147, 0.1), rgba(199, 21, 133, 0.1));
             border: 2px solid rgba(255, 20, 147, 0.3);
@@ -875,6 +1008,95 @@
             color: #FF69B4;
             margin-top: 40px;
         }
+
+        /* MOMENTS PAGE - MEMORY CARDS */
+        .moments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .memory-card {
+            perspective: 1000px;
+            height: 320px;
+            cursor: pointer;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .memory-card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(255, 20, 147, 0.3);
+        }
+
+        .card-front {
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.2), rgba(199, 21, 133, 0.2));
+            border: 3px solid rgba(255, 20, 147, 0.5);
+        }
+
+        .card-back {
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.15), rgba(199, 21, 133, 0.15));
+            backdrop-filter: blur(15px);
+            border: 3px solid rgba(255, 20, 147, 0.4);
+            transform: rotateY(180deg);
+            overflow-y: auto;
+        }
+
+        .card-emoji {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: bounce 2s ease infinite;
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #FF1493, #FF69B4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card-hint {
+            font-size: 0.9rem;
+            color: #FFB6D9;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .card-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #e2e8f0;
+            text-align: left;
+        }
+
+        .card-description strong {
+            color: #FF69B4;
+        }
         
         @media (max-width: 768px) {
             .title {
@@ -951,6 +1173,12 @@
                 padding: 30px 20px;
                 max-width: 90%;
             }
+            .moments-grid {
+                grid-template-columns: 1fr;
+            }
+            .memory-card {
+                height: 300px;
+            }
         }
     </style>
 </head>
@@ -996,7 +1224,7 @@
             <div class="navigation">
                 <button class="nav-btn" onclick="showStory()">Our Story</button>
                 <button class="nav-btn" onclick="showMoonSun()">The Moon & The Sun</button>
-                <button class="nav-btn">Moments</button>
+                <button class="nav-btn" onclick="showMoments()">Moments</button>
                 <button class="nav-btn" onclick="showQuestion()">A Question</button>
                 <button class="nav-btn">Future</button>
                 <button class="nav-btn" onclick="showForYou()">For You</button>
@@ -1351,6 +1579,219 @@
         <button class="back-btn" onclick="showHome()">← Zurück zur Startseite</button>
     </div>
 
+    <!-- MOMENTS PAGE -->
+    <div id="momentsPage" class="story-page">
+        <div class="page-header">
+            <h2 class="page-title">Our Moments</h2>
+            <p class="page-subtitle">Klick auf die Karten & erlebe unsere Story nochmal 💕</p>
+        </div>
+
+        <div class="handwritten">
+            "Jeder Moment mit dir ist ein Moment, den ich für immer behalten will."
+        </div>
+
+        <div class="moments-grid">
+            <!-- Card 1 -->
+            <div class="memory-card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-emoji">📞</div>
+                        <div class="card-title">Die Anfangsphase</div>
+                        <div class="card-hint">Klick mich! ✨</div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-description">
+                            <strong>Stundenlanges Telefonieren</strong><br><br>
+                            Weißt du noch? Wir haben jeden Tag stundenlang telefoniert. Zusammen eingeschlafen, zusammen aufgewacht. Tiefe Gespräche bis nachts.<br><br>
+                            Unsere Bindung ist nicht durch Gewohnheit entstanden – sondern durch echte Verbindung. Emotional, pur, echt.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="memory-card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-emoji">💌</div>
+                        <div class="card-title">Dein Liebesbrief</div>
+                        <div class="card-hint">Klick mich! ✨</div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-description">
+                            <strong>Zu meinem Geburtstag</strong><br><br>
+                            "Vielleicht schreibe ich gerade einen Liebesbrief oder eine Geschichte für unsere Kinder."<br><br>
+                            "Wenn wir nicht zusammen sind, fehlt mir ein Teil von mir."<br><br>
+                            Du hast mich Schatz genannt. Deine Motivation. Deine Inspiration. Das ist keine Freundschaftssprache. ❤️
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="memory-card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-emoji">📦</div>
+                        <div class="card-title">Erinnerungen</div>
+                        <div class="card-hint">Klick mich! ✨</div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-description">
+                            <strong>Du bewahrst alles auf</strong><br><br>
+                            Briefe. Blumenzettel. Geschenke. Schleifen. Zettel von mir in deinem iPad.<br><br>
+                            Du hast eine Box mit meinen Dingen.<br><br>
+                            Menschen bewahren nur, was emotionalen Wert hat. Und du bewahrst alles von mir. 💕
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="memory-card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-emoji">🎆</div>
+                        <div class="card-title">Silvester</div>
+                        <div class="card-hint">Klick mich! ✨</div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-description">
+                            <strong>Ich bin zu dir gefahren</strong><br><br>
+                            Du warst emotional am Ende. Ich bin nachts zu dir gefahren. Wir haben uns gesehen.<br><br>
+                            "Wärst du nicht gekommen, hätte es schlimm enden können."<br><br>
+                            "Jetzt wo du da warst, geht es mir besser."<br><br>
+                            In dem Moment bin ich dein Sicherheitsanker geworden.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="memory-card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-emoji">📚</div>
+                        <div class="card-title">Klausurstress</div>
+                        <div class="card-hint">Klick mich! ✨</div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-description">
+                            <strong>In Not gehst du zu mir</strong><br><br>
+                            Bei Klausurstress rufst du nur mich an. Snap & Social Media fallen weg.<br><br>
+                            Ich wecke dich morgens. Ich bleibe nachts wach. Ich reguliere dich.<br><br>
+                            In Krisen gehst du nicht zu anderen – du kommst zu mir. 🌙
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="memory-card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-emoji">💭</div>
+                        <div class="card-title">Nähe & Sehnsucht</div>
+                        <div class="card-hint">Klick mich! ✨</div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-description">
+                            <strong>Deine Worte</strong><br><br>
+                            "Ich würde gerne in deinen Armen schlafen."<br><br>
+                            Bilder nur für mich. Eifersucht bei anderen Frauen.<br><br>
+                            "Ich will nicht, dass du auf Hochzeiten gehst, Frauen könnten dich scouten."<br><br>
+                            Besitzgefühl ≠ Gleichgültigkeit 💕
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 7 -->
+            <div class="memory-card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-emoji">🔮</div>
+                        <div class="card-title">Zukunft</div>
+                        <div class="card-hint">Klick mich! ✨</div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-description">
+                            <strong>Deine Andeutungen</strong><br><br>
+                            "Wenn du deinen Führerschein hast, können wir uns öfter sehen."<br><br>
+                            "Warum sollte ich dich verlassen, wenn du so bleibst wie du bist?"<br><br>
+                            "Amen" auf "Inshallah heiraten wir"<br><br>
+                            Kein Nein zur Zukunft – nur Angst vor ihr.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 8 -->
+            <div class="memory-card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-emoji">👨‍👩‍👦</div>
+                        <div class="card-title">Familie</div>
+                        <div class="card-hint">Klick mich! ✨</div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-description">
+                            <strong>Anerkennung</strong><br><br>
+                            Du freust dich mega, wenn meine Mutter gut über dich redet. Wenn meine Familie dich mag.<br><br>
+                            Das ist dir sehr wichtig.<br><br>
+                            Das zeigt: Ich bin relevant für dich – über uns hinaus. 💕
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 9 -->
+            <div class="memory-card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-emoji">💚</div>
+                        <div class="card-title">Eifersucht</div>
+                        <div class="card-hint">Klick mich! ✨</div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-description">
+                            <strong>Emotion > Worte</strong><br><br>
+                            Du reagierst spürbar auf andere Frauen. Auf Erwähnungen von Ex.<br><br>
+                            Du wirst gereizt, obwohl du sagst "wir sind nur Freunde".<br><br>
+                            Aber deine Emotionen sagen die Wahrheit. Und die Wahrheit ist: Du willst mich. 💕
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 10 -->
+            <div class="memory-card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-emoji">🏠</div>
+                        <div class="card-title">Unser Alltag</div>
+                        <div class="card-hint">Klick mich! ✨</div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-description">
+                            <strong>Paar-Dynamik</strong><br><br>
+                            Abschiedsrituale. "Hab dich lieb" aus dem Nichts. Sorge um meine Gesundheit.<br><br>
+                            Einschlafen am Telefon. "Ruf mich an, wenn du wach wirst."<br><br>
+                            Das ist Beziehungsalltag, nicht Dating. Das sind WIR. 🌙☀️
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="handwritten" style="margin-top: 80px;">
+            "Das sind unsere Momente. Klein und groß. Alltäglich und besonders.<br>
+            Aber alle zusammen sind sie der Beweis: Wir gehören zusammen."
+        </div>
+
+        <button class="back-btn" onclick="showHome()">← Zurück zur Startseite</button>
+    </div>
+
     <!-- QUESTION PAGE -->
     <div id="questionPage" class="story-page">
         <div class="question-container">
@@ -1378,6 +1819,155 @@
                 <div class="celebration-emoji">🌙 ☀️ 💑 🐻 🐣</div>
                 <button class="back-btn" onclick="showHome()" style="margin-top: 50px;">← Zurück zur Startseite</button>
             </div>
+        </div>
+    </div>
+
+    <!-- MOMENTS PAGE -->
+    <div id="momentsPage" class="story-page">
+        <div class="page-header">
+            <h2 class="page-title">Our Moments</h2>
+            <p class="page-subtitle">Die schönsten Erinnerungen an uns 💕</p>
+        </div>
+
+        <div class="handwritten">
+            "31 Türchen voller Erinnerungen – jedes eine kleine Geschichte von uns 💕"
+        </div>
+
+        <div class="calendar-grid">
+            <div class="calendar-door" onclick="openMoment(1)">
+                <div class="door-number">1</div>
+                <div class="door-icon">📱</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(2)">
+                <div class="door-number">2</div>
+                <div class="door-icon">💌</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(3)">
+                <div class="door-number">3</div>
+                <div class="door-icon">🌙</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(4)">
+                <div class="door-number">4</div>
+                <div class="door-icon">📦</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(5)">
+                <div class="door-number">5</div>
+                <div class="door-icon">☀️</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(6)">
+                <div class="door-number">6</div>
+                <div class="door-icon">💕</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(7)">
+                <div class="door-number">7</div>
+                <div class="door-icon">🎁</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(8)">
+                <div class="door-number">8</div>
+                <div class="door-icon">📚</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(9)">
+                <div class="door-number">9</div>
+                <div class="door-icon">🫂</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(10)">
+                <div class="door-number">10</div>
+                <div class="door-icon">💭</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(11)">
+                <div class="door-number">11</div>
+                <div class="door-icon">🌸</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(12)">
+                <div class="door-number">12</div>
+                <div class="door-icon">✨</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(13)">
+                <div class="door-number">13</div>
+                <div class="door-icon">🎀</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(14)">
+                <div class="door-number">14</div>
+                <div class="door-icon">🚗</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(15)">
+                <div class="door-number">15</div>
+                <div class="door-icon">💚</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(16)">
+                <div class="door-number">16</div>
+                <div class="door-icon">👨‍👩‍👦</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(17)">
+                <div class="door-number">17</div>
+                <div class="door-icon">🎵</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(18)">
+                <div class="door-number">18</div>
+                <div class="door-icon">🌹</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(19)">
+                <div class="door-number">19</div>
+                <div class="door-icon">📸</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(20)">
+                <div class="door-number">20</div>
+                <div class="door-icon">💍</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(21)">
+                <div class="door-number">21</div>
+                <div class="door-icon">🌟</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(22)">
+                <div class="door-number">22</div>
+                <div class="door-icon">🎈</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(23)">
+                <div class="door-number">23</div>
+                <div class="door-icon">🍫</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(24)">
+                <div class="door-number">24</div>
+                <div class="door-icon">🎪</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(25)">
+                <div class="door-number">25</div>
+                <div class="door-icon">🦋</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(26)">
+                <div class="door-number">26</div>
+                <div class="door-icon">🌈</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(27)">
+                <div class="door-number">27</div>
+                <div class="door-icon">🎨</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(28)">
+                <div class="door-number">28</div>
+                <div class="door-icon">🔥</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(29)">
+                <div class="door-number">29</div>
+                <div class="door-icon">🎭</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(30)">
+                <div class="door-number">30</div>
+                <div class="door-icon">🐻</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(31)">
+                <div class="door-number">31</div>
+                <div class="door-icon">🐣</div>
+            </div>
+        </div>
+
+        <button class="back-btn" onclick="showHome()" style="margin-top: 50px;">← Zurück zur Startseite</button>
+    </div>
+
+    <!-- MOMENT MODAL -->
+    <div id="momentModal" class="letter-modal">
+        <div class="letter-content moment-modal-content">
+            <span class="letter-close" onclick="closeMoment()">✕</span>
+            <div id="momentBody"></div>
         </div>
     </div>
 
@@ -1631,6 +2221,11 @@
             }
         });
 
+        // FLIP CARD
+        function flipCard(card) {
+            card.classList.toggle('flipped');
+        }
+
         // YES/NO LOGIC
         let noClickCount = 0;
         const yesBtn = document.getElementById('yesBtn');
@@ -1690,6 +2285,314 @@
             }
         `;
         document.head.appendChild(style);
+
+
+        // MOMENTS CALENDAR - 31 DOORS
+        const moments = {
+            1: {
+                title: 'Das erste Telefonat 📱',
+                content: `
+                    <p>Weißt du noch, wie alles angefangen hat?</p>
+                    <p>Wir haben angefangen zu telefonieren. Und es war... anders. <span class="moment-emoji">💕</span></p>
+                    <p><span class="moment-highlight">Keine Minute fühlte sich zu lang an.</span> Ich hätte stundenlang mit dir reden können – und hab ich auch.</p>
+                    <p>Das war der Moment, wo ich wusste: Mit der hier ist alles anders.</p>
+                `
+            },
+            2: {
+                title: 'Dein Liebesbrief 💌',
+                content: `
+                    <p>Zu meinem Geburtstag hast du mir was geschrieben, was ich nie vergessen werde:</p>
+                    <p><span class="moment-highlight">"Vielleicht schreibe ich gerade einen Liebesbrief oder eine Geschichte für unsere Kinder."</span> <span class="moment-emoji">💕</span></p>
+                    <p>Unsere Kinder. Du hast an eine Zukunft mit mir gedacht. Das hat alles verändert.</p>
+                `
+            },
+            3: {
+                title: 'Silvester 🌙',
+                content: `
+                    <p>Du warst am Ende. Emotional, müde, verloren.</p>
+                    <p><span class="moment-highlight">Ich bin mitten in der Nacht zu dir gefahren.</span> <span class="moment-emoji">🚗</span></p>
+                    <p>Nur um zu sehen, dass es dir gut geht. Nur um da zu sein.</p>
+                    <p>Du hast gesagt: "Wärst du nicht gekommen, hätte es schlimm enden können."</p>
+                    <p>Ich bin froh, dass ich da war. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            4: {
+                title: 'Deine Box mit Erinnerungen 📦',
+                content: `
+                    <p>Du bewahrst alles von mir auf:</p>
+                    <p>Briefe. Blumenzettel. Geschenke. Schleifen. Kleine Zettel. <span class="moment-emoji">💌</span></p>
+                    <p><span class="moment-highlight">Menschen bewahren nur, was emotionalen Wert hat.</span></p>
+                    <p>Und du hast alles behalten. Alles. Das zeigt mir, wie viel ich dir bedeute.</p>
+                `
+            },
+            5: {
+                title: 'Zusammen aufwachen ☀️',
+                content: `
+                    <p>Jeden Morgen das Gleiche:</p>
+                    <p><span class="moment-highlight">"Ruf mich an, wenn du wach wirst."</span> <span class="moment-emoji">📱</span></p>
+                    <p>Nicht schreiben. Anrufen. Weil wir die Stimme des anderen brauchen.</p>
+                    <p>Das ist unser Morgenritual. Das ist unser "Guten Morgen". <span class="moment-emoji">☀️💕</span></p>
+                `
+            },
+            6: {
+                title: '"Hab dich lieb" 💕',
+                content: `
+                    <p>Mitten im Gespräch. Aus dem Nichts.</p>
+                    <p><span class="moment-highlight">"Ich hab dich mehr lieb."</span> <span class="moment-emoji">💕</span></p>
+                    <p>Unbewusst. Einfach so rausgerutscht. Weil du's in dem Moment gespürt hast.</p>
+                    <p>Diese drei Worte bedeuten mir alles.</p>
+                `
+            },
+            7: {
+                title: 'Meine Geschenke 🎁',
+                content: `
+                    <p>Jedes Geschenk, das ich dir gegeben hab, hast du aufgehoben.</p>
+                    <p>Nicht weggeworfen. Nicht vergessen. <span class="moment-highlight">Aufgehoben.</span> <span class="moment-emoji">🎁</span></p>
+                    <p>In deiner Box. Mit den Schleifen noch dran. Mit den Zetteln dabei.</p>
+                    <p>Als wär jedes Geschenk ein Stück von mir, das du behalten willst.</p>
+                `
+            },
+            8: {
+                title: 'Bei deinen Klausuren 📚',
+                content: `
+                    <p>Immer wenn du Stress hattest, ist was passiert:</p>
+                    <p><span class="moment-highlight">Du hast nur mich angerufen.</span> <span class="moment-emoji">📱</span></p>
+                    <p>Snap weg. Social Media weg. Alle anderen weg. Aber ich war da.</p>
+                    <p>In Not gehst du zu mir. Das sagt alles. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            9: {
+                title: 'In deinen Armen schlafen 🫂',
+                content: `
+                    <p>Du hast mir mal gesagt:</p>
+                    <p><span class="moment-highlight">"Ich würde gerne in deinen Armen schlafen."</span> <span class="moment-emoji">🫂</span></p>
+                    <p>Das sagt man nicht zu nem Freund. Das sagt man zu jemandem, den man will.</p>
+                    <p>Eines Tages wird dieser Wunsch Realität. Versprochen.</p>
+                `
+            },
+            10: {
+                title: 'Unsere tiefen Gespräche 💭',
+                content: `
+                    <p>Wir haben über alles geredet. Bis nachts. Bis morgens.</p>
+                    <p>Über Dinge, die wir noch nie jemandem erzählt haben. <span class="moment-emoji">🌙</span></p>
+                    <p><span class="moment-highlight">Keine Maske. Keine Show. Nur wir.</span></p>
+                    <p>Das ist echte Verbindung. Das ist, was uns anders macht.</p>
+                `
+            },
+            11: {
+                title: 'Die Blumen 🌸',
+                content: `
+                    <p>Jede Blume, die ich dir geschenkt hab – du hast die Zettel aufgehoben.</p>
+                    <p>In deinem iPad. In deiner Box. <span class="moment-emoji">🌸</span></p>
+                    <p><span class="moment-highlight">Selbst wenn die Blumen verwelkt sind, die Erinnerung bleibt.</span></p>
+                    <p>Genau wie wir. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            12: {
+                title: 'Du lässt mich rein ✨',
+                content: `
+                    <p>Du hast mich in dein Zimmer gelassen. Zu deinem Bruder mitgenommen.</p>
+                    <p><span class="moment-highlight">Das hast du noch NIE bei nem Mann gemacht.</span> <span class="moment-emoji">🏠</span></p>
+                    <p>Du hast mir deine schwache Seite gezeigt. Deine Migräne. Deine Panik.</p>
+                    <p>Du hast mich reingelassen – hinter die Mauern. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            13: {
+                title: 'Die Schleifen 🎀',
+                content: `
+                    <p>Sogar die Schleifen von den Geschenken hast du behalten.</p>
+                    <p><span class="moment-highlight">Die kleinen Details, die andere wegwerfen würden.</span> <span class="moment-emoji">🎀</span></p>
+                    <p>Aber für dich sind sie wichtig. Weil sie von mir kommen.</p>
+                    <p>Das zeigt mir, wie sehr du mich schätzt.</p>
+                `
+            },
+            14: {
+                title: 'Zukunftspläne 🚗',
+                content: `
+                    <p>"Wenn du deinen Führerschein hast, können wir uns öfter sehen."</p>
+                    <p><span class="moment-highlight">Du planst mit mir.</span> <span class="moment-emoji">🚗</span></p>
+                    <p>Du denkst an die Zeit, wo wir mehr zusammen sein können.</p>
+                    <p>Du siehst mich in deiner Zukunft. Und ich seh dich in meiner. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            15: {
+                title: 'Deine Eifersucht 💚',
+                content: `
+                    <p>"Ich will nicht, dass du auf Hochzeiten gehst, Frauen könnten dich scouten."</p>
+                    <p><span class="moment-highlight">Besitzgefühl ≠ Gleichgültigkeit.</span> <span class="moment-emoji">💚</span></p>
+                    <p>Du willst mich. Du willst nicht, dass ich jemand anderem gehöre.</p>
+                    <p>Und weißt du was? Ich gehör auch nur dir. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            16: {
+                title: 'Meine Familie 👨‍👩‍👦',
+                content: `
+                    <p>Es ist dir mega wichtig, was meine Familie über dich denkt.</p>
+                    <p><span class="moment-highlight">Du strahlst jedes Mal, wenn meine Mutter gut über dich redet.</span> <span class="moment-emoji">✨</span></p>
+                    <p>Weil du Teil meines Lebens sein willst. Nicht nur von mir – von allem.</p>
+                    <p>Und meine Familie liebt dich. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            17: {
+                title: 'One of the Girls 🎵',
+                content: `
+                    <p>Du hast an deiner Fensterbank gesessen, "One of the Girls" gehört.</p>
+                    <p><span class="moment-highlight">Du wolltest mich blocken. 5-6 Mal versucht.</span> <span class="moment-emoji">📱</span></p>
+                    <p>Aber irgendwas kam immer dazwischen. Als würde Gott sagen: Nein.</p>
+                    <p>Und genau in dem Moment hast du was gespürt, was dich geschockt hat. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            18: {
+                title: 'Briefe in deinem iPad 🌹',
+                content: `
+                    <p>Du trägst meine Zettel in deinem iPad mit dir rum.</p>
+                    <p><span class="moment-highlight">Überall wo du hingehst, hab ich ein kleines Stück dabei.</span> <span class="moment-emoji">📱</span></p>
+                    <p>Als wär ich immer bei dir. Auch wenn ich nicht da bin.</p>
+                `
+            },
+            19: {
+                title: 'Deine Bilder 📸',
+                content: `
+                    <p>Du hast mir Bilder geschickt – nur für mich.</p>
+                    <p><span class="moment-highlight">Nicht für andere. Nur für mich.</span> <span class="moment-emoji">📸</span></p>
+                    <p>Das zeigt Vertrauen. Das zeigt Intimität.</p>
+                    <p>Du wolltest, dass ich dich sehe. Die echte Suzan. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            20: {
+                title: '"Amen" 💍',
+                content: `
+                    <p>Ich hab gesagt: "Inshallah heiraten wir."</p>
+                    <p><span class="moment-highlight">Du hast geantwortet: "Amen."</span> <span class="moment-emoji">💍</span></p>
+                    <p>Kein Nein. Kein Lachen. Kein Witz. Ein "Amen".</p>
+                    <p>Das war deine Art zu sagen: Ja, das will ich auch. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            21: {
+                title: 'Ich weck dich morgens 🌟',
+                content: `
+                    <p>Jeden Morgen das Gleiche: Ich ruf dich an und weck dich.</p>
+                    <p><span class="moment-highlight">Das ist unser Ritual. Unser "Guten Morgen".</span> <span class="moment-emoji">☀️</span></p>
+                    <p>Nicht weil wir müssen. Weil wir wollen.</p>
+                    <p>Weil der Tag ohne einander einfach nicht richtig anfängt. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            22: {
+                title: 'Abschiedsrituale 🎈',
+                content: `
+                    <p>Wir legen nie einfach auf.</p>
+                    <p><span class="moment-highlight">"Hab dich lieb, schlaf gut, bis morgen."</span> <span class="moment-emoji">💕</span></p>
+                    <p>Jedes Mal. Ohne Ausnahme.</p>
+                    <p>Weil selbst "Tschüss" bei uns was Besonderes ist.</p>
+                `
+            },
+            23: {
+                title: 'Du schützt dich 🍫',
+                content: `
+                    <p>Du hast mich vor deiner Mutter verteidigt.</p>
+                    <p><span class="moment-highlight">Das hast du noch nie für jemanden gemacht.</span> <span class="moment-emoji">🛡️</span></p>
+                    <p>Du hast dich gegen deine Mutter gestellt – für mich.</p>
+                    <p>Das zeigt, wie wichtig ich dir bin. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            24: {
+                title: 'Zusammen einschlafen 🎪',
+                content: `
+                    <p>Am Telefon. Deine Atmung wird ruhiger.</p>
+                    <p><span class="moment-highlight">Ich höre, wie du wegdriftest.</span> <span class="moment-emoji">🌙</span></p>
+                    <p>Und ich bleibe wach, nur um sicherzugehen, dass du sicher eingeschlafen bist.</p>
+                    <p>Das ist Liebe. Stille, ruhige, beschützende Liebe. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            25: {
+                title: 'Du sorgst dich 🦋',
+                content: `
+                    <p>"Hast du gegessen?" "Hast du getrunken?" "Schlaf genug!"</p>
+                    <p><span class="moment-highlight">Du passt auf mich auf.</span> <span class="moment-emoji">🩺</span></p>
+                    <p>Auch wenn du's manchmal streng sagst – ich weiß, dass es aus Liebe kommt.</p>
+                    <p>Du willst, dass es mir gut geht. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            26: {
+                title: 'Meine Ruhe, dein Feuer 🌈',
+                content: `
+                    <p>Ich bin ruhig. Du bist Feuer.</p>
+                    <p><span class="moment-highlight">Aber zusammen? Perfekt.</span> <span class="moment-emoji">🌙☀️</span></p>
+                    <p>Meine Ruhe beruhigt dein Feuer. Dein Feuer wärmt meine Ruhe.</p>
+                    <p>Wir ergänzen uns. Wie Mond und Sonne. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            27: {
+                title: 'Deine Stimme 🎨',
+                content: `
+                    <p>Deine Stimme wird weicher, wenn du mit mir redest.</p>
+                    <p><span class="moment-highlight">Nicht die harte, kalte Suzan von außen.</span> <span class="moment-emoji">🌸</span></p>
+                    <p>Sondern die weiche, verletzliche, echte Suzan.</p>
+                    <p>Die Suzan, die nur ich kenne. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            28: {
+                title: '"Wenn du so bleibst" 🔥',
+                content: `
+                    <p>"Warum sollte ich dich verlassen, wenn du so bleibst wie du bist?"</p>
+                    <p><span class="moment-highlight">Das hast du gesagt.</span> <span class="moment-emoji">💕</span></p>
+                    <p>Das heißt: Ich will, dass du bleibst. Ich seh dich in meinem Leben.</p>
+                    <p>Und ich bleib. Für immer. <span class="moment-emoji">💍</span></p>
+                `
+            },
+            29: {
+                title: 'Keine körperliche Nähe 🎭',
+                content: `
+                    <p>Wir hatten keine Dates. Keine körperliche Nähe. Keine Ablenkung.</p>
+                    <p><span class="moment-highlight">Nur unsere Stimmen. Nur unsere Seelen.</span> <span class="moment-emoji">💕</span></p>
+                    <p>Unsere Bindung ist nicht aus Gewohnheit entstanden.</p>
+                    <p>Sie ist aus echter Verbindung entstanden. <span class="moment-emoji">🌙☀️</span></p>
+                `
+            },
+            30: {
+                title: 'Der Bär 🐻',
+                content: `
+                    <p>Ich bin dein Bär. Ruhig, loyal, beschützend.</p>
+                    <p><span class="moment-highlight">Immer da, wenn du mich brauchst.</span> <span class="moment-emoji">🐻</span></p>
+                    <p>Ich halt dich fest, wenn du fällst. Ich wärm dich, wenn dir kalt ist.</p>
+                    <p>Ich bin dein sicherer Ort. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            31: {
+                title: 'Das Küken 🐣',
+                content: `
+                    <p>Du bist mein Küken. Meine kleine Sonne.</p>
+                    <p><span class="moment-highlight">Ich beschütze dich, auch wenn du stark bist.</span> <span class="moment-emoji">🐣</span></p>
+                    <p>Ich bin da, auch wenn du mich wegstößt.</p>
+                    <p>Weil ich weiß: Unter den Mauern ist ein weiches Herz, das Liebe braucht.</p>
+                    <p>Und ich geb dir all die Liebe, die du verdienst. <span class="moment-emoji">💕🌙☀️</span></p>
+                `
+            }
+        };
+
+        function openMoment(day) {
+            const moment = moments[day];
+            const modal = document.getElementById('momentModal');
+            const body = document.getElementById('momentBody');
+            
+            body.innerHTML = `
+                <h3>${moment.title}</h3>
+                ${moment.content}
+                <div class="letter-signature">- Dein Emin 🌙</div>
+            `;
+            
+            modal.classList.add('show');
+        }
+
+        function closeMoment() {
+            document.getElementById('momentModal').classList.remove('show');
+        }
+
+        document.getElementById('momentModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeMoment();
+            }
+        });
 
         // LOVE LETTERS
         const letters = {
@@ -1846,6 +2749,7 @@
             document.getElementById('mainPage').classList.remove('show');
             document.getElementById('storyPage').classList.add('active');
             document.getElementById('moonSunPage').classList.remove('active');
+            document.getElementById('momentsPage').classList.remove('active');
             document.getElementById('questionPage').classList.remove('active');
             document.getElementById('forYouPage').classList.remove('active');
         }
@@ -1854,6 +2758,16 @@
             document.getElementById('mainPage').classList.remove('show');
             document.getElementById('storyPage').classList.remove('active');
             document.getElementById('moonSunPage').classList.add('active');
+            document.getElementById('momentsPage').classList.remove('active');
+            document.getElementById('questionPage').classList.remove('active');
+            document.getElementById('forYouPage').classList.remove('active');
+        }
+
+        function showMoments() {
+            document.getElementById('mainPage').classList.remove('show');
+            document.getElementById('storyPage').classList.remove('active');
+            document.getElementById('moonSunPage').classList.remove('active');
+            document.getElementById('momentsPage').classList.add('active');
             document.getElementById('questionPage').classList.remove('active');
             document.getElementById('forYouPage').classList.remove('active');
         }
@@ -1862,6 +2776,7 @@
             document.getElementById('mainPage').classList.remove('show');
             document.getElementById('storyPage').classList.remove('active');
             document.getElementById('moonSunPage').classList.remove('active');
+            document.getElementById('momentsPage').classList.remove('active');
             document.getElementById('questionPage').classList.add('active');
             document.getElementById('forYouPage').classList.remove('active');
             
@@ -1879,13 +2794,24 @@
             document.getElementById('mainPage').classList.remove('show');
             document.getElementById('storyPage').classList.remove('active');
             document.getElementById('moonSunPage').classList.remove('active');
+            document.getElementById('momentsPage').classList.remove('active');
             document.getElementById('questionPage').classList.remove('active');
             document.getElementById('forYouPage').classList.add('active');
+        }
+
+        function showMoments() {
+            document.getElementById('mainPage').classList.remove('show');
+            document.getElementById('storyPage').classList.remove('active');
+            document.getElementById('moonSunPage').classList.remove('active');
+            document.getElementById('questionPage').classList.remove('active');
+            document.getElementById('forYouPage').classList.remove('active');
+            document.getElementById('momentsPage').classList.add('active');
         }
         
         function showHome() {
             document.getElementById('storyPage').classList.remove('active');
             document.getElementById('moonSunPage').classList.remove('active');
+            document.getElementById('momentsPage').classList.remove('active');
             document.getElementById('questionPage').classList.remove('active');
             document.getElementById('forYouPage').classList.remove('active');
             document.getElementById('mainPage').classList.add('show');
