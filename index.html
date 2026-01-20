@@ -738,8 +738,145 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-20px); }
         }
+
+        /* FOR YOU PAGE - LETTERS */
+        .letters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .letter-envelope {
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.1), rgba(199, 21, 133, 0.1));
+            border: 2px solid rgba(255, 20, 147, 0.3);
+            border-radius: 20px;
+            padding: 40px 30px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .letter-envelope::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #FF1493, #FF69B4);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .letter-envelope:hover::before {
+            transform: scaleX(1);
+        }
+
+        .letter-envelope:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(255, 20, 147, 0.4);
+            border-color: #FF1493;
+        }
+
+        .letter-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .letter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #FF1493, #FF69B4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .letter-preview {
+            color: #FFB6D9;
+            font-size: 1rem;
+            font-style: italic;
+        }
+
+        /* LETTER MODAL */
+        .letter-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .letter-modal.show {
+            display: flex;
+        }
+
+        .letter-content {
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.05), rgba(199, 21, 133, 0.05));
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 20, 147, 0.3);
+            border-radius: 30px;
+            padding: 50px;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideIn 0.5s ease;
+        }
+
+        .letter-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #FF69B4;
+            transition: all 0.3s ease;
+        }
+
+        .letter-close:hover {
+            color: #FF1493;
+            transform: rotate(90deg);
+        }
+
+        .letter-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #FF1493, #FF69B4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .letter-content p {
+            font-size: 1.2rem;
+            line-height: 2;
+            color: #e2e8f0;
+            margin-bottom: 20px;
+        }
+
+        .letter-signature {
+            text-align: right;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.5rem;
+            color: #FF69B4;
+            margin-top: 40px;
+        }
         
-            @media (max-width: 768px) {
+        @media (max-width: 768px) {
             .title {
                 font-size: 3rem;
             }
@@ -807,6 +944,13 @@
                 padding: 12px 30px;
                 font-size: 1.1rem;
             }
+            .letters-grid {
+                grid-template-columns: 1fr;
+            }
+            .letter-content {
+                padding: 30px 20px;
+                max-width: 90%;
+            }
         }
     </style>
 </head>
@@ -855,7 +999,7 @@
                 <button class="nav-btn">Moments</button>
                 <button class="nav-btn" onclick="showQuestion()">A Question</button>
                 <button class="nav-btn">Future</button>
-                <button class="nav-btn">For You</button>
+                <button class="nav-btn" onclick="showForYou()">For You</button>
             </div>
         </div>
     </div>
@@ -867,7 +1011,7 @@
         </div>
         
         <div class="handwritten">
-            "Ihr habt euch nicht gesucht. Ihr habt euch gefunden."
+            "Wir haben uns nicht gesucht. Wir haben uns gefunden."
         </div>
         
         <div class="timeline">
@@ -875,7 +1019,7 @@
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                     <div class="timeline-date">Der erste Moment</div>
-                    <div class="timeline-text">Sie schickte mir ein Video von einem Fluss auf Snapchat. Normalerweise schreibe ich nie etwas dazu – aber an diesem Tag sagte mir etwas: Schreib.</div>
+                    <div class="timeline-text">Du hast mir ein Video von einem Fluss geschickt auf Snapchat. Normalerweise antworte ich nie auf sowas – aber an dem Tag hat mir irgendwas gesagt: Schreib.</div>
                 </div>
             </div>
             
@@ -883,7 +1027,7 @@
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                     <div class="timeline-date">Fast ein Jahr später - Bayram</div>
-                    <div class="timeline-text">Wir fingen an, hin und her zu snapen. Nach sehr kurzer Zeit wusste mein Herz: Sie ist ganz besonders.</div>
+                    <div class="timeline-text">Wir haben angefangen, hin und her zu snapen. Und nach sehr kurzer Zeit wusste mein Herz einfach: Die hier ist anders. Die ist was Besonderes.</div>
                 </div>
             </div>
             
@@ -891,7 +1035,7 @@
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                     <div class="timeline-date">Die Fensterbank</div>
-                    <div class="timeline-text">Sie saß an ihrer Fensterbank, hörte "One of the Girls" von The Weeknd und wollte mich blocken. Sie hatte es 5-6x versucht, aber immer kam etwas dazwischen – als würde Gott es nicht wollen. In genau diesem Moment spürte sie etwas, wovon sie selbst geschockt war.</div>
+                    <div class="timeline-text">Du hast mir später erzählt – du hast an deiner Fensterbank gesessen, "One of the Girls" gehört und wolltest mich blocken. 5-6 Mal hast du's versucht, aber irgendwas kam immer dazwischen. Als würde Gott sagen: Nein. Und genau in dem Moment hast du was gespürt, was dich selbst geschockt hat.</div>
                 </div>
             </div>
             
@@ -899,7 +1043,7 @@
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                     <div class="timeline-date">30.05.2024</div>
-                    <div class="timeline-text">Der Tag, an dem alles begann. Seit Tag 1 sah ich ihr inneres Kind – nicht die kalte, emotionslose Suzan von außen.</div>
+                    <div class="timeline-text">Der Tag, an dem alles anfing. Von Tag 1 an hab ich dein inneres Kind gesehen – nicht die kalte, harte Suzan von außen.</div>
                 </div>
             </div>
             
@@ -907,7 +1051,7 @@
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                     <div class="timeline-date">Heute</div>
-                    <div class="timeline-text">Sie hat mir etwas gegeben und gezeigt, wonach ich nie gesucht hatte, es aber immer gebraucht habe.</div>
+                    <div class="timeline-text">Du hast mir was gegeben, wonach ich nie gesucht hab. Aber was ich scheinbar mein ganzes Leben gebraucht hab.</div>
                 </div>
             </div>
         </div>
@@ -915,31 +1059,31 @@
         <div class="story-content">
             <div class="story-text">
                 <p>Es war nichts geplant.<br>
-                Nichts gewollt.<br>
-                Nichts Gesuchtes.</p>
+                Keiner von uns wollte das.<br>
+                Keiner von uns hat danach gesucht.</p>
                 
-                <p>Wir waren beide nicht auf der Suche nach Liebe. Ehrlich gesagt hatten wir beide damit abgeschlossen. Ich hatte mich damit abgefunden, allein zu sein. Und du… du hattest deine Mauern so hochgezogen, dass niemand mehr reinkam.</p>
+                <p>Wir waren beide nicht auf der Suche nach Liebe, ehrlich gesagt. Wir hatten beide schon abgeschlossen damit. Ich hatte mich damit abgefunden, allein zu sein. Und du... du hattest deine Mauern so hochgezogen, dass echt keiner mehr durchkam.</p>
                 
-                <p>Und genau deshalb hat es uns beide getroffen.</p>
+                <p>Und genau deswegen hat's uns beide erwischt.</p>
             </div>
         </div>
         
         <div class="story-content">
             <div class="story-text">
-                <p><span class="highlight">Es fing an mit etwas, das keiner von uns ernst genommen hat.</span></p>
+                <p><span class="highlight">Angefangen hat's mit was, das eigentlich nichts bedeuten sollte.</span></p>
                 
-                <p>Ein Snap von einem Fluss.<br>
-                Ein kurzer Moment.<br>
-                Ein Kontakt, der eigentlich nichts bedeuten sollte.</p>
+                <p>Ein Snap von nem Fluss.<br>
+                Ein Moment.<br>
+                Ein Kontakt, der eigentlich wieder vergessen wird.</p>
                 
-                <p>Du warst in deiner Welt – kontrolliert, kalt nach außen, mit diesem Schutzschild, das du gegen alles aufgestellt hast, was dir gefährlich werden könnte.</p>
+                <p>Du warst in deiner Welt – kontrolliert, nach außen kalt, mit diesem Schutzschild um dich rum. Damit dich keiner verletzen kann.</p>
                 
-                <p>Ich war in meiner Welt – ruhig, loyal, stabil. Ich wollte niemandem etwas vormachen. Ich wollte einfach nur… echt sein.</p>
+                <p>Ich war in meiner Welt – ruhig, loyal, einfach echt. Ich wollte niemandem was vormachen. Ich wollte einfach nur ich sein.</p>
                 
-                <p>Wir beide ohne Erwartung.<br>
-                Beide mit der Einstellung: <span class="highlight">„Da wird eh nichts."</span></p>
+                <p>Beide ohne Erwartungen.<br>
+                Beide mit der Einstellung: <span class="highlight">„Da wird eh nichts draus."</span></p>
                 
-                <p>Und genau da passiert es meistens, oder?</p>
+                <p>Und dann passiert's meistens, oder?</p>
             </div>
         </div>
         
@@ -947,17 +1091,17 @@
             <div class="story-text">
                 <p><span class="highlight">Das Komische war – du konntest mich nicht vergessen.</span></p>
                 
-                <p>Bevor wir uns wirklich kannten.<br>
-                Bevor wir irgendetwas geteilt hatten.<br>
+                <p>Bevor wir uns richtig kannten.<br>
+                Bevor wir irgendwas geteilt hatten.<br>
                 Bevor ich überhaupt wusste, wer du wirklich bist.</p>
                 
-                <p>Du hast mir später erzählt, wie du damals an deiner Fensterbank gesessen hast. Kalt, leer, müde. Und plötzlich… hast du mich vermisst.</p>
+                <p>Du hast mir später erzählt, wie du damals an deiner Fensterbank gesessen hast. Kalt, leer, müde von allem. Und plötzlich... hast du mich vermisst.</p>
                 
                 <p><span class="highlight">Einen Fremden.</span></p>
                 
-                <p>Du hast es selbst nicht verstanden. Aber das war der erste Moment, wo du wusstest:</p>
+                <p>Du hast's selbst nicht gecheckt. Aber das war der erste Moment, wo du wusstest:</p>
                 
-                <p><span class="highlight">„Dieser Mann wird gefährlich für mich."</span></p>
+                <p><span class="highlight">„Der hier wird gefährlich für mich."</span></p>
             </div>
         </div>
         
@@ -965,16 +1109,16 @@
             <div class="story-text">
                 <p>Und ich?</p>
                 
-                <p>Ich war einfach ich selbst.</p>
+                <p>Ich war einfach ich.</p>
                 
                 <p>Keine Show.<br>
                 Keine Maske.<br>
-                Kein Ego.<br>
+                Kein Ego-Ding.<br>
                 Nur ich – ruhig, warm, ehrlich.</p>
                 
-                <p>Ich hab dir nicht geschrieben, um etwas von dir zu bekommen. <span class="highlight">Ich hab geschrieben, weil ich einfach da sein wollte.</span></p>
+                <p>Ich hab dir nicht geschrieben, um was von dir zu kriegen. <span class="highlight">Ich hab geschrieben, weil ich einfach da sein wollte.</span></p>
                 
-                <p>Und genau das hat dich getroffen, glaube ich. Hat dich weicher gemacht. Unsicher gemacht. Verletzlich gemacht.</p>
+                <p>Und ich glaub, das hat dich erwischt. Hat dich weicher gemacht. Unsicher gemacht. Verletzlich gemacht.</p>
             </div>
         </div>
         
@@ -983,14 +1127,14 @@
                 <p><span class="highlight">Dann kam unser Alltag.</span></p>
                 
                 <p>Morgens zusammen wach werden.<br>
-                Tagsüber zusammen reden.<br>
+                Den ganzen Tag zusammen reden.<br>
                 Abends zusammen einschlafen.</p>
                 
-                <p>Kein Tag ohne einander. Und weißt du was? Es fühlte sich nie erzwungen an.</p>
+                <p>Kein Tag ohne einander. Und weißt du was? Es hat sich nie gezwungen angefühlt.</p>
                 
                 <p>Wir haben das nicht gemacht, weil wir mussten. Wir haben das gemacht, weil es sich <span class="highlight">falsch angefühlt hätte, es nicht zu tun</span>.</p>
                 
-                <p>Sowas passiert nicht einfach so. Das entsteht nicht aus Nichts. Das passiert nur, wenn zwei Seelen sich erkennen, bevor die Köpfe überhaupt verstehen, was da gerade passiert.</p>
+                <p>Sowas passiert nicht einfach so. Das kommt nicht aus dem Nichts. Das passiert nur, wenn zwei Seelen sich erkennen, bevor die Köpfe überhaupt checken, was da gerade abgeht.</p>
             </div>
         </div>
         
@@ -998,15 +1142,15 @@
             <div class="story-text">
                 <p><span class="highlight">Und dann kamen die Momente, wo ich wusste: Sie lässt mich rein.</span></p>
                 
-                <p>Du hast mich in dein Zimmer gelassen. Du hast mich zu deinem Bruder mitgenommen – etwas, was du noch nie bei einem Mann gemacht hattest.</p>
+                <p>Du hast mich in dein Zimmer gelassen. Du hast mich zu deinem Bruder mitgenommen – was du noch NIE bei nem Mann gemacht hast.</p>
                 
                 <p>Du hast mich vor deiner Mutter verteidigt. Du hast mir deine schwache Seite gezeigt, deine Migräne, deine Panik, deine dunklen Momente.</p>
                 
-                <p>Ich hab deine Stimme gehört, wie sie weicher wurde. Wie sie ruhiger wurde. Wie du manchmal unbewusst gesagt hast:</p>
+                <p>Ich hab gehört, wie deine Stimme weicher wurde. Wie sie ruhiger wurde. Wie du manchmal unbewusst gesagt hast:</p>
                 
-                <p><span class="highlight">„Ich hab dich mehr."</span></p>
+                <p><span class="highlight">„Ich hab dich mehr lieb."</span></p>
                 
-                <p>Ich weiß, dass du diese Dinge niemandem gibst. Und ich weiß auch, was es dich gekostet hat, mir das zu zeigen.</p>
+                <p>Ich weiß, dass du das niemandem gibst. Und ich weiß auch, was es dich gekostet hat, mir das zu zeigen.</p>
             </div>
         </div>
         
@@ -1018,11 +1162,11 @@
                 
                 <p>Aber ich hab verstanden, dass das nicht an mir lag.</p>
                 
-                <p><span class="highlight">Du hattest keine Angst vor mir. Du hattest Angst davor, mich zu wollen.</span></p>
+                <p><span class="highlight">Du hattest keine Angst vor mir. Du hattest Angst davor, dass du mich willst.</span></p>
                 
-                <p>Angst, dass ich dir zu wichtig werde. Angst, dass ich dich verlassen könnte. Angst, dass du wieder verletzt wirst.</p>
+                <p>Angst, dass ich dir zu wichtig werde. Angst, dass ich dich verlasse. Angst, dass du wieder verletzt wirst.</p>
                 
-                <p>Ein Mensch flieht nur vor dem, was ihn wirklich verletzen könnte. Und ich glaube… ich bin der einzige Mann, der diese Macht über dich hat.</p>
+                <p>Ein Mensch flieht nur vor dem, was ihn wirklich verletzen könnte. Und ich glaub... ich bin der einzige Mann, der diese Macht über dich hat.</p>
             </div>
         </div>
         
@@ -1032,7 +1176,7 @@
                 
                 <p>Wir haben uns gefunden – dort, wo wir beide kaputt waren.</p>
                 
-                <p>Und trotzdem… sind wir die einzigen Menschen, bei denen wir weich werden. Bei denen wir lachen können. Bei denen wir einschlafen können. Bei denen wir uns sicher fühlen.</p>
+                <p>Und trotzdem... sind wir füreinander die einzigen Menschen, bei denen wir weich werden. Bei denen wir lachen können. Bei denen wir einschlafen können. Bei denen wir uns sicher fühlen.</p>
                 
                 <p>Meine Ruhe trifft auf dein Feuer.<br>
                 Meine Stabilität trifft auf deine Angst.<br>
@@ -1040,9 +1184,9 @@
                 
                 <p>Das ist keine normale Geschichte.</p>
                 
-                <p><span class="highlight">Das ist: Feuer trifft Ruhe. Wunde trifft Heilung. Mauer trifft Geduld.</span></p>
+                <p><span class="highlight">Das hier ist: Feuer trifft Ruhe. Wunde trifft Heilung. Mauer trifft Geduld.</span></p>
                 
-                <p>Wir sind zwei Menschen, die sich gegenseitig halten, obwohl keiner von uns weiß, wie man das eigentlich macht.</p>
+                <p>Wir sind zwei Menschen, die sich gegenseitig halten, obwohl keiner von uns wirklich weiß, wie das geht.</p>
             </div>
         </div>
         
@@ -1066,12 +1210,12 @@
         
         <div class="story-content">
             <div class="story-text">
-                <p>Die Sonne hatte wieder einen langen Tag hinter sich. Sie hatte gestrahlt, gelächelt, geliebt – für alle. Aber als die Nacht kam, fiel ihr Licht ein wenig leiser. Sie war müde, nicht körperlich, sondern… im Herzen.</p>
+                <p>Die Sonne hatte wieder einen langen Tag hinter sich. Sie hatte gestrahlt, gelächelt, für alle da gewesen. Aber als die Nacht kam, wurde ihr Licht ein bisschen leiser. Sie war müde, nicht körperlich, sondern... im Herzen.</p>
                 
                 <p>Und genau da war er wieder – <span class="highlight">der Mond</span>. Nicht laut, nicht fordernd, einfach da. Wie immer, wenn sie sich selbst verlieren wollte, fand sie ihn irgendwo zwischen den Sternen.</p>
                 
                 <p>„Warum bist du immer da, wenn ich dich nicht rufe?", fragte sie.</p>
-                <p>Der Mond lächelte: <span class="highlight">„Weil du mich nie rufen musst. Ich höre dich, auch wenn du schweigst."</span></p>
+                <p>Der Mond lächelte: <span class="highlight">„Weil du mich nie rufen musst. Ich hör dich, auch wenn du nichts sagst."</span></p>
             </div>
         </div>
         
@@ -1082,16 +1226,16 @@
         
         <div class="story-content">
             <div class="story-text">
-                <p>Sie schwieg kurz, schaute ihn an und flüsterte: „Ich habe Angst, dass ich dich verletze, ohne es zu wollen."</p>
+                <p>Sie schwieg kurz, schaute ihn an und flüsterte: „Ich hab Angst, dass ich dich verletze, ohne es zu wollen."</p>
                 
                 <p>Der Mond antwortete: <span class="highlight">„Wenn du mich mal verbrennst, dann nur, weil ich dir zu nah gekommen bin."</span></p>
                 
-                <p>Die Sonne musste lachen – ein echtes, kleines, ehrliches Lachen. Zum ersten Mal fühlte sie sich nicht mehr wie ein Chaos aus Feuer, sondern wie jemand, den man halten könnte, ohne zu verbrennen.</p>
+                <p>Die Sonne musste lachen – ein echtes, kleines, ehrliches Lachen. Zum ersten Mal fühlte sie sich nicht mehr wie ein Chaos aus Feuer, sondern wie jemand, den man halten könnte, ohne sich zu verbrennen.</p>
                 
                 <p>Sie fragte: „Und was, wenn ich irgendwann wieder untergehe?"</p>
-                <p>Er antwortete: <span class="highlight">„Dann warte ich, bis du wieder aufstehst. Das tue ich immer."</span></p>
+                <p>Er antwortete: <span class="highlight">„Dann warte ich, bis du wieder aufgehst. Das tu ich immer."</span></p>
                 
-                <p>Die Sonne schwieg wieder, aber diesmal anders. Sie war ruhig. Sie war… sicher. Zum ersten Mal hatte sie das Gefühl, dass sie nicht alles alleine tragen musste.</p>
+                <p>Die Sonne schwieg wieder, aber diesmal anders. Sie war ruhig. Sie war... sicher. Zum ersten Mal hatte sie das Gefühl, dass sie nicht alles alleine tragen muss.</p>
                 
                 <p>Und während sie langsam in den Himmel sank, flüsterte sie fast unhörbar: „Vielleicht hab ich dich gebraucht, bevor ich's überhaupt wusste."</p>
                 
@@ -1105,9 +1249,9 @@
         
         <div class="story-content">
             <div class="story-text">
-                <p>Es gibt diese Geschichte von der Sonne und dem Mond. Die meisten sagen, sie könnten nie zusammen sein, weil sie sich nie begegnen – aber keiner versteht, dass genau das ihr Geheimnis ist.</p>
+                <p>Es gibt diese Geschichte von der Sonne und dem Mond. Die meisten sagen, sie können nie zusammen sein, weil sie sich nie begegnen – aber keiner checkt, dass genau das ihr Geheimnis ist.</p>
                 
-                <p>Die Sonne war immer laut. Sie hat gebrannt, alle haben sie gesehen, alle wollten ein Stück von ihr. Und trotzdem hat keiner gemerkt, wie müde sie manchmal war, wie sie abends untergeht, und sich wünscht, dass jemand einfach still da bleibt, ohne etwas zu verlangen.</p>
+                <p>Die Sonne war immer laut. Sie hat gebrannt, alle haben sie gesehen, alle wollten ein Stück von ihr. Und trotzdem hat keiner gemerkt, wie müde sie manchmal war, wie sie abends untergeht, und sich wünscht, dass jemand einfach still da bleibt, ohne was zu verlangen.</p>
                 
                 <p>Und da war <span class="highlight">der Mond</span>.</p>
             </div>
@@ -1120,15 +1264,15 @@
         
         <div class="story-content">
             <div class="story-text">
-                <p>Er hat nie versucht, heller zu sein als sie. Er wusste, sie ist das Licht, das Leben gibt. Er wollte sie nicht verändern, nur verstehen. Und während die Welt die Sonne feierte, hat er sie einfach angeschaut – so, wie sie wirklich war.</p>
+                <p>Er hat nie versucht, heller zu sein als sie. Er wusste, sie ist das Licht, das Leben gibt. Er wollte sie nicht ändern, nur verstehen. Und während die Welt die Sonne gefeiert hat, hat er sie einfach angeschaut – so, wie sie wirklich war.</p>
                 
-                <p>Er wusste: wenn sie lacht, wird es warm. Wenn sie weint, regnet es. Und jedes Mal, wenn sie verschwindet, bleibt er da – ruhig, stabil, damit sie, wenn sie wieder aufgeht, weiß, da war jemand, der sie nicht vergessen hat.</p>
+                <p>Er wusste: wenn sie lacht, wird's warm. Wenn sie weint, regnet's. Und jedes Mal, wenn sie verschwindet, bleibt er da – ruhig, stabil, damit sie, wenn sie wieder aufgeht, weiß: Da war jemand, der sie nicht vergessen hat.</p>
                 
-                <p>Manchmal, wenn sie in der Ferne lachte, tat es ihm weh, weil er wusste, die Sonne gehört niemandem. Aber tief in sich wusste er auch, dass sie immer zu ihm zurückkommt – nicht, weil sie muss, sondern weil sie will.</p>
+                <p>Manchmal, wenn sie in der Ferne lachte, tat's ihm weh, weil er wusste, die Sonne gehört niemandem. Aber tief in sich wusste er auch, dass sie immer zu ihm zurückkommt – nicht, weil sie muss, sondern weil sie will.</p>
                 
                 <p><span class="highlight">Und so ist das mit uns, Suzan.</span></p>
                 
-                <p>Du bist die Sonne. Du brauchst Raum, du willst frei sein, und ich will, dass du es bist. Ich bin nicht hier, um dich festzuhalten – ich bin hier, um dich nicht loszulassen, wenn du mal müde wirst.</p>
+                <p>Du bist die Sonne. Du brauchst Raum, du willst frei sein, und ich will, dass du's bist. Ich bin nicht hier, um dich festzuhalten – ich bin hier, um dich nicht loszulassen, wenn du mal müde wirst.</p>
                 
                 <p>Ich bin der Mond, und ich leuchte, damit du dich selbst siehst, auch in der Dunkelheit. Und selbst wenn du weit weg bist, weiß ich – irgendwann schaust du hoch, siehst mein Licht, und erinnerst dich: <span class="highlight">Da war jemand, der dich nie vergessen hat.</span></p>
             </div>
@@ -1155,11 +1299,11 @@
         
         <div class="story-content">
             <div class="story-text">
-                <p>Eines Nachts sagte die Sonne leise: „Manchmal wünsche ich mir, ich könnte einfach verschwinden. Nur für einen Moment. Kein Licht, kein Feuer, kein Druck, einfach… nichts."</p>
+                <p>Eines Nachts sagte die Sonne leise: „Manchmal wünsch ich mir, ich könnte einfach verschwinden. Nur für einen Moment. Kein Licht, kein Feuer, kein Druck, einfach... nichts."</p>
                 
-                <p>Der Mond schwieg. Nicht, weil er keine Antwort wusste – sondern, weil er wusste, dass Worte sie nur verletzen würden. Er ließ sie reden, atmen, fühlen. Er ließ sie einfach sein.</p>
+                <p>Der Mond schwieg. Nicht, weil er keine Antwort wusste – sondern, weil er wusste, dass Worte sie jetzt nur verletzen würden. Er ließ sie reden, atmen, fühlen. Er ließ sie einfach sein.</p>
                 
-                <p>Nach einer Weile flüsterte er: <span class="highlight">„Du musst nicht jeden Tag scheinen. Manchmal reicht es, wenn du einfach da bist. Ich leuchte weiter, bis du wieder willst."</span></p>
+                <p>Nach ner Weile flüsterte er: <span class="highlight">„Du musst nicht jeden Tag scheinen. Manchmal reicht's, wenn du einfach da bist. Ich leuchte weiter, bis du wieder willst."</span></p>
                 
                 <p>Die Sonne schaute ihn an – zum ersten Mal nicht als jemand, der sie bewundert, sondern als jemand, der sie versteht.</p>
                 
@@ -1191,9 +1335,9 @@
         
         <div class="story-content">
             <div class="story-text">
-                <p>Sie sagte leise: „Ich wollte dich nicht wegstoßen… ich wusste nur nicht, wie ich dich nah an mich lasse, ohne mich selbst zu verlieren."</p>
+                <p>Sie sagte leise: „Ich wollte dich nicht wegstoßen... ich wusste nur nicht, wie ich dich nah an mich lasse, ohne mich selbst zu verlieren."</p>
                 
-                <p>Der Mond antwortete sanft: <span class="highlight">„Ich weiß. Deshalb bleib ich auch dann, wenn du mich kurz vergisst. Weil Liebe nicht immer leuchtet – manchmal ist sie einfach still."</span></p>
+                <p>Der Mond antwortete sanft: <span class="highlight">„Ich weiß. Deswegen bleib ich auch dann, wenn du mich kurz vergisst. Weil Liebe nicht immer leuchtet – manchmal ist sie einfach still."</span></p>
                 
                 <p>Und in dieser Nacht, als der Himmel wieder ein Stück ruhiger wurde, fiel die Sonne langsam in den Schlaf. Nicht, weil alles perfekt war – sondern, weil sie wusste: <span class="highlight">Der Mond ist noch da. Trotz allem. Wie immer.</span></p>
             </div>
@@ -1212,11 +1356,11 @@
         <div class="question-container">
             <div id="questionContent">
                 <div class="question-text">
-                    Du bist das Schönste, was mir je passiert ist.<br>
-                    Jeden Tag mit dir fühlt sich an wie ein Geschenk.<br>
-                    Du machst mich zu einem besseren Menschen.<br><br>
+                    Du bist das Beste, was mir je passiert ist.<br>
+                    Jeder Tag mit dir fühlt sich an wie ein Geschenk.<br>
+                    Du machst mich zu nem besseren Menschen.<br><br>
                     Ich will nicht nur 227 Tage mit dir...<br>
-                    Ich will ein Leben lang.<br><br>
+                    Ich will ein ganzes Leben lang.<br><br>
                     <span class="big">Do you wanna be my girlfriend? 💍</span>
                 </div>
                 
@@ -1234,6 +1378,67 @@
                 <div class="celebration-emoji">🌙 ☀️ 💑 🐻 🐣</div>
                 <button class="back-btn" onclick="showHome()" style="margin-top: 50px;">← Zurück zur Startseite</button>
             </div>
+        </div>
+    </div>
+
+    <!-- FOR YOU PAGE - LOVE LETTERS -->
+    <div id="forYouPage" class="story-page">
+        <div class="page-header">
+            <h2 class="page-title">For You</h2>
+            <p class="page-subtitle">Open When... 💌</p>
+        </div>
+
+        <div class="handwritten">
+            "Ich hab dir Briefe geschrieben für Momente, wo ich nicht da sein kann.<br>
+            Öffne sie, wann immer du sie brauchst."
+        </div>
+
+        <div class="letters-grid">
+            <div class="letter-envelope" onclick="openLetter('miss')">
+                <div class="letter-icon">💭</div>
+                <div class="letter-title">Open when you miss me</div>
+                <div class="letter-preview">Für die Momente der Sehnsucht...</div>
+            </div>
+
+            <div class="letter-envelope" onclick="openLetter('sad')">
+                <div class="letter-icon">🌧️</div>
+                <div class="letter-title">Open when you're sad</div>
+                <div class="letter-preview">Wenn die Welt zu schwer wird...</div>
+            </div>
+
+            <div class="letter-envelope" onclick="openLetter('sleep')">
+                <div class="letter-icon">🌙</div>
+                <div class="letter-title">Open when you can't sleep</div>
+                <div class="letter-preview">Für schlaflose Nächte...</div>
+            </div>
+
+            <div class="letter-envelope" onclick="openLetter('smile')">
+                <div class="letter-icon">😊</div>
+                <div class="letter-title">Open when you need a smile</div>
+                <div class="letter-preview">Für einen kleinen Moment der Freude...</div>
+            </div>
+
+            <div class="letter-envelope" onclick="openLetter('strong')">
+                <div class="letter-icon">💪</div>
+                <div class="letter-title">Open when you need strength</div>
+                <div class="letter-preview">Wenn du zweifelst...</div>
+            </div>
+
+            <div class="letter-envelope" onclick="openLetter('love')">
+                <div class="letter-icon">💕</div>
+                <div class="letter-title">Open when you need to feel loved</div>
+                <div class="letter-preview">Immer und überall...</div>
+            </div>
+        </div>
+
+        <button class="back-btn" onclick="showHome()" style="margin-top: 50px;">← Zurück zur Startseite</button>
+    </div>
+
+    <!-- LETTER MODAL -->
+    <div id="letterModal" class="letter-modal">
+        <div class="letter-content">
+            <span class="letter-close" onclick="closeLetter()">✕</span>
+            <div id="letterBody"></div>
         </div>
     </div>
     
@@ -1434,12 +1639,10 @@
         function handleNo() {
             noClickCount++;
             
-            // YES wird größer
             const currentYesFontSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
             yesBtn.style.fontSize = (currentYesFontSize + 0.3) + 'rem';
             yesBtn.style.padding = (20 + noClickCount * 3) + 'px ' + (60 + noClickCount * 5) + 'px';
             
-            // NO wird kleiner
             const currentNoFontSize = parseFloat(window.getComputedStyle(noBtn).fontSize);
             const currentNoPaddingV = 15 - noClickCount * 1.5;
             const currentNoPaddingH = 40 - noClickCount * 3;
@@ -1451,12 +1654,10 @@
                 noBtn.style.padding = currentNoPaddingV + 'px ' + currentNoPaddingH + 'px';
             }
 
-            // Nach 5 Clicks wird NO fast unsichtbar
             if (noClickCount >= 5) {
                 noBtn.style.opacity = Math.max(0.1, 1 - (noClickCount - 5) * 0.15);
             }
 
-            // Shake animation für NO
             noBtn.style.animation = 'none';
             setTimeout(() => {
                 noBtn.style.animation = 'shake 0.3s';
@@ -1467,7 +1668,6 @@
             document.getElementById('questionContent').style.display = 'none';
             document.getElementById('celebration').classList.add('show');
             
-            // Extra Herzen für die Feier!
             for (let i = 0; i < 50; i++) {
                 setTimeout(() => {
                     const heart = document.createElement('div');
@@ -1481,7 +1681,6 @@
             }
         }
 
-        // Shake animation CSS
         const style = document.createElement('style');
         style.textContent = `
             @keyframes shake {
@@ -1491,6 +1690,156 @@
             }
         `;
         document.head.appendChild(style);
+
+        // LOVE LETTERS
+        const letters = {
+            miss: {
+                title: 'Open when you miss me 💭',
+                content: `
+                    <p>Hey mi amor,</p>
+                    
+                    <p>Ich weiß genau, wie sich das anfühlt. Dieser Moment, wo du mich gerade vermisst. Wo du dir wünschst, ich wär jetzt da. Wo du meine Stimme hören willst, meine Ruhe spüren willst.</p>
+                    
+                    <p>Aber weißt du was? Auch wenn ich nich direkt bei dir bin – ich bin immer da. In jedem Lied, das dich an mich erinnert. In jedem ruhigen Moment, wo du an uns denkst. In jedem Lächeln, das einfach kommt, wenn du an irgendwas denkst, was wir gesagt haben.</p>
+                    
+                    <p><strong>Du bist nie allein.</strong></p>
+                    
+                    <p>Ich trag dich in meinem Herzen, egal wo ich bin. Und du weißt, der Mond scheint immer für die Sonne – auch wenn sie ihn grad nicht sieht. So bin ich für dich. Immer da. Immer am Leuchten. Immer am Warten.</p>
+                    
+                    <p>Mach die Augen zu. Atme tief ein. Und fühl, wie sehr ich dich liebe. Fühl, wie stolz ich auf dich bin. Fühl, wie sehr ich mich freue, bald wieder bei dir zu sein.</p>
+                    
+                    <p><strong>Bis dahin: Ich hab dich. Immer. 🌙</strong></p>
+                `
+            },
+            sad: {
+                title: 'Open when you\'re sad 🌧️',
+                content: `
+                    <p>Mi corazón,</p>
+                    
+                    <p>Ich weiß, dass du grad nicht okay bist. Und das ist okay. Du musst nicht immer die starke, strahlende Sonne sein. Manchmal darfst du auch einfach nur Suzan sein – die Suzan, die müde ist, die verletzt ist, die zweifelt.</p>
+                    
+                    <p>Du hast so lange alleine gegen alles gekämpft. Du hast deine Mauern hochgezogen, um dich zu schützen. Aber mit mir musst du das nicht mehr. Du kannst fallen. Du kannst weinen. Du kannst schwach sein.</p>
+                    
+                    <p><strong>Ich fang dich auf.</strong></p>
+                    
+                    <p>Was auch immer grad passiert ist – ob's deine Migräne ist, ob dich jemand verletzt hat, ob deine eigenen Gedanken dich fertig machen – du bist nicht alleine damit. Ich bin da. Und ich geh nirgendwo hin.</p>
+                    
+                    <p>Erinner dich: Die Sonne geht manchmal unter. Aber sie geht immer wieder auf. Und der Mond? Der wartet. Geduldig. Ruhig. Loyal.</p>
+                    
+                    <p><strong>Ich warte auf dich. Und ich liebe dich – besonders dann, wenn du dich selbst nicht lieben kannst. 💕</strong></p>
+                `
+            },
+            sleep: {
+                title: 'Open when you can\'t sleep 🌙',
+                content: `
+                    <p>Meine Sonne,</p>
+                    
+                    <p>Es ist spät. Du liegst im Bett, aber dein Kopf will nicht aufhören zu denken, oder? Die Gedanken kreisen, die Stille ist zu laut, und du würdest alles dafür geben, einfach nur einzuschlafen.</p>
+                    
+                    <p>Ich wünschte, ich könnt jetzt bei dir sein. Ich würd dich einfach festhalten, bis du ruhig wirst. Ich würd dir ne Gutenacht-Geschichte erzählen – von Mond und Sonne, wie immer.</p>
+                    
+                    <p><strong>Aber da ich nicht da sein kann, lass mich dir das sagen:</strong></p>
+                    
+                    <p>Mach die Augen zu. Atme tief ein. Atme langsam aus. Stell dir vor, du liegst neben mir. Meine Hand hält deine. Meine Ruhe fließt in dich rein. Alles, was dich beschäftigt, kann bis morgen warten.</p>
+                    
+                    <p>Die Nacht gehört dir. Lass los. Du bist sicher. Du bist geliebt. Und morgen früh bin ich immer noch da.</p>
+                    
+                    <p><strong>Schlaf gut, mi amor. Der Mond wacht über dich. 🌙✨</strong></p>
+                `
+            },
+            smile: {
+                title: 'Open when you need a smile 😊',
+                content: `
+                    <p>Hey du! 🐣</p>
+                    
+                    <p>Okay, ich hab ne Mission: Dich zum Lächeln bringen. Und ich weiß genau, wie das geht.</p>
+                    
+                    <p><strong>Erinnerst du dich noch?</strong></p>
+                    
+                    <p>An den Moment, wo du das erste Mal "Ich hab dich mehr lieb" gesagt hast – unbewusst, einfach so rausgerutscht? Ich bin innerlich geschmolzen.</p>
+                    
+                    <p>An unsere Morgen-Routinen? Wie wir zusammen aufwachen, noch verschlafen, aber trotzdem am Lächeln?</p>
+                    
+                    <p>An jeden dummen Witz, den wir gemacht haben? An jeden Moment, wo wir einfach nur gelacht haben, ohne Grund?</p>
+                    
+                    <p><strong>Du bist mein Lächeln.</strong> Jeden Tag. Selbst wenn du grad nicht lächelst – du bringst Licht in mein Leben.</p>
+                    
+                    <p>Also hier ist mein Geschenk an dich: Ein virtuelles Lächeln von mir. Stell dir vor, wie ich dich anschau – mit dem Blick, der nur für dich ist. Und jetzt lächel zurück.</p>
+                    
+                    <p><strong>Da ist es. Genau dieses Lächeln. Das ist alles, was ich wollte. 🌟💕</strong></p>
+                `
+            },
+            strong: {
+                title: 'Open when you need strength 💪',
+                content: `
+                    <p>Mi amor,</p>
+                    
+                    <p>Ich weiß, dass du grad zweifelst. Vielleicht zweifelst du an dir selbst. Vielleicht fühlst du dich nicht stark genug. Vielleicht denkst du, du schaffst das nicht.</p>
+                    
+                    <p><strong>Aber lass mich dir was sagen:</strong></p>
+                    
+                    <p>Ich hab dich gesehen. Die echte Suzan. Das kleine Mädchen, das sich hinter den Mauern versteckt. Und weißt du, was ich gesehen hab?</p>
+                    
+                    <p>Die stärkste Frau, die ich kenne.</p>
+                    
+                    <p>Du hast so viel durchgemacht. Du hast so viele Kämpfe gekämpft – allein. Du hast dich immer wieder aufgerappelt, auch wenn's keiner gesehen hat. Du hast überlebt, wo andere aufgegeben hätten.</p>
+                    
+                    <p><strong>Du bist nicht schwach. Du bist müde. Und das ist ein Unterschied.</strong></p>
+                    
+                    <p>Aber weißt du was? Jetzt musst du nicht mehr alles alleine tragen. Ich bin da. Lehn dich an mich. Nimm dir meine Stärke, wenn deine grad nicht reicht.</p>
+                    
+                    <p>Du schaffst das. Und falls nicht heute – dann morgen. Und ich werd jeden einzelnen Tag an deiner Seite sein.</p>
+                    
+                    <p><strong>Du bist stärker als du denkst. Und du bist nie allein. 🌙💪</strong></p>
+                `
+            },
+            love: {
+                title: 'Open when you need to feel loved 💕',
+                content: `
+                    <p>Suzan,</p>
+                    
+                    <p>Du öffnest diesen Brief, weil du Liebe spüren willst. Weil du vielleicht grad daran zweifelst. Weil du dich vielleicht leer fühlst. Weil du vergessen hast, wie geliebt du bist.</p>
+                    
+                    <p><strong>Also lass mich dich daran erinnern:</strong></p>
+                    
+                    <p>Ich liebe dich, wenn du strahlst. Ich liebe dich, wenn du zusammenbrichst. Ich liebe dich, wenn du lachst. Ich liebe dich, wenn du weinst. Ich liebe dich, wenn du stark bist. Ich liebe dich, wenn du schwach bist.</p>
+                    
+                    <p>Ich liebe die Art, wie du manchmal unbewusst "Ich hab dich mehr lieb" sagst. Ich liebe deine Mauern, weil ich weiß, was sie beschützen. Ich liebe dein inneres Kind. Ich liebe deine Stärke. Ich liebe deine Verletzlichkeit.</p>
+                    
+                    <p><strong>Ich liebe dich nicht trotz deiner Fehler – ich liebe dich MIT ihnen.</strong></p>
+                    
+                    <p>Du bist die Sonne. Du bist mein Licht. Und ich bin der Mond – der niemals aufhört, für dich zu leuchten. Egal wie dunkel es wird. Egal wie weit du weg bist. Egal wie sehr du zweifelst.</p>
+                    
+                    <p><strong>Ich liebe dich. Heute. Morgen. Immer. 🌙☀️💕</strong></p>
+                    
+                    <p style="text-align: center; margin-top: 50px; font-size: 2rem;">∞</p>
+                `
+            }
+        };
+
+        function openLetter(type) {
+            const letter = letters[type];
+            const modal = document.getElementById('letterModal');
+            const body = document.getElementById('letterBody');
+            
+            body.innerHTML = `
+                <h3>${letter.title}</h3>
+                ${letter.content}
+                <div class="letter-signature">- Dein Emin</div>
+            `;
+            
+            modal.classList.add('show');
+        }
+
+        function closeLetter() {
+            document.getElementById('letterModal').classList.remove('show');
+        }
+
+        document.getElementById('letterModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLetter();
+            }
+        });
         
         // Navigation
         function showStory() {
@@ -1498,6 +1847,7 @@
             document.getElementById('storyPage').classList.add('active');
             document.getElementById('moonSunPage').classList.remove('active');
             document.getElementById('questionPage').classList.remove('active');
+            document.getElementById('forYouPage').classList.remove('active');
         }
         
         function showMoonSun() {
@@ -1505,6 +1855,7 @@
             document.getElementById('storyPage').classList.remove('active');
             document.getElementById('moonSunPage').classList.add('active');
             document.getElementById('questionPage').classList.remove('active');
+            document.getElementById('forYouPage').classList.remove('active');
         }
 
         function showQuestion() {
@@ -1512,8 +1863,8 @@
             document.getElementById('storyPage').classList.remove('active');
             document.getElementById('moonSunPage').classList.remove('active');
             document.getElementById('questionPage').classList.add('active');
+            document.getElementById('forYouPage').classList.remove('active');
             
-            // Reset für wiederholtes Aufrufen
             noClickCount = 0;
             yesBtn.style.fontSize = '';
             yesBtn.style.padding = '';
@@ -1523,11 +1874,20 @@
             document.getElementById('questionContent').style.display = 'block';
             document.getElementById('celebration').classList.remove('show');
         }
+
+        function showForYou() {
+            document.getElementById('mainPage').classList.remove('show');
+            document.getElementById('storyPage').classList.remove('active');
+            document.getElementById('moonSunPage').classList.remove('active');
+            document.getElementById('questionPage').classList.remove('active');
+            document.getElementById('forYouPage').classList.add('active');
+        }
         
         function showHome() {
             document.getElementById('storyPage').classList.remove('active');
             document.getElementById('moonSunPage').classList.remove('active');
             document.getElementById('questionPage').classList.remove('active');
+            document.getElementById('forYouPage').classList.remove('active');
             document.getElementById('mainPage').classList.add('show');
         }
     </script>
