@@ -2135,9 +2135,25 @@
         createFloatingHearts();
         
         function updateCountdown() {
-            document.getElementById('daysTogether').textContent = 227;
+            // Startdatum: 30. Mai 2024
+            const startDate = new Date('2024-05-30');
+            const today = new Date();
+            
+            // Setze beide Daten auf Mitternacht für korrekte Tagesberechnung
+            startDate.setHours(0, 0, 0, 0);
+            today.setHours(0, 0, 0, 0);
+            
+            // Berechne Differenz in Millisekunden und konvertiere zu Tagen
+            const diffTime = today - startDate;
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            
+            // Update die Anzeige
+            document.getElementById('daysTogether').textContent = diffDays;
         }
         updateCountdown();
+        
+        // Update jeden Tag um Mitternacht automatisch
+        setInterval(updateCountdown, 1000 * 60 * 60); // Checkt jede Stunde
         
         // CODE INPUT
         const d1 = document.getElementById('d1');
