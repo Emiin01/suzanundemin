@@ -1010,13 +1010,22 @@
 
         .letter-signature {
             text-align: right;
-            font-family: 'Great Vibes', cursive;
-            font-size: 3rem;
-            color: #8B4513;
             margin-top: 40px;
-            font-weight: 400;
-            letter-spacing: 2px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .letter-signature img {
+            height: 60px;
+            width: auto;
+            filter: sepia(50%) saturate(80%) hue-rotate(-10deg);
+            opacity: 0.9;
+        }
+
+        .letter-signature .bear-emoji {
+            font-size: 2rem;
         }
 
         /* MOBILE RESPONSIVENESS */
@@ -1079,8 +1088,15 @@
             }
             
             .letter-signature {
-                font-size: 2.2rem;
                 margin-top: 30px;
+            }
+
+            .letter-signature img {
+                height: 50px;
+            }
+
+            .letter-signature .bear-emoji {
+                font-size: 1.6rem;
             }
             
             .letter-close-full {
@@ -1815,9 +1831,9 @@
                     </div>
                     <div class="card-back">
                         <div class="card-description">
-                            <strong>Stundenlanges Telefonieren</strong><br><br>
-                            Weißt du noch? Wir haben jeden Tag stundenlang telefoniert. Zusammen eingeschlafen, zusammen aufgewacht. Tiefe Gespräche bis nachts.<br><br>
-                            Unsere Bindung ist nicht durch Gewohnheit entstanden – sondern durch echte Verbindung. Emotional, pur, echt.
+                            <strong>Alles war neu, intensiv und echt</strong><br><br>
+                            Hier hat alles angefangen – ohne Maske, ohne Angst.<br><br>
+                            Einfach wir zwei. Nichts gespielt.
                         </div>
                     </div>
                 </div>
@@ -1833,10 +1849,9 @@
                     </div>
                     <div class="card-back">
                         <div class="card-description">
-                            <strong>Zu meinem Geburtstag</strong><br><br>
-                            "Vielleicht schreibe ich gerade einen Liebesbrief oder eine Geschichte für unsere Kinder."<br><br>
-                            "Wenn wir nicht zusammen sind, fehlt mir ein Teil von mir."<br><br>
-                            Du hast mich Schatz genannt. Deine Motivation. Deine Inspiration. Das ist keine Freundschaftssprache. ❤️
+                            <strong>Worte, die man nicht einfach schreibt</strong><br><br>
+                            Man schreibt sie nur, wenn jemand wichtig ist.<br><br>
+                            Und du hast sie für mich geschrieben.
                         </div>
                     </div>
                 </div>
@@ -1852,10 +1867,9 @@
                     </div>
                     <div class="card-back">
                         <div class="card-description">
-                            <strong>Du bewahrst alles auf</strong><br><br>
-                            Briefe. Blumenzettel. Geschenke. Schleifen. Zettel von mir in deinem iPad.<br><br>
-                            Du hast eine Box mit meinen Dingen.<br><br>
-                            Menschen bewahren nur, was emotionalen Wert hat. Und du bewahrst alles von mir. 💕
+                            <strong>Momente, die bleiben</strong><br><br>
+                            Auch wenn der Tag vergeht.<br><br>
+                            Sie zeigen, dass das hier mehr ist als nur Zeitvertreib.
                         </div>
                     </div>
                 </div>
@@ -1871,11 +1885,9 @@
                     </div>
                     <div class="card-back">
                         <div class="card-description">
-                            <strong>Ich bin zu dir gefahren</strong><br><br>
-                            Du warst emotional am Ende. Ich bin nachts zu dir gefahren. Wir haben uns gesehen.<br><br>
-                            "Wärst du nicht gekommen, hätte es schlimm enden können."<br><br>
-                            "Jetzt wo du da warst, geht es mir besser."<br><br>
-                            In dem Moment bin ich dein Sicherheitsanker geworden.
+                            <strong>Ein Übergang</strong><br><br>
+                            Nicht nur ins neue Jahr.<br><br>
+                            Sondern in etwas, das sich nach Nähe angefühlt hat.
                         </div>
                     </div>
                 </div>
@@ -1891,10 +1903,9 @@
                     </div>
                     <div class="card-back">
                         <div class="card-description">
-                            <strong>In Not gehst du zu mir</strong><br><br>
-                            Bei Klausurstress rufst du nur mich an. Snap & Social Media fallen weg.<br><br>
-                            Ich wecke dich morgens. Ich bleibe nachts wach. Ich reguliere dich.<br><br>
-                            In Krisen gehst du nicht zu anderen – du kommst zu mir. 🌙
+                            <strong>Auch wenn alles zu viel wurde</strong><br><br>
+                            Nähe war da.<br><br>
+                            Nicht laut – aber konstant.
                         </div>
                     </div>
                 </div>
@@ -1910,11 +1921,9 @@
                     </div>
                     <div class="card-back">
                         <div class="card-description">
-                            <strong>Deine Worte</strong><br><br>
-                            "Ich würde gerne in deinen Armen schlafen."<br><br>
-                            Bilder nur für mich. Eifersucht bei anderen Frauen.<br><br>
-                            "Ich will nicht, dass du auf Hochzeiten gehst, Frauen könnten dich scouten."<br><br>
-                            Besitzgefühl ≠ Gleichgültigkeit 💕
+                            <strong>Manchmal reicht das Wissen</strong><br><br>
+                            Dass der andere da ist.<br><br>
+                            Und genau das fehlt, wenn er es nicht ist.
                         </div>
                     </div>
                 </div>
@@ -1930,11 +1939,9 @@
                     </div>
                     <div class="card-back">
                         <div class="card-description">
-                            <strong>Deine Andeutungen</strong><br><br>
-                            "Wenn du deinen Führerschein hast, können wir uns öfter sehen."<br><br>
-                            "Warum sollte ich dich verlassen, wenn du so bleibst wie du bist?"<br><br>
-                            "Amen" auf "Inshallah heiraten wir"<br><br>
-                            Kein Nein zur Zukunft – nur Angst vor ihr.
+                            <strong>Noch nicht klar, aber nicht leer</strong><br><br>
+                            Eher ein Gefühl von „da könnte etwas sein".<br><br>
+                            Und das reicht manchmal.
                         </div>
                     </div>
                 </div>
@@ -1950,10 +1957,9 @@
                     </div>
                     <div class="card-back">
                         <div class="card-description">
-                            <strong>Anerkennung</strong><br><br>
-                            Du freust dich mega, wenn meine Mutter gut über dich redet. Wenn meine Familie dich mag.<br><br>
-                            Das ist dir sehr wichtig.<br><br>
-                            Das zeigt: Ich bin relevant für dich – über uns hinaus. 💕
+                            <strong>Nicht selbstverständlich, sondern wichtig</strong><br><br>
+                            Weil es zeigt, dass du mehr bist.<br><br>
+                            Mehr als nur ein Teil vom Alltag.
                         </div>
                     </div>
                 </div>
@@ -1963,16 +1969,15 @@
             <div class="memory-card" onclick="flipCard(this)">
                 <div class="card-inner">
                     <div class="card-front">
-                        <div class="card-emoji">💚</div>
-                        <div class="card-title">Eifersucht</div>
+                        <div class="card-emoji">💫</div>
+                        <div class="card-title">Unsere Momente</div>
                         <div class="card-hint">Klick mich! ✨</div>
                     </div>
                     <div class="card-back">
                         <div class="card-description">
-                            <strong>Emotion > Worte</strong><br><br>
-                            Du reagierst spürbar auf andere Frauen. Auf Erwähnungen von Ex.<br><br>
-                            Du wirst gereizt, obwohl du sagst "wir sind nur Freunde".<br><br>
-                            Aber deine Emotionen sagen die Wahrheit. Und die Wahrheit ist: Du willst mich. 💕
+                            <strong>Klein, unscheinbar – und genau deshalb echt</strong><br><br>
+                            Momente, die man nicht plant.<br><br>
+                            Aber behält.
                         </div>
                     </div>
                 </div>
@@ -1988,10 +1993,9 @@
                     </div>
                     <div class="card-back">
                         <div class="card-description">
-                            <strong>Paar-Dynamik</strong><br><br>
-                            Abschiedsrituale. "Hab dich lieb" aus dem Nichts. Sorge um meine Gesundheit.<br><br>
-                            Einschlafen am Telefon. "Ruf mich an, wenn du wach wirst."<br><br>
-                            Das ist Beziehungsalltag, nicht Dating. Das sind WIR. 🌙☀️
+                            <strong>Kein Drama, kein Märchen</strong><br><br>
+                            Einfach wir.<br><br>
+                            Und das reicht manchmal mehr als alles andere.
                         </div>
                     </div>
                 </div>
@@ -2668,12 +2672,12 @@
                 `
             },
             15: {
-                title: 'Deine Eifersucht 💚',
+                title: 'Durch Dick & Dünn 💫',
                 content: `
-                    <p>"Ich will nicht, dass du auf Hochzeiten gehst, Frauen könnten dich scouten."</p>
-                    <p><span class="moment-highlight">Besitzgefühl ≠ Gleichgültigkeit.</span> <span class="moment-emoji">💚</span></p>
-                    <p>Du willst mich. Du willst nicht, dass ich jemand anderem gehöre.</p>
-                    <p>Und weißt du was? Ich gehör auch nur dir. <span class="moment-emoji">💕</span></p>
+                    <p>Jeder schöne und schwere Moment mit dir hat uns geformt.</p>
+                    <p><span class="moment-highlight">Die Lacher, die Tränen, die stillen Momente.</span> <span class="moment-emoji">💫</span></p>
+                    <p>Wenn's leicht war, haben wir zusammen gefeiert.</p>
+                    <p>Wenn's schwer war, haben wir uns gegenseitig gehalten. <span class="moment-emoji">💕</span></p>
                 `
             },
             16: {
@@ -2830,7 +2834,10 @@
             body.innerHTML = `
                 <h3>${moment.title}</h3>
                 ${moment.content}
-                <div class="letter-signature">- Dein Emin 🐻</div>
+                <div class="letter-signature">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHoAAACWCAYAAAAR35wdAAB10UlEQVR4nO39abheV3YeiL1r733ONw93wDyR4ACSAEdwLrIAsgZVlUqyHZHqR7Idx24r7Y4fp+VOpxM7bZJW3I/jx+50x2670GJBnYp3+VOpOpJmpO3ImRhrq2GBJZBWRVQWOIFmcCRIAgcOdvPvc55+y111rvetew" alt="Emin" style="height: 60px; width: auto;">
+                    <span class="bear-emoji">🐻</span>
+                </div>
             `;
             
             modal.classList.add('show');
@@ -2987,7 +2994,10 @@
                     <div class="letter-full-text">
                         ${letters[type].content}
                     </div>
-                    <div class="letter-signature">- Dein Emin 🐻</div>
+                    <div class="letter-signature">
+                        <img src="signature.png" alt="Emin">
+                        <span class="bear-emoji">🐻</span>
+                    </div>
                 `;
                 fullscreen.classList.add('show');
                 
