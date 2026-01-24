@@ -401,6 +401,15 @@
             display: block;
         }
         
+        /* Special cursor for For You page */
+        #forYouPage {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="24">🐻</text></svg>'), auto;
+        }
+        
+        #forYouPage * {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="24">🐻</text></svg>'), auto;
+        }
+        
         .page-header {
             text-align: center;
             margin-bottom: 60px;
@@ -1014,14 +1023,11 @@
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            gap: 10px;
-        }
-
-        .letter-signature img {
-            height: 60px;
-            width: auto;
-            filter: sepia(50%) saturate(80%) hue-rotate(-10deg);
-            opacity: 0.9;
+            gap: 8px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #000000;
+            font-weight: 600;
         }
 
         .letter-signature .bear-emoji {
@@ -1089,10 +1095,7 @@
             
             .letter-signature {
                 margin-top: 30px;
-            }
-
-            .letter-signature img {
-                height: 50px;
+                font-size: 1.5rem;
             }
 
             .letter-signature .bear-emoji {
@@ -2835,8 +2838,7 @@
                 <h3>${moment.title}</h3>
                 ${moment.content}
                 <div class="letter-signature">
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHoAAACWCAYAAAAR35wdAAB10UlEQVR4nO39abheV3YeiL1r733ONw93wDyR4ACSAEdwLrIAsgZVlUqyHZHqR7Idx24r7Y4fp+VOpxM7bZJW3I/jx+50x2670GJBnYp3+VOpOpJmpO3ImRhrq2GBJZBWRVQWOIFmcCRIAgcOdvPvc55+y111rvetew" alt="Emin" style="height: 60px; width: auto;">
-                    <span class="bear-emoji">🐻</span>
+                    Emin <span class="bear-emoji">🐻</span>
                 </div>
             `;
             
@@ -2995,8 +2997,7 @@
                         ${letters[type].content}
                     </div>
                     <div class="letter-signature">
-                        <img src="signature.png" alt="Emin">
-                        <span class="bear-emoji">🐻</span>
+                        Emin <span class="bear-emoji">🐻</span>
                     </div>
                 `;
                 fullscreen.classList.add('show');
