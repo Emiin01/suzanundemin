@@ -556,7 +556,7 @@
         }
         
         .back-btn {
-            display: inline-block;
+            display: none !important;
             background: rgba(255, 20, 147, 0.1);
             border: 2px solid rgba(255, 20, 147, 0.3);
             color: #FF69B4;
@@ -990,6 +990,19 @@
         }
 
         .letter-close-full {
+            display: none !important;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2.5rem;
+            cursor: pointer;
+            color: #8B4513;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .letter-close {
+            display: none !important;
             position: absolute;
             top: 20px;
             right: 20px;
@@ -1656,7 +1669,6 @@
             Sondern weil wir genau zur richtigen Zeit die richtigen Menschen füreinander wurden."
         </div>
         
-        <button class="back-btn" onclick="showHome()">← Zurück zur Startseite</button>
     </div>
     
     <div id="moonSunPage" class="story-page">
@@ -1809,7 +1821,6 @@
             Suzan und Emin. 🌙☀️"
         </div>
         
-        <button class="back-btn" onclick="showHome()">← Zurück zur Startseite</button>
     </div>
 
     <!-- MOMENTS PAGE -->
@@ -2010,7 +2021,6 @@
             Aber alle zusammen sind sie der Beweis: Wir gehören zusammen."
         </div>
 
-        <button class="back-btn" onclick="showHome()">← Zurück zur Startseite</button>
     </div>
 
     <!-- QUESTION PAGE -->
@@ -2038,7 +2048,6 @@
                     SHE SAID YES!!!
                 </div>
                 <div class="celebration-emoji">🌙 ☀️ 💑 🐻 🐣</div>
-                <button class="back-btn" onclick="showHome()" style="margin-top: 50px;">← Zurück zur Startseite</button>
             </div>
         </div>
     </div>
@@ -2181,7 +2190,6 @@
             </div>
         </div>
 
-        <button class="back-btn" onclick="showHome()" style="margin-top: 50px;">← Zurück zur Startseite</button>
     </div>
 
     <!-- MOMENT MODAL -->
@@ -2266,7 +2274,6 @@
             </div>
         </div>
 
-        <button class="back-btn" onclick="showHome()" style="margin-top: 50px;">← Zurück zur Startseite</button>
     </div>
 
     <!-- LETTER FULLSCREEN MODAL -->
