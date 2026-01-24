@@ -1,1 +1,3102 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suzan & Emin - Our Story</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lora:wght@400;500;600&family=Caveat:wght@400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lora', serif;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="24">🐥</text></svg>'), auto;
+        }
+        
+        /* FLOATING HEARTS */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .heart-float {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0.4;
+            animation: floatHeart 15s linear infinite;
+        }
+        
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0.4;
+            }
+            50% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* ANIMATED STARS BACKGROUND */
+        .stars-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        #mainPage, .story-page {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* LOCK SCREEN */
+        #lockScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff6ec4 0%, #ff9ed8 50%, #ffc3e8 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        
+        #lockScreen.hide {
+            display: none !important;
+        }
+        
+        .lock-box {
+            text-align: center;
+            background: linear-gradient(145deg, #ffb6d9, #ffa3c9);
+            padding: 50px;
+            border-radius: 50px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        .lock-shackle {
+            width: 180px;
+            height: 120px;
+            border: 25px solid #e8e8e8;
+            border-bottom: none;
+            border-radius: 100px 100px 0 0;
+            margin: 0 auto -20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hearts {
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+        
+        .code-inputs {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .code-input {
+            width: 90px;
+            height: 100px;
+            font-size: 3.5rem;
+            text-align: center;
+            background: linear-gradient(145deg, #8B4513, #654321);
+            border: none;
+            border-radius: 20px;
+            color: #fff;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .code-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.7);
+        }
+        
+        .message {
+            min-height: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        .bottom-text {
+            margin-top: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #fff;
+            font-style: italic;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* MAIN PAGE */
+        #mainPage {
+            display: none;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        #mainPage.show {
+            display: block !important;
+        }
+        
+        .cover {
+            text-align: center;
+            padding: 80px 20px;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* COUNTDOWN */
+        .countdown {
+            margin: 40px 0;
+            font-family: 'Playfair Display', serif;
+            position: relative;
+        }
+        
+        .countdown-box {
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.15), rgba(199, 21, 133, 0.15));
+            backdrop-filter: blur(15px);
+            padding: 20px 60px;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 105, 180, 0.4);
+            box-shadow: 0 15px 50px rgba(255, 20, 147, 0.3),
+                        inset 0 -5px 20px rgba(255, 255, 255, 0.1);
+            animation: pulseGlow 3s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .countdown-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 15px 50px rgba(255, 20, 147, 0.3),
+                            inset 0 -5px 20px rgba(255, 255, 255, 0.1),
+                            0 0 30px rgba(255, 105, 180, 0.2);
+            }
+            50% {
+                box-shadow: 0 20px 60px rgba(255, 20, 147, 0.5),
+                            inset 0 -5px 20px rgba(255, 255, 255, 0.15),
+                            0 0 50px rgba(255, 105, 180, 0.4);
+            }
+        }
+        
+        .countdown-label {
+            font-size: 1.3rem;
+            color: #FFB6D9;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #FF1493, #FF69B4, #FFB6D9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 1;
+            line-height: 1;
+        }
+        
+        .countdown-unit {
+            font-size: 1.3rem;
+            color: #FF69B4;
+            letter-spacing: 2px;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .countdown-emoji {
+            font-size: 1.5rem;
+            margin-left: 10px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .moon-sun-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .moon, .sun {
+            position: relative;
+            animation: float 4s ease-in-out infinite;
+            font-size: 100px;
+        }
+        
+        .moon {
+            animation-delay: 0s;
+            filter: drop-shadow(0 0 40px rgba(224, 231, 255, 0.8));
+        }
+        
+        .sun {
+            animation-delay: 2s;
+            filter: drop-shadow(0 0 50px rgba(255, 215, 0, 0.9));
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .moon::after {
+            content: 'Emin';
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #e0e7ff;
+            letter-spacing: 3px;
+        }
+        
+        .sun::after {
+            content: 'Suzan';
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #ffd700;
+            letter-spacing: 3px;
+        }
+        
+        .ampersand {
+            font-size: 3rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            background: linear-gradient(135deg, #FF1493, #C71585, #FF69B4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #FF1493, #C71585, #FF69B4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, #FF69B4, #FF1493);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 60px 0;
+            flex-wrap: wrap;
+        }
+        
+        .nav-btn {
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.1), rgba(199, 21, 133, 0.1));
+            border: 2px solid rgba(255, 20, 147, 0.4);
+            color: #FF69B4;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-family: 'Lora', serif;
+            transition: all 0.4s ease;
+        }
+        
+        .nav-btn:hover {
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.2), rgba(199, 21, 133, 0.2));
+            border-color: #FF1493;
+            transform: translateY(-3px);
+            color: #fff;
+        }
+        
+        /* STORY PAGE */
+        .story-page {
+            display: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .story-page.active {
+            display: block;
+        }
+        
+        /* Special cursor for For You page */
+        #forYouPage {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="24">🐻</text></svg>'), auto;
+        }
+        
+        #forYouPage * {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="24">🐻</text></svg>'), auto;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeIn 1s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #FF1493, #C71585, #FF69B4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+        
+        .page-subtitle {
+            font-size: 1.3rem;
+            background: linear-gradient(135deg, #FF69B4, #FF1493);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-style: italic;
+        }
+        
+        .story-content {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 50px 40px;
+            border: 1px solid rgba(255, 20, 147, 0.2);
+            margin-bottom: 40px;
+            animation: slideIn 0.8s ease;
+            transition: all 0.3s ease;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .story-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(255, 20, 147, 0.3);
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .story-text {
+            font-size: 1.3rem;
+            line-height: 2.2;
+            color: #e2e8f0;
+            text-align: left;
+        }
+        
+        .story-text p {
+            margin-bottom: 30px;
+        }
+        
+        .story-text .highlight {
+            background: linear-gradient(135deg, #FF1493, #FF69B4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+        
+        .story-image {
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            margin: 50px auto;
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.1), rgba(199, 21, 133, 0.1));
+            border: 2px dashed rgba(255, 20, 147, 0.3);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 105, 180, 0.7);
+            font-size: 1.2rem;
+            position: relative;
+            transform: rotate(-2deg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .story-image:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+        
+        .story-image::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 30px;
+            background: rgba(255, 182, 193, 0.5);
+            border-radius: 5px;
+        }
+        
+        /* POLAROID STYLE */
+        .polaroid {
+            background: white;
+            padding: 15px;
+            padding-bottom: 60px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            transform: rotate(-2deg);
+            transition: all 0.3s ease;
+        }
+        
+        .polaroid:hover {
+            transform: rotate(0deg) translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+        
+        .polaroid-caption {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: #333;
+            font-size: 1rem;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            background: rgba(255, 20, 147, 0.1);
+            border: 2px solid rgba(255, 20, 147, 0.3);
+            color: #FF69B4;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-family: 'Lora', serif;
+            transition: all 0.3s ease;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 20, 147, 0.2);
+            border-color: #FF1493;
+            color: #fff;
+        }
+        
+        /* HANDWRITTEN QUOTE */
+        .handwritten {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.8rem;
+            text-align: center;
+            margin: 60px 0;
+            color: #FF69B4;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 2s ease;
+        }
+        
+        /* TIMELINE */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 60px auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #FF1493, #FF69B4);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            animation: slideIn 0.8s ease;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            padding-right: calc(50% + 40px);
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) {
+            padding-left: calc(50% + 40px);
+            text-align: left;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: #FF1493;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px rgba(255, 20, 147, 0.8);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .timeline-content {
+            background: rgba(255, 20, 147, 0.1);
+            padding: 20px;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 20, 147, 0.3);
+        }
+        
+        .timeline-date {
+            font-family: 'Playfair Display', serif;
+            color: #FF1493;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-text {
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
 
+        /* QUESTION PAGE - YES/NO */
+        .question-container {
+            text-align: center;
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .question-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            line-height: 1.8;
+            color: #FFB6D9;
+            margin-bottom: 60px;
+            max-width: 700px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .question-text .big {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #FF1493, #FF69B4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            margin-top: 30px;
+        }
+
+        .choice-buttons {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .choice-btn {
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.2), rgba(199, 21, 133, 0.2));
+            border: 3px solid rgba(255, 20, 147, 0.6);
+            color: #fff;
+            border-radius: 50px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 20, 147, 0.3);
+        }
+
+        .choice-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 20, 147, 0.5);
+        }
+
+        #yesBtn {
+            padding: 20px 60px;
+            font-size: 1.8rem;
+        }
+
+        #noBtn {
+            padding: 15px 40px;
+            font-size: 1.3rem;
+        }
+
+        .celebration {
+            display: none;
+            text-align: center;
+            animation: fadeIn 1s ease;
+        }
+
+        .celebration.show {
+            display: block;
+        }
+
+        .celebration-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #FF1493, #FFD700, #FF69B4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+            animation: shimmer 2s ease-in-out infinite;
+        }
+
+        .celebration-emoji {
+            font-size: 5rem;
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* FOR YOU PAGE - LOVE LETTER STYLE 💌 */
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+        .letters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 50px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .envelope-wrapper {
+            position: relative;
+            cursor: pointer;
+            perspective: 2000px;
+        }
+
+        /* ENVELOPE CONTAINER */
+        .envelope {
+            width: 320px;
+            height: 200px;
+            position: relative;
+            margin: 0 auto;
+            transition: transform 0.4s ease;
+        }
+
+        .envelope-wrapper:hover .envelope {
+            transform: translateY(-10px);
+        }
+
+        /* MAIN ENVELOPE BODY - BEIGE RECTANGLE */
+        .envelope-body {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 280px;
+            height: 160px;
+            background: linear-gradient(135deg, #E8D7C3 0%, #D9C7B0 50%, #C9B399 100%);
+            border-radius: 8px;
+            box-shadow: 0 15px 40px rgba(101, 67, 33, 0.3);
+            z-index: 2;
+        }
+
+        /* LEFT TRIANGLE FLAP */
+        .envelope-flap {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            z-index: 3;
+        }
+
+        /* Left Triangle */
+        .envelope-flap::before {
+            content: '';
+            position: absolute;
+            top: -80px;
+            left: -140px;
+            width: 0;
+            height: 0;
+            border-top: 80px solid transparent;
+            border-bottom: 80px solid transparent;
+            border-right: 100px solid #D4BFA8;
+            filter: drop-shadow(-3px 0 8px rgba(101, 67, 33, 0.2));
+        }
+
+        /* Right Triangle */
+        .envelope-flap::after {
+            content: '';
+            position: absolute;
+            top: -80px;
+            right: -140px;
+            width: 0;
+            height: 0;
+            border-top: 80px solid transparent;
+            border-bottom: 80px solid transparent;
+            border-left: 100px solid #D4BFA8;
+            filter: drop-shadow(3px 0 8px rgba(101, 67, 33, 0.2));
+        }
+
+        /* RED HEART SEAL - CENTER */
+        .heart-seal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 45px;
+            height: 45px;
+            background: #DC143C;
+            border-radius: 50%;
+            z-index: 4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(220, 20, 60, 0.6);
+            transition: all 0.5s ease;
+        }
+
+        .heart-seal::after {
+            content: '❤️';
+            font-size: 1.5rem;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        /* LETTER PAPER - HIDDEN INITIALLY */
+        .letter-paper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 260px;
+            height: 180px;
+            background: linear-gradient(to bottom, #FFFEF9, #FFF9F0);
+            border-radius: 6px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            opacity: 0;
+            transition: all 1.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* ENVELOPE LABEL */
+        .envelope-label {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: #C9B399;
+            margin-top: 20px;
+            font-style: italic;
+            opacity: 0.95;
+        }
+
+        /* OPENING ANIMATION - ULTRA REALISTIC */
+        .envelope-wrapper.opened .envelope-flap::before,
+        .envelope-wrapper.opened .envelope-flap::after {
+            animation: openFlapsRealistic 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        /* Beide Flaps öffnen sich nach OBEN wie echter Brief */
+        @keyframes openFlapsRealistic {
+            0% {
+                transform: scaleY(1) translateY(0);
+                opacity: 1;
+            }
+            30% {
+                transform: scaleY(0.7) translateY(-20px);
+                opacity: 0.9;
+            }
+            70% {
+                transform: scaleY(0.3) translateY(-60px);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scaleY(0.1) translateY(-100px);
+                opacity: 0.2;
+            }
+        }
+
+        .envelope-wrapper.opened .heart-seal {
+            animation: heartDisappear 0.5s ease forwards;
+        }
+
+        @keyframes heartDisappear {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.2);
+            }
+        }
+
+        /* Brief kommt NACH dem Öffnen raus (mit Delay) */
+        .envelope-wrapper.opened .letter-paper {
+            animation: letterSlideOut 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s forwards;
+        }
+
+        @keyframes letterSlideOut {
+            0% {
+                top: 50%;
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.85);
+            }
+            100% {
+                top: 15%;
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+        }
+
+        /* FULLSCREEN LETTER MODAL */
+        .letter-fullscreen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .letter-fullscreen.show {
+            display: flex;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .letter-full-paper {
+            background: linear-gradient(to bottom, #FFFEF9, #FFF9F0);
+            padding: 60px 50px;
+            max-width: 700px;
+            max-height: 85vh;
+            overflow-y: auto;
+            border-radius: 15px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
+            position: relative;
+            animation: letterZoom 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes letterZoom {
+            0% {
+                opacity: 0;
+                transform: scale(0.4) rotate(-8deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        .letter-close-full {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2.5rem;
+            cursor: pointer;
+            color: #8B4513;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .letter-close-full:hover {
+            color: #DC143C;
+            transform: rotate(90deg);
+        }
+
+        .letter-full-text {
+            font-family: 'Caveat', cursive;
+            font-size: 2rem;
+            line-height: 2.5;
+            color: #2C1810;
+            text-align: left;
+        }
+
+        .letter-full-text p {
+            margin-bottom: 25px;
+        }
+
+        .letter-signature {
+            text-align: right;
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #000000;
+            font-weight: 600;
+        }
+
+        .letter-signature .bear-emoji {
+            font-size: 2rem;
+        }
+
+        /* MOBILE RESPONSIVENESS */
+        @media (max-width: 768px) {
+            .letters-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 30px 15px;
+            }
+            
+            .envelope {
+                width: 300px;
+                height: 190px;
+            }
+            
+            .envelope-body {
+                width: 260px;
+                height: 150px;
+            }
+            
+            .envelope-flap::before {
+                left: -130px;
+                top: -75px;
+                border-top: 75px solid transparent;
+                border-bottom: 75px solid transparent;
+                border-right: 95px solid #D4BFA8;
+            }
+            
+            .envelope-flap::after {
+                right: -130px;
+                top: -75px;
+                border-top: 75px solid transparent;
+                border-bottom: 75px solid transparent;
+                border-left: 95px solid #D4BFA8;
+            }
+            
+            .heart-seal {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .heart-seal::after {
+                font-size: 1.3rem;
+            }
+            
+            .letter-paper {
+                width: 240px;
+                height: 170px;
+            }
+            
+            .letter-full-paper {
+                padding: 40px 30px;
+                max-width: 95%;
+                max-height: 90vh;
+            }
+            
+            .letter-full-text {
+                font-size: 1.6rem;
+                line-height: 2.2;
+            }
+            
+            .letter-signature {
+                margin-top: 30px;
+                font-size: 1.5rem;
+            }
+
+            .letter-signature .bear-emoji {
+                font-size: 1.6rem;
+            }
+            
+            .letter-close-full {
+                top: 15px;
+                right: 15px;
+                font-size: 2rem;
+            }
+
+            .envelope-label {
+                font-size: 1.1rem;
+            }
+        }
+        
+        /* CALENDAR GRID */
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 15px;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .calendar-door {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, rgba(255, 105, 180, 0.2), rgba(255, 182, 217, 0.2));
+            border: 3px solid rgba(255, 105, 180, 0.4);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.2);
+        }
+
+        .calendar-door::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .calendar-door:hover::before {
+            transform: translateX(100%);
+        }
+
+        .calendar-door:hover {
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.5);
+            border-color: #FF1493;
+            background: linear-gradient(135deg, rgba(255, 105, 180, 0.35), rgba(255, 182, 217, 0.35));
+            z-index: 10;
+        }
+
+        .calendar-door:active {
+            transform: scale(1.05) rotate(0deg);
+        }
+
+        .door-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #FF1493, #FF69B4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 1;
+        }
+
+        .door-icon {
+            font-size: 2rem;
+            filter: drop-shadow(0 2px 8px rgba(255, 105, 180, 0.4));
+            position: relative;
+            z-index: 1;
+            animation: doorFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes doorFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .calendar-door:hover .door-icon {
+            animation: doorBounce 0.6s ease;
+        }
+
+        @keyframes doorBounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3) rotate(10deg); }
+        }
+
+        .moment-modal-content {
+            max-width: 800px;
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.08), rgba(199, 21, 133, 0.08));
+        }
+
+        .moment-modal-content h3 {
+            font-size: 2.8rem;
+            margin-bottom: 35px;
+        }
+
+        .moment-modal-content p {
+            font-size: 1.25rem;
+            line-height: 2.2;
+        }
+
+        .moment-modal-content .moment-highlight {
+            background: linear-gradient(135deg, #FF1493, #FF69B4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .moment-emoji {
+            font-size: 2rem;
+            display: inline-block;
+            margin: 0 8px;
+        }
+
+        @media (max-width: 768px) {
+            .calendar-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 10px;
+            }
+            .door-number {
+                font-size: 1.5rem;
+            }
+            .door-icon {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* MOMENTS PAGE - MEMORY CARDS */
+        .moments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .memory-card {
+            perspective: 1000px;
+            height: 320px;
+            cursor: pointer;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .memory-card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(255, 20, 147, 0.3);
+        }
+
+        .card-front {
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.2), rgba(199, 21, 133, 0.2));
+            border: 3px solid rgba(255, 20, 147, 0.5);
+        }
+
+        .card-back {
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.15), rgba(199, 21, 133, 0.15));
+            backdrop-filter: blur(15px);
+            border: 3px solid rgba(255, 20, 147, 0.4);
+            transform: rotateY(180deg);
+            overflow-y: auto;
+        }
+
+        .card-emoji {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: bounce 2s ease infinite;
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #FF1493, #FF69B4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card-hint {
+            font-size: 0.9rem;
+            color: #FFB6D9;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .card-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #e2e8f0;
+            text-align: left;
+        }
+
+        .card-description strong {
+            color: #FF69B4;
+        }
+        
+        @media (max-width: 768px) {
+            .title {
+                font-size: 3rem;
+            }
+            .code-input {
+                width: 70px;
+                height: 85px;
+                font-size: 2.5rem;
+            }
+            .moon, .sun {
+                font-size: 70px;
+            }
+            .ampersand {
+                font-size: 2rem;
+            }
+            .page-title {
+                font-size: 2.5rem;
+            }
+            .story-content {
+                padding: 30px 25px;
+            }
+            .story-text {
+                font-size: 1.1rem;
+                line-height: 1.9;
+            }
+            .story-image {
+                height: 300px;
+            }
+            .nav-btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            .countdown {
+                font-size: 1rem;
+                padding: 15px 25px;
+            }
+            .countdown .number {
+                font-size: 1.5rem;
+            }
+            .handwritten {
+                font-size: 1.3rem;
+            }
+            .timeline::before {
+                left: 20px;
+            }
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                padding-left: 60px;
+                padding-right: 0;
+                text-align: left;
+            }
+            .timeline-dot {
+                left: 20px;
+            }
+            .question-text {
+                font-size: 1.5rem;
+            }
+            .question-text .big {
+                font-size: 1.8rem;
+            }
+            #yesBtn {
+                padding: 15px 40px;
+                font-size: 1.5rem;
+            }
+            #noBtn {
+                padding: 12px 30px;
+                font-size: 1.1rem;
+            }
+            .letters-grid {
+                grid-template-columns: 1fr;
+            }
+            .letter-content {
+                padding: 30px 20px;
+                max-width: 90%;
+            }
+            .moments-grid {
+                grid-template-columns: 1fr;
+            }
+            .memory-card {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas class="stars-canvas" id="starsCanvas"></canvas>
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
+    <div id="lockScreen">
+        <div>
+            <div class="lock-shackle"></div>
+            <div class="lock-box">
+                <div class="hearts">🐻 🐣</div>
+                <div class="code-inputs">
+                    <input type="text" maxlength="1" class="code-input" id="d1" inputmode="numeric">
+                    <input type="text" maxlength="1" class="code-input" id="d2" inputmode="numeric">
+                    <input type="text" maxlength="1" class="code-input" id="d3" inputmode="numeric">
+                </div>
+                <div class="message" id="msg"></div>
+                <div class="bottom-text">Te amo, mi corazón</div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="mainPage">
+        <div class="cover">
+            <div class="moon-sun-container">
+                <div class="moon">🌙</div>
+                <div class="ampersand">&</div>
+                <div class="sun">☀️</div>
+            </div>
+            
+            <h1 class="title">Suzan & Emin</h1>
+            <p class="subtitle">UNSERE GESCHICHTE</p>
+            
+            <div class="countdown">
+                <div class="countdown-box">
+                    <span class="countdown-label">Since</span>
+                    <span class="countdown-number" id="daysTogether">0</span>
+                    <span class="countdown-unit">days <span class="countdown-emoji">💕</span></span>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn" onclick="showStory()">Our Story</button>
+                <button class="nav-btn" onclick="showMoonSun()">The Moon & The Sun</button>
+                <button class="nav-btn" onclick="showMoments()">Moments</button>
+                <button class="nav-btn" onclick="showQuestion()">A Question</button>
+                <button class="nav-btn">Future</button>
+                <button class="nav-btn" onclick="showForYou()">For You</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="storyPage" class="story-page">
+        <div class="page-header">
+            <h2 class="page-title">Our Story</h2>
+            <p class="page-subtitle">Wie alles begann...</p>
+        </div>
+        
+        <div class="handwritten">
+            "Wir haben uns nicht gesucht. Wir haben uns gefunden."
+        </div>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">Der erste Moment</div>
+                    <div class="timeline-text">Du hast mir ein Video von einem Fluss geschickt auf Snapchat. Normalerweise antworte ich nie auf sowas – aber an dem Tag hat mir irgendwas gesagt: Schreib.</div>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">Fast ein Jahr später - Bayram</div>
+                    <div class="timeline-text">Wir haben angefangen, hin und her zu snapen. Und nach sehr kurzer Zeit wusste mein Herz einfach: Die hier ist anders. Die ist was Besonderes.</div>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">Die Fensterbank</div>
+                    <div class="timeline-text">Du hast mir später erzählt – du hast an deiner Fensterbank gesessen, "One of the Girls" gehört und wolltest mich blocken. 5-6 Mal hast du's versucht, aber irgendwas kam immer dazwischen. Als würde Gott sagen: Nein. Und genau in dem Moment hast du was gespürt, was dich selbst geschockt hat.</div>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">30.05.2024</div>
+                    <div class="timeline-text">Der Tag, an dem alles anfing. Von Tag 1 an hab ich dein inneres Kind gesehen – nicht die kalte, harte Suzan von außen.</div>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">Heute</div>
+                    <div class="timeline-text">Du hast mir was gegeben, wonach ich nie gesucht hab. Aber was ich scheinbar mein ganzes Leben gebraucht hab.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="story-content">
+            <div class="story-text">
+                <p>Es war nichts geplant.<br>
+                Keiner von uns wollte das.<br>
+                Keiner von uns hat danach gesucht.</p>
+                
+                <p>Wir waren beide nicht auf der Suche nach Liebe, ehrlich gesagt. Wir hatten beide schon abgeschlossen damit. Ich hatte mich damit abgefunden, allein zu sein. Und du... du hattest deine Mauern so hochgezogen, dass echt keiner mehr durchkam.</p>
+                
+                <p>Und genau deswegen hat's uns beide erwischt.</p>
+            </div>
+        </div>
+        
+        <div class="story-content">
+            <div class="story-text">
+                <p><span class="highlight">Angefangen hat's mit was, das eigentlich nichts bedeuten sollte.</span></p>
+                
+                <p>Ein Snap von nem Fluss.<br>
+                Ein Moment.<br>
+                Ein Kontakt, der eigentlich wieder vergessen wird.</p>
+                
+                <p>Du warst in deiner Welt – kontrolliert, nach außen kalt, mit diesem Schutzschild um dich rum. Damit dich keiner verletzen kann.</p>
+                
+                <p>Ich war in meiner Welt – ruhig, loyal, einfach echt. Ich wollte niemandem was vormachen. Ich wollte einfach nur ich sein.</p>
+                
+                <p>Beide ohne Erwartungen.<br>
+                Beide mit der Einstellung: <span class="highlight">„Da wird eh nichts draus."</span></p>
+                
+                <p>Und dann passiert's meistens, oder?</p>
+            </div>
+        </div>
+        
+        <div class="story-content">
+            <div class="story-text">
+                <p><span class="highlight">Das Komische war – du konntest mich nicht vergessen.</span></p>
+                
+                <p>Bevor wir uns richtig kannten.<br>
+                Bevor wir irgendwas geteilt hatten.<br>
+                Bevor ich überhaupt wusste, wer du wirklich bist.</p>
+                
+                <p>Du hast mir später erzählt, wie du damals an deiner Fensterbank gesessen hast. Kalt, leer, müde von allem. Und plötzlich... hast du mich vermisst.</p>
+                
+                <p><span class="highlight">Einen Fremden.</span></p>
+                
+                <p>Du hast's selbst nicht gecheckt. Aber das war der erste Moment, wo du wusstest:</p>
+                
+                <p><span class="highlight">„Der hier wird gefährlich für mich."</span></p>
+            </div>
+        </div>
+        
+        <div class="story-content">
+            <div class="story-text">
+                <p>Und ich?</p>
+                
+                <p>Ich war einfach ich.</p>
+                
+                <p>Keine Show.<br>
+                Keine Maske.<br>
+                Kein Ego-Ding.<br>
+                Nur ich – ruhig, warm, ehrlich.</p>
+                
+                <p>Ich hab dir nicht geschrieben, um was von dir zu kriegen. <span class="highlight">Ich hab geschrieben, weil ich einfach da sein wollte.</span></p>
+                
+                <p>Und ich glaub, das hat dich erwischt. Hat dich weicher gemacht. Unsicher gemacht. Verletzlich gemacht.</p>
+            </div>
+        </div>
+        
+        <div class="story-content">
+            <div class="story-text">
+                <p><span class="highlight">Dann kam unser Alltag.</span></p>
+                
+                <p>Morgens zusammen wach werden.<br>
+                Den ganzen Tag zusammen reden.<br>
+                Abends zusammen einschlafen.</p>
+                
+                <p>Kein Tag ohne einander. Und weißt du was? Es hat sich nie gezwungen angefühlt.</p>
+                
+                <p>Wir haben das nicht gemacht, weil wir mussten. Wir haben das gemacht, weil es sich <span class="highlight">falsch angefühlt hätte, es nicht zu tun</span>.</p>
+                
+                <p>Sowas passiert nicht einfach so. Das kommt nicht aus dem Nichts. Das passiert nur, wenn zwei Seelen sich erkennen, bevor die Köpfe überhaupt checken, was da gerade abgeht.</p>
+            </div>
+        </div>
+        
+        <div class="story-content">
+            <div class="story-text">
+                <p><span class="highlight">Und dann kamen die Momente, wo ich wusste: Sie lässt mich rein.</span></p>
+                
+                <p>Du hast mich in dein Zimmer gelassen. Du hast mich zu deinem Bruder mitgenommen – was du noch NIE bei nem Mann gemacht hast.</p>
+                
+                <p>Du hast mich vor deiner Mutter verteidigt. Du hast mir deine schwache Seite gezeigt, deine Migräne, deine Panik, deine dunklen Momente.</p>
+                
+                <p>Ich hab gehört, wie deine Stimme weicher wurde. Wie sie ruhiger wurde. Wie du manchmal unbewusst gesagt hast:</p>
+                
+                <p><span class="highlight">„Ich hab dich mehr lieb."</span></p>
+                
+                <p>Ich weiß, dass du das niemandem gibst. Und ich weiß auch, was es dich gekostet hat, mir das zu zeigen.</p>
+            </div>
+        </div>
+        
+        <div class="story-content">
+            <div class="story-text">
+                <p><span class="highlight">Zwischendurch hast du versucht zu fliehen.</span></p>
+                
+                <p>Du hast Grenzen gesetzt. Mauern hochgezogen. Gesagt, du willst frei sein. Du willst niemandem gehören. Du kannst keine Beziehung.</p>
+                
+                <p>Aber ich hab verstanden, dass das nicht an mir lag.</p>
+                
+                <p><span class="highlight">Du hattest keine Angst vor mir. Du hattest Angst davor, dass du mich willst.</span></p>
+                
+                <p>Angst, dass ich dir zu wichtig werde. Angst, dass ich dich verlasse. Angst, dass du wieder verletzt wirst.</p>
+                
+                <p>Ein Mensch flieht nur vor dem, was ihn wirklich verletzen könnte. Und ich glaub... ich bin der einzige Mann, der diese Macht über dich hat.</p>
+            </div>
+        </div>
+        
+        <div class="story-content">
+            <div class="story-text">
+                <p><span class="highlight">Wir haben uns nicht gesucht.</span></p>
+                
+                <p>Wir haben uns gefunden – dort, wo wir beide kaputt waren.</p>
+                
+                <p>Und trotzdem... sind wir füreinander die einzigen Menschen, bei denen wir weich werden. Bei denen wir lachen können. Bei denen wir einschlafen können. Bei denen wir uns sicher fühlen.</p>
+                
+                <p>Meine Ruhe trifft auf dein Feuer.<br>
+                Meine Stabilität trifft auf deine Angst.<br>
+                Meine Loyalität trifft auf dein Schutzschild.</p>
+                
+                <p>Das ist keine normale Geschichte.</p>
+                
+                <p><span class="highlight">Das hier ist: Feuer trifft Ruhe. Wunde trifft Heilung. Mauer trifft Geduld.</span></p>
+                
+                <p>Wir sind zwei Menschen, die sich gegenseitig halten, obwohl keiner von uns wirklich weiß, wie das geht.</p>
+            </div>
+        </div>
+        
+        <div class="handwritten">
+            "So haben wir uns kennengelernt. Nicht durch Zufall.<br>
+            Sondern weil wir genau zur richtigen Zeit die richtigen Menschen füreinander wurden."
+        </div>
+        
+        <button class="back-btn" onclick="showHome()">← Zurück zur Startseite</button>
+    </div>
+    
+    <div id="moonSunPage" class="story-page">
+        <div class="page-header">
+            <h2 class="page-title">The Moon & The Sun</h2>
+            <p class="page-subtitle">Unsere Gutenacht-Geschichten</p>
+        </div>
+        
+        <div class="handwritten">
+            "Du bist die Sonne. Ich bin der Mond. Und wir haben gelernt, zusammen zu leuchten."
+        </div>
+        
+        <div class="story-content">
+            <div class="story-text">
+                <p>Die Sonne hatte wieder einen langen Tag hinter sich. Sie hatte gestrahlt, gelächelt, für alle da gewesen. Aber als die Nacht kam, wurde ihr Licht ein bisschen leiser. Sie war müde, nicht körperlich, sondern... im Herzen.</p>
+                
+                <p>Und genau da war er wieder – <span class="highlight">der Mond</span>. Nicht laut, nicht fordernd, einfach da. Wie immer, wenn sie sich selbst verlieren wollte, fand sie ihn irgendwo zwischen den Sternen.</p>
+                
+                <p>„Warum bist du immer da, wenn ich dich nicht rufe?", fragte sie.</p>
+                <p>Der Mond lächelte: <span class="highlight">„Weil du mich nie rufen musst. Ich hör dich, auch wenn du nichts sagst."</span></p>
+            </div>
+        </div>
+        
+        <div class="story-image polaroid">
+            📸 Bild 1: Mond & Sonne begegnen sich
+            <div class="polaroid-caption">Der Moment der Stille</div>
+        </div>
+        
+        <div class="story-content">
+            <div class="story-text">
+                <p>Sie schwieg kurz, schaute ihn an und flüsterte: „Ich hab Angst, dass ich dich verletze, ohne es zu wollen."</p>
+                
+                <p>Der Mond antwortete: <span class="highlight">„Wenn du mich mal verbrennst, dann nur, weil ich dir zu nah gekommen bin."</span></p>
+                
+                <p>Die Sonne musste lachen – ein echtes, kleines, ehrliches Lachen. Zum ersten Mal fühlte sie sich nicht mehr wie ein Chaos aus Feuer, sondern wie jemand, den man halten könnte, ohne sich zu verbrennen.</p>
+                
+                <p>Sie fragte: „Und was, wenn ich irgendwann wieder untergehe?"</p>
+                <p>Er antwortete: <span class="highlight">„Dann warte ich, bis du wieder aufgehst. Das tu ich immer."</span></p>
+                
+                <p>Die Sonne schwieg wieder, aber diesmal anders. Sie war ruhig. Sie war... sicher. Zum ersten Mal hatte sie das Gefühl, dass sie nicht alles alleine tragen muss.</p>
+                
+                <p>Und während sie langsam in den Himmel sank, flüsterte sie fast unhörbar: „Vielleicht hab ich dich gebraucht, bevor ich's überhaupt wusste."</p>
+                
+                <p>Der Mond antwortete nur leise: <span class="highlight">„Ich weiß. Ich war schon da."</span></p>
+            </div>
+        </div>
+        
+        <div class="handwritten" style="margin: 80px 0 60px;">
+            "Selbst das stärkste Licht braucht manchmal jemanden, der bleibt."
+        </div>
+        
+        <div class="story-content">
+            <div class="story-text">
+                <p>Es gibt diese Geschichte von der Sonne und dem Mond. Die meisten sagen, sie können nie zusammen sein, weil sie sich nie begegnen – aber keiner checkt, dass genau das ihr Geheimnis ist.</p>
+                
+                <p>Die Sonne war immer laut. Sie hat gebrannt, alle haben sie gesehen, alle wollten ein Stück von ihr. Und trotzdem hat keiner gemerkt, wie müde sie manchmal war, wie sie abends untergeht, und sich wünscht, dass jemand einfach still da bleibt, ohne was zu verlangen.</p>
+                
+                <p>Und da war <span class="highlight">der Mond</span>.</p>
+            </div>
+        </div>
+        
+        <div class="story-image polaroid">
+            📸 Bild 2: Die Sonne strahlt, der Mond wartet
+            <div class="polaroid-caption">Stille Präsenz</div>
+        </div>
+        
+        <div class="story-content">
+            <div class="story-text">
+                <p>Er hat nie versucht, heller zu sein als sie. Er wusste, sie ist das Licht, das Leben gibt. Er wollte sie nicht ändern, nur verstehen. Und während die Welt die Sonne gefeiert hat, hat er sie einfach angeschaut – so, wie sie wirklich war.</p>
+                
+                <p>Er wusste: wenn sie lacht, wird's warm. Wenn sie weint, regnet's. Und jedes Mal, wenn sie verschwindet, bleibt er da – ruhig, stabil, damit sie, wenn sie wieder aufgeht, weiß: Da war jemand, der sie nicht vergessen hat.</p>
+                
+                <p>Manchmal, wenn sie in der Ferne lachte, tat's ihm weh, weil er wusste, die Sonne gehört niemandem. Aber tief in sich wusste er auch, dass sie immer zu ihm zurückkommt – nicht, weil sie muss, sondern weil sie will.</p>
+                
+                <p><span class="highlight">Und so ist das mit uns, Suzan.</span></p>
+                
+                <p>Du bist die Sonne. Du brauchst Raum, du willst frei sein, und ich will, dass du's bist. Ich bin nicht hier, um dich festzuhalten – ich bin hier, um dich nicht loszulassen, wenn du mal müde wirst.</p>
+                
+                <p>Ich bin der Mond, und ich leuchte, damit du dich selbst siehst, auch in der Dunkelheit. Und selbst wenn du weit weg bist, weiß ich – irgendwann schaust du hoch, siehst mein Licht, und erinnerst dich: <span class="highlight">Da war jemand, der dich nie vergessen hat.</span></p>
+            </div>
+        </div>
+        
+        <div class="handwritten" style="margin: 80px 0 60px;">
+            "Manchmal braucht Liebe kein Feuer – nur zwei Seelen, die wissen: Ich bleibe."
+        </div>
+        
+        <div class="story-content">
+            <div class="story-text">
+                <p><span class="highlight">Wenn die Sonne fällt und der Mond schweigt</span></p>
+                
+                <p>Die Sonne war müde. Nicht, weil sie zu viel gegeben hatte, sondern weil sie zu oft das Gefühl hatte, dass ihr Licht nie genug war. Sie strahlte, wärmte, schenkte Leben – aber innerlich war sie leer.</p>
+                
+                <p>Und irgendwo da oben, versteckt hinter den Sternen, wartete der Mond. Er sprach nie dazwischen. Er drängte sich nicht auf. Er war einfach da. Immer.</p>
+            </div>
+        </div>
+        
+        <div class="story-image polaroid">
+            📸 Bild 3: Sonne fällt, Mond leuchtet weiter
+            <div class="polaroid-caption">Bedingungslose Präsenz</div>
+        </div>
+        
+        <div class="story-content">
+            <div class="story-text">
+                <p>Eines Nachts sagte die Sonne leise: „Manchmal wünsch ich mir, ich könnte einfach verschwinden. Nur für einen Moment. Kein Licht, kein Feuer, kein Druck, einfach... nichts."</p>
+                
+                <p>Der Mond schwieg. Nicht, weil er keine Antwort wusste – sondern, weil er wusste, dass Worte sie jetzt nur verletzen würden. Er ließ sie reden, atmen, fühlen. Er ließ sie einfach sein.</p>
+                
+                <p>Nach ner Weile flüsterte er: <span class="highlight">„Du musst nicht jeden Tag scheinen. Manchmal reicht's, wenn du einfach da bist. Ich leuchte weiter, bis du wieder willst."</span></p>
+                
+                <p>Die Sonne schaute ihn an – zum ersten Mal nicht als jemand, der sie bewundert, sondern als jemand, der sie versteht.</p>
+                
+                <p>„Aber was, wenn ich wieder falle?", fragte sie.</p>
+                <p>„Dann fall", antwortete der Mond. <span class="highlight">„Ich fang dich auf. Nicht, um dich festzuhalten, sondern, damit du nie vergisst, dass du sicher bist."</span></p>
+                
+                <p>Da lächelte sie, müde, aber ehrlich. Und in diesem Moment, wurde der Himmel still.</p>
+                
+                <p>Denn manchmal braucht Liebe kein Feuer, keine großen Worte, keine Perfektion. Nur zwei Seelen, die wissen: Selbst wenn die Sonne fällt, wird der Mond nie aufhören zu leuchten – für sie.</p>
+            </div>
+        </div>
+        
+        <div class="handwritten" style="margin: 80px 0 60px;">
+            "Weil Liebe nicht immer leuchtet – manchmal ist sie einfach still."
+        </div>
+        
+        <div class="story-content">
+            <div class="story-text">
+                <p>Heute war der Himmel ein bisschen unruhig. Die Sonne war lauter als sonst – nicht, weil sie böse war, sondern weil sie müde war. Müde vom Denken, vom Fühlen, vom Starksein.</p>
+                
+                <p>Der Mond blieb ruhig, auch wenn sein Licht kurz gezittert hat. Er wusste: Manchmal braucht die Sonne keine Antwort – nur das Gefühl, dass jemand bleibt, auch wenn's gerade schwer ist.</p>
+            </div>
+        </div>
+        
+        <div class="story-image polaroid">
+            📸 Bild 4: Unruhiger Himmel, ruhiger Mond
+            <div class="polaroid-caption">Trotz allem</div>
+        </div>
+        
+        <div class="story-content">
+            <div class="story-text">
+                <p>Sie sagte leise: „Ich wollte dich nicht wegstoßen... ich wusste nur nicht, wie ich dich nah an mich lasse, ohne mich selbst zu verlieren."</p>
+                
+                <p>Der Mond antwortete sanft: <span class="highlight">„Ich weiß. Deswegen bleib ich auch dann, wenn du mich kurz vergisst. Weil Liebe nicht immer leuchtet – manchmal ist sie einfach still."</span></p>
+                
+                <p>Und in dieser Nacht, als der Himmel wieder ein Stück ruhiger wurde, fiel die Sonne langsam in den Schlaf. Nicht, weil alles perfekt war – sondern, weil sie wusste: <span class="highlight">Der Mond ist noch da. Trotz allem. Wie immer.</span></p>
+            </div>
+        </div>
+        
+        <div class="handwritten" style="margin-top: 80px;">
+            "Das ist unsere Geschichte. Die Sonne und der Mond.<br>
+            Suzan und Emin. 🌙☀️"
+        </div>
+        
+        <button class="back-btn" onclick="showHome()">← Zurück zur Startseite</button>
+    </div>
+
+    <!-- MOMENTS PAGE -->
+    <div id="momentsPage" class="story-page">
+        <div class="page-header">
+            <h2 class="page-title">Our Moments</h2>
+            <p class="page-subtitle">Klick auf die Karten & erlebe unsere Story nochmal 💕</p>
+        </div>
+
+        <div class="handwritten">
+            "Jeder Moment mit dir ist ein Moment, den ich für immer behalten will."
+        </div>
+
+        <div class="moments-grid">
+            <!-- Card 1 -->
+            <div class="memory-card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-emoji">📞</div>
+                        <div class="card-title">Die Anfangsphase</div>
+                        <div class="card-hint">Klick mich! ✨</div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-description">
+                            <strong>Alles war neu, intensiv und echt</strong><br><br>
+                            Hier hat alles angefangen – ohne Maske, ohne Angst.<br><br>
+                            Einfach wir zwei. Nichts gespielt.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="memory-card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-emoji">💌</div>
+                        <div class="card-title">Dein Liebesbrief</div>
+                        <div class="card-hint">Klick mich! ✨</div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-description">
+                            <strong>Worte, die man nicht einfach schreibt</strong><br><br>
+                            Man schreibt sie nur, wenn jemand wichtig ist.<br><br>
+                            Und du hast sie für mich geschrieben.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="memory-card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-emoji">📦</div>
+                        <div class="card-title">Erinnerungen</div>
+                        <div class="card-hint">Klick mich! ✨</div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-description">
+                            <strong>Momente, die bleiben</strong><br><br>
+                            Auch wenn der Tag vergeht.<br><br>
+                            Sie zeigen, dass das hier mehr ist als nur Zeitvertreib.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="memory-card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-emoji">🎆</div>
+                        <div class="card-title">Silvester</div>
+                        <div class="card-hint">Klick mich! ✨</div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-description">
+                            <strong>Ein Übergang</strong><br><br>
+                            Nicht nur ins neue Jahr.<br><br>
+                            Sondern in etwas, das sich nach Nähe angefühlt hat.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="memory-card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-emoji">📚</div>
+                        <div class="card-title">Klausurstress</div>
+                        <div class="card-hint">Klick mich! ✨</div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-description">
+                            <strong>Auch wenn alles zu viel wurde</strong><br><br>
+                            Nähe war da.<br><br>
+                            Nicht laut – aber konstant.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="memory-card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-emoji">💭</div>
+                        <div class="card-title">Nähe & Sehnsucht</div>
+                        <div class="card-hint">Klick mich! ✨</div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-description">
+                            <strong>Manchmal reicht das Wissen</strong><br><br>
+                            Dass der andere da ist.<br><br>
+                            Und genau das fehlt, wenn er es nicht ist.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 7 -->
+            <div class="memory-card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-emoji">🔮</div>
+                        <div class="card-title">Zukunft</div>
+                        <div class="card-hint">Klick mich! ✨</div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-description">
+                            <strong>Noch nicht klar, aber nicht leer</strong><br><br>
+                            Eher ein Gefühl von „da könnte etwas sein".<br><br>
+                            Und das reicht manchmal.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 8 -->
+            <div class="memory-card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-emoji">👨‍👩‍👦</div>
+                        <div class="card-title">Familie</div>
+                        <div class="card-hint">Klick mich! ✨</div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-description">
+                            <strong>Nicht selbstverständlich, sondern wichtig</strong><br><br>
+                            Weil es zeigt, dass du mehr bist.<br><br>
+                            Mehr als nur ein Teil vom Alltag.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 9 -->
+            <div class="memory-card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-emoji">💫</div>
+                        <div class="card-title">Unsere Momente</div>
+                        <div class="card-hint">Klick mich! ✨</div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-description">
+                            <strong>Klein, unscheinbar – und genau deshalb echt</strong><br><br>
+                            Momente, die man nicht plant.<br><br>
+                            Aber behält.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 10 -->
+            <div class="memory-card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="card-emoji">🏠</div>
+                        <div class="card-title">Unser Alltag</div>
+                        <div class="card-hint">Klick mich! ✨</div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-description">
+                            <strong>Kein Drama, kein Märchen</strong><br><br>
+                            Einfach wir.<br><br>
+                            Und das reicht manchmal mehr als alles andere.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="handwritten" style="margin-top: 80px;">
+            "Das sind unsere Momente. Klein und groß. Alltäglich und besonders.<br>
+            Aber alle zusammen sind sie der Beweis: Wir gehören zusammen."
+        </div>
+
+        <button class="back-btn" onclick="showHome()">← Zurück zur Startseite</button>
+    </div>
+
+    <!-- QUESTION PAGE -->
+    <div id="questionPage" class="story-page">
+        <div class="question-container">
+            <div id="questionContent">
+                <div class="question-text">
+                    Du bist das Beste, was mir je passiert ist.<br>
+                    Jeder Tag mit dir fühlt sich an wie ein Geschenk.<br>
+                    Du machst mich zu nem besseren Menschen.<br><br>
+                    Ich will nicht nur 227 Tage mit dir...<br>
+                    Ich will ein ganzes Leben lang.<br><br>
+                    <span class="big">Do you wanna be my girlfriend? 💍</span>
+                </div>
+                
+                <div class="choice-buttons">
+                    <button class="choice-btn" id="yesBtn" onclick="handleYes()">YES! 💕</button>
+                    <button class="choice-btn" id="noBtn" onclick="handleNo()">No</button>
+                </div>
+            </div>
+
+            <div id="celebration" class="celebration">
+                <div class="celebration-emoji">🎉 💕 🎊 💖 ✨</div>
+                <div class="celebration-text">
+                    SHE SAID YES!!!
+                </div>
+                <div class="celebration-emoji">🌙 ☀️ 💑 🐻 🐣</div>
+                <button class="back-btn" onclick="showHome()" style="margin-top: 50px;">← Zurück zur Startseite</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MOMENTS PAGE -->
+    <div id="momentsPage" class="story-page">
+        <div class="page-header">
+            <h2 class="page-title">Our Moments</h2>
+            <p class="page-subtitle">Die schönsten Erinnerungen an uns 💕</p>
+        </div>
+
+        <div class="handwritten">
+            "31 Türchen voller Erinnerungen – jedes eine kleine Geschichte von uns 💕"
+        </div>
+
+        <div class="calendar-grid">
+            <div class="calendar-door" onclick="openMoment(1)">
+                <div class="door-number">1</div>
+                <div class="door-icon">📱</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(2)">
+                <div class="door-number">2</div>
+                <div class="door-icon">💌</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(3)">
+                <div class="door-number">3</div>
+                <div class="door-icon">🌙</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(4)">
+                <div class="door-number">4</div>
+                <div class="door-icon">📦</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(5)">
+                <div class="door-number">5</div>
+                <div class="door-icon">☀️</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(6)">
+                <div class="door-number">6</div>
+                <div class="door-icon">💕</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(7)">
+                <div class="door-number">7</div>
+                <div class="door-icon">🎁</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(8)">
+                <div class="door-number">8</div>
+                <div class="door-icon">📚</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(9)">
+                <div class="door-number">9</div>
+                <div class="door-icon">🫂</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(10)">
+                <div class="door-number">10</div>
+                <div class="door-icon">💭</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(11)">
+                <div class="door-number">11</div>
+                <div class="door-icon">🌸</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(12)">
+                <div class="door-number">12</div>
+                <div class="door-icon">✨</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(13)">
+                <div class="door-number">13</div>
+                <div class="door-icon">🎀</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(14)">
+                <div class="door-number">14</div>
+                <div class="door-icon">🚗</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(15)">
+                <div class="door-number">15</div>
+                <div class="door-icon">💚</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(16)">
+                <div class="door-number">16</div>
+                <div class="door-icon">👨‍👩‍👦</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(17)">
+                <div class="door-number">17</div>
+                <div class="door-icon">🎵</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(18)">
+                <div class="door-number">18</div>
+                <div class="door-icon">🌹</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(19)">
+                <div class="door-number">19</div>
+                <div class="door-icon">📸</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(20)">
+                <div class="door-number">20</div>
+                <div class="door-icon">💍</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(21)">
+                <div class="door-number">21</div>
+                <div class="door-icon">🌟</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(22)">
+                <div class="door-number">22</div>
+                <div class="door-icon">🎈</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(23)">
+                <div class="door-number">23</div>
+                <div class="door-icon">🍫</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(24)">
+                <div class="door-number">24</div>
+                <div class="door-icon">🎪</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(25)">
+                <div class="door-number">25</div>
+                <div class="door-icon">🦋</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(26)">
+                <div class="door-number">26</div>
+                <div class="door-icon">🌈</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(27)">
+                <div class="door-number">27</div>
+                <div class="door-icon">🎨</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(28)">
+                <div class="door-number">28</div>
+                <div class="door-icon">🔥</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(29)">
+                <div class="door-number">29</div>
+                <div class="door-icon">🎭</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(30)">
+                <div class="door-number">30</div>
+                <div class="door-icon">🐻</div>
+            </div>
+            <div class="calendar-door" onclick="openMoment(31)">
+                <div class="door-number">31</div>
+                <div class="door-icon">🐣</div>
+            </div>
+        </div>
+
+        <button class="back-btn" onclick="showHome()" style="margin-top: 50px;">← Zurück zur Startseite</button>
+    </div>
+
+    <!-- MOMENT MODAL -->
+    <div id="momentModal" class="letter-modal">
+        <div class="letter-content moment-modal-content">
+            <span class="letter-close" onclick="closeMoment()">✕</span>
+            <div id="momentBody"></div>
+        </div>
+    </div>
+
+    <!-- FOR YOU PAGE - ANIMATED LETTERS -->
+    <div id="forYouPage" class="story-page">
+        <div class="page-header">
+            <h2 class="page-title">For You</h2>
+            <p class="page-subtitle">Open When... 💌</p>
+        </div>
+
+        <div class="handwritten">
+            "Ich hab dir Briefe geschrieben für Momente, wo ich nicht da sein kann.<br>
+            Öffne sie, wann immer du sie brauchst."
+        </div>
+
+        <div class="letters-grid">
+            <div class="envelope-wrapper" onclick="openEnvelope('miss', this)">
+                <div class="envelope">
+                    <div class="envelope-flap"></div>
+                    <div class="envelope-body"></div>
+                    <div class="heart-seal"></div>
+                    <div class="letter-paper"></div>
+                </div>
+                <div class="envelope-label">Open when you miss me</div>
+            </div>
+
+            <div class="envelope-wrapper" onclick="openEnvelope('sad', this)">
+                <div class="envelope">
+                    <div class="envelope-flap"></div>
+                    <div class="envelope-body"></div>
+                    <div class="heart-seal"></div>
+                    <div class="letter-paper"></div>
+                </div>
+                <div class="envelope-label">Open when you're sad</div>
+            </div>
+
+            <div class="envelope-wrapper" onclick="openEnvelope('sleep', this)">
+                <div class="envelope">
+                    <div class="envelope-flap"></div>
+                    <div class="envelope-body"></div>
+                    <div class="heart-seal"></div>
+                    <div class="letter-paper"></div>
+                </div>
+                <div class="envelope-label">Open when you can't sleep</div>
+            </div>
+
+            <div class="envelope-wrapper" onclick="openEnvelope('smile', this)">
+                <div class="envelope">
+                    <div class="envelope-flap"></div>
+                    <div class="envelope-body"></div>
+                    <div class="heart-seal"></div>
+                    <div class="letter-paper"></div>
+                </div>
+                <div class="envelope-label">Open when you need a smile</div>
+            </div>
+
+            <div class="envelope-wrapper" onclick="openEnvelope('strong', this)">
+                <div class="envelope">
+                    <div class="envelope-flap"></div>
+                    <div class="envelope-body"></div>
+                    <div class="heart-seal"></div>
+                    <div class="letter-paper"></div>
+                </div>
+                <div class="envelope-label">Open when you need strength</div>
+            </div>
+
+            <div class="envelope-wrapper" onclick="openEnvelope('love', this)">
+                <div class="envelope">
+                    <div class="envelope-flap"></div>
+                    <div class="envelope-body"></div>
+                    <div class="heart-seal"></div>
+                    <div class="letter-paper"></div>
+                </div>
+                <div class="envelope-label">Open when you need to feel loved</div>
+            </div>
+        </div>
+
+        <button class="back-btn" onclick="showHome()" style="margin-top: 50px;">← Zurück zur Startseite</button>
+    </div>
+
+    <!-- LETTER FULLSCREEN MODAL -->
+    <div id="letterFullscreen" class="letter-fullscreen">
+        <span class="letter-close-full" onclick="closeFullLetter()">✕</span>
+        <div id="letterFullContent" class="letter-full-paper"></div>
+    </div>
+    
+    <script>
+        const canvas = document.getElementById('starsCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        class Star {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.opacity = Math.random();
+                this.twinkleSpeed = Math.random() * 0.02 + 0.01;
+            }
+            update() {
+                this.opacity += this.twinkleSpeed;
+                if (this.opacity >= 1 || this.opacity <= 0.3) this.twinkleSpeed = -this.twinkleSpeed;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        
+        class ShootingStar {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * (canvas.height / 2);
+                this.length = Math.random() * 80 + 40;
+                this.speed = Math.random() * 10 + 8;
+                this.opacity = 1;
+                this.angle = Math.PI / 4;
+            }
+            update() {
+                this.x += Math.cos(this.angle) * this.speed;
+                this.y += Math.sin(this.angle) * this.speed;
+                this.opacity -= 0.008;
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+                const gradient = ctx.createLinearGradient(0, 0, -this.length, 0);
+                gradient.addColorStop(0, `rgba(255, 255, 255, ${this.opacity})`);
+                gradient.addColorStop(0.5, `rgba(255, 182, 193, ${this.opacity * 0.5})`);
+                gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(-this.length, 0);
+                ctx.stroke();
+                ctx.restore();
+            }
+            isFinished() {
+                return this.opacity <= 0 || this.x > canvas.width + 100 || this.y > canvas.height + 100;
+            }
+        }
+        
+        const stars = [];
+        const shootingStars = [];
+        for (let i = 0; i < 400; i++) stars.push(new Star());
+        
+        setInterval(() => {
+            if (Math.random() < 0.8) shootingStars.push(new ShootingStar());
+        }, 1500);
+        
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(star => { star.update(); star.draw(); });
+            for (let i = shootingStars.length - 1; i >= 0; i--) {
+                shootingStars[i].update();
+                shootingStars[i].draw();
+                if (shootingStars[i].isFinished()) shootingStars.splice(i, 1);
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+        
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+        
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            const hearts = ['💕', '💖', '💗', '💓', '💝', '💘'];
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart-float';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+                heart.style.animationDuration = (Math.random() * 5 + 10) + 's';
+                container.appendChild(heart);
+                setTimeout(() => heart.remove(), 15000);
+            }, 2000);
+        }
+        createFloatingHearts();
+        
+        function updateCountdown() {
+            // Startdatum: 30. Mai 2024
+            const startDate = new Date('2024-05-30');
+            const today = new Date();
+            
+            // Setze beide Daten auf Mitternacht für korrekte Tagesberechnung
+            startDate.setHours(0, 0, 0, 0);
+            today.setHours(0, 0, 0, 0);
+            
+            // Berechne Differenz in Millisekunden und konvertiere zu Tagen
+            const diffTime = today - startDate;
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            
+            // Update die Anzeige
+            document.getElementById('daysTogether').textContent = diffDays;
+        }
+        updateCountdown();
+        
+        // Update jeden Tag um Mitternacht automatisch
+        setInterval(updateCountdown, 1000 * 60 * 60); // Checkt jede Stunde
+        
+        // CODE INPUT
+        const d1 = document.getElementById('d1');
+        const d2 = document.getElementById('d2');
+        const d3 = document.getElementById('d3');
+        const msg = document.getElementById('msg');
+        const lockScreen = document.getElementById('lockScreen');
+        const mainPage = document.getElementById('mainPage');
+        let isProcessing = false;
+        
+        setTimeout(() => d1.focus(), 100);
+        
+        d1.addEventListener('input', function() {
+            if (isProcessing) return;
+            isProcessing = true;
+            if (this.value.length > 1) this.value = this.value.charAt(0);
+            if (this.value.length === 1) {
+                setTimeout(() => { d2.focus(); isProcessing = false; }, 50);
+            } else {
+                isProcessing = false;
+            }
+        });
+        
+        d2.addEventListener('input', function() {
+            if (isProcessing) return;
+            isProcessing = true;
+            if (this.value.length > 1) this.value = this.value.charAt(0);
+            if (this.value.length === 1) {
+                setTimeout(() => { d3.focus(); isProcessing = false; }, 50);
+            } else {
+                isProcessing = false;
+            }
+        });
+        
+        d3.addEventListener('input', function() {
+            if (isProcessing) return;
+            isProcessing = true;
+            if (this.value.length > 1) this.value = this.value.charAt(0);
+            if (this.value.length === 1) {
+                setTimeout(() => { checkCode(); isProcessing = false; }, 50);
+            } else {
+                isProcessing = false;
+            }
+        });
+        
+        function checkCode() {
+            const code = d1.value + d2.value + d3.value;
+            if (code.length === 3) {
+                if (code === '305') {
+                    msg.textContent = '✓ ¡Correcto! 💕';
+                    msg.style.color = '#2d5016';
+                    setTimeout(() => {
+                        lockScreen.classList.add('hide');
+                        mainPage.classList.add('show');
+                    }, 1000);
+                } else {
+                    msg.textContent = '❌ Falscher Code!';
+                    msg.style.color = '#8B0000';
+                    setTimeout(() => {
+                        d1.value = '';
+                        d2.value = '';
+                        d3.value = '';
+                        msg.textContent = '';
+                        d1.focus();
+                    }, 1500);
+                }
+            }
+        }
+        
+        d2.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace' && d2.value === '') {
+                e.preventDefault();
+                d1.focus();
+            }
+        });
+        
+        d3.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace' && d3.value === '') {
+                e.preventDefault();
+                d2.focus();
+            }
+        });
+
+        // FLIP CARD
+        function flipCard(card) {
+            card.classList.toggle('flipped');
+        }
+
+        // YES/NO LOGIC
+        let noClickCount = 0;
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+
+        function handleNo() {
+            noClickCount++;
+            
+            const currentYesFontSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+            yesBtn.style.fontSize = (currentYesFontSize + 0.3) + 'rem';
+            yesBtn.style.padding = (20 + noClickCount * 3) + 'px ' + (60 + noClickCount * 5) + 'px';
+            
+            const currentNoFontSize = parseFloat(window.getComputedStyle(noBtn).fontSize);
+            const currentNoPaddingV = 15 - noClickCount * 1.5;
+            const currentNoPaddingH = 40 - noClickCount * 3;
+            
+            if (currentNoFontSize > 0.5) {
+                noBtn.style.fontSize = (currentNoFontSize - 0.15) + 'rem';
+            }
+            if (currentNoPaddingV > 3 && currentNoPaddingH > 10) {
+                noBtn.style.padding = currentNoPaddingV + 'px ' + currentNoPaddingH + 'px';
+            }
+
+            if (noClickCount >= 5) {
+                noBtn.style.opacity = Math.max(0.1, 1 - (noClickCount - 5) * 0.15);
+            }
+
+            noBtn.style.animation = 'none';
+            setTimeout(() => {
+                noBtn.style.animation = 'shake 0.3s';
+            }, 10);
+        }
+
+        function handleYes() {
+            document.getElementById('questionContent').style.display = 'none';
+            document.getElementById('celebration').classList.add('show');
+            
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart-float';
+                    heart.textContent = ['💕', '💖', '💗', '💓', '💝', '💘'][Math.floor(Math.random() * 6)];
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
+                    heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                    document.getElementById('floatingHearts').appendChild(heart);
+                }, i * 100);
+            }
+        }
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                75% { transform: translateX(10px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+
+        // MOMENTS CALENDAR - 31 DOORS
+        const moments = {
+            1: {
+                title: 'Das erste Telefonat 📱',
+                content: `
+                    <p>Weißt du noch, wie alles angefangen hat?</p>
+                    <p>Wir haben angefangen zu telefonieren. Und es war... anders. <span class="moment-emoji">💕</span></p>
+                    <p><span class="moment-highlight">Keine Minute fühlte sich zu lang an.</span> Ich hätte stundenlang mit dir reden können – und hab ich auch.</p>
+                    <p>Das war der Moment, wo ich wusste: Mit der hier ist alles anders.</p>
+                `
+            },
+            2: {
+                title: 'Dein Liebesbrief 💌',
+                content: `
+                    <p>Zu meinem Geburtstag hast du mir was geschrieben, was ich nie vergessen werde:</p>
+                    <p><span class="moment-highlight">"Vielleicht schreibe ich gerade einen Liebesbrief oder eine Geschichte für unsere Kinder."</span> <span class="moment-emoji">💕</span></p>
+                    <p>Unsere Kinder. Du hast an eine Zukunft mit mir gedacht. Das hat alles verändert.</p>
+                `
+            },
+            3: {
+                title: 'Silvester 🌙',
+                content: `
+                    <p>Du warst am Ende. Emotional, müde, verloren.</p>
+                    <p><span class="moment-highlight">Ich bin mitten in der Nacht zu dir gefahren.</span> <span class="moment-emoji">🚗</span></p>
+                    <p>Nur um zu sehen, dass es dir gut geht. Nur um da zu sein.</p>
+                    <p>Du hast gesagt: "Wärst du nicht gekommen, hätte es schlimm enden können."</p>
+                    <p>Ich bin froh, dass ich da war. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            4: {
+                title: 'Deine Box mit Erinnerungen 📦',
+                content: `
+                    <p>Du bewahrst alles von mir auf:</p>
+                    <p>Briefe. Blumenzettel. Geschenke. Schleifen. Kleine Zettel. <span class="moment-emoji">💌</span></p>
+                    <p><span class="moment-highlight">Menschen bewahren nur, was emotionalen Wert hat.</span></p>
+                    <p>Und du hast alles behalten. Alles. Das zeigt mir, wie viel ich dir bedeute.</p>
+                `
+            },
+            5: {
+                title: 'Zusammen aufwachen ☀️',
+                content: `
+                    <p>Jeden Morgen das Gleiche:</p>
+                    <p><span class="moment-highlight">"Ruf mich an, wenn du wach wirst."</span> <span class="moment-emoji">📱</span></p>
+                    <p>Nicht schreiben. Anrufen. Weil wir die Stimme des anderen brauchen.</p>
+                    <p>Das ist unser Morgenritual. Das ist unser "Guten Morgen". <span class="moment-emoji">☀️💕</span></p>
+                `
+            },
+            6: {
+                title: '"Hab dich lieb" 💕',
+                content: `
+                    <p>Mitten im Gespräch. Aus dem Nichts.</p>
+                    <p><span class="moment-highlight">"Ich hab dich mehr lieb."</span> <span class="moment-emoji">💕</span></p>
+                    <p>Unbewusst. Einfach so rausgerutscht. Weil du's in dem Moment gespürt hast.</p>
+                    <p>Diese drei Worte bedeuten mir alles.</p>
+                `
+            },
+            7: {
+                title: 'Meine Geschenke 🎁',
+                content: `
+                    <p>Jedes Geschenk, das ich dir gegeben hab, hast du aufgehoben.</p>
+                    <p>Nicht weggeworfen. Nicht vergessen. <span class="moment-highlight">Aufgehoben.</span> <span class="moment-emoji">🎁</span></p>
+                    <p>In deiner Box. Mit den Schleifen noch dran. Mit den Zetteln dabei.</p>
+                    <p>Als wär jedes Geschenk ein Stück von mir, das du behalten willst.</p>
+                `
+            },
+            8: {
+                title: 'Bei deinen Klausuren 📚',
+                content: `
+                    <p>Immer wenn du Stress hattest, ist was passiert:</p>
+                    <p><span class="moment-highlight">Du hast nur mich angerufen.</span> <span class="moment-emoji">📱</span></p>
+                    <p>Snap weg. Social Media weg. Alle anderen weg. Aber ich war da.</p>
+                    <p>In Not gehst du zu mir. Das sagt alles. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            9: {
+                title: 'In deinen Armen schlafen 🫂',
+                content: `
+                    <p>Du hast mir mal gesagt:</p>
+                    <p><span class="moment-highlight">"Ich würde gerne in deinen Armen schlafen."</span> <span class="moment-emoji">🫂</span></p>
+                    <p>Das sagt man nicht zu nem Freund. Das sagt man zu jemandem, den man will.</p>
+                    <p>Eines Tages wird dieser Wunsch Realität. Versprochen.</p>
+                `
+            },
+            10: {
+                title: 'Unsere tiefen Gespräche 💭',
+                content: `
+                    <p>Wir haben über alles geredet. Bis nachts. Bis morgens.</p>
+                    <p>Über Dinge, die wir noch nie jemandem erzählt haben. <span class="moment-emoji">🌙</span></p>
+                    <p><span class="moment-highlight">Keine Maske. Keine Show. Nur wir.</span></p>
+                    <p>Das ist echte Verbindung. Das ist, was uns anders macht.</p>
+                `
+            },
+            11: {
+                title: 'Die Blumen 🌸',
+                content: `
+                    <p>Jede Blume, die ich dir geschenkt hab – du hast die Zettel aufgehoben.</p>
+                    <p>In deinem iPad. In deiner Box. <span class="moment-emoji">🌸</span></p>
+                    <p><span class="moment-highlight">Selbst wenn die Blumen verwelkt sind, die Erinnerung bleibt.</span></p>
+                    <p>Genau wie wir. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            12: {
+                title: 'Du lässt mich rein ✨',
+                content: `
+                    <p>Du hast mich in dein Zimmer gelassen. Zu deinem Bruder mitgenommen.</p>
+                    <p><span class="moment-highlight">Das hast du noch NIE bei nem Mann gemacht.</span> <span class="moment-emoji">🏠</span></p>
+                    <p>Du hast mir deine schwache Seite gezeigt. Deine Migräne. Deine Panik.</p>
+                    <p>Du hast mich reingelassen – hinter die Mauern. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            13: {
+                title: 'Die Schleifen 🎀',
+                content: `
+                    <p>Sogar die Schleifen von den Geschenken hast du behalten.</p>
+                    <p><span class="moment-highlight">Die kleinen Details, die andere wegwerfen würden.</span> <span class="moment-emoji">🎀</span></p>
+                    <p>Aber für dich sind sie wichtig. Weil sie von mir kommen.</p>
+                    <p>Das zeigt mir, wie sehr du mich schätzt.</p>
+                `
+            },
+            14: {
+                title: 'Zukunftspläne 🚗',
+                content: `
+                    <p>"Wenn du deinen Führerschein hast, können wir uns öfter sehen."</p>
+                    <p><span class="moment-highlight">Du planst mit mir.</span> <span class="moment-emoji">🚗</span></p>
+                    <p>Du denkst an die Zeit, wo wir mehr zusammen sein können.</p>
+                    <p>Du siehst mich in deiner Zukunft. Und ich seh dich in meiner. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            15: {
+                title: 'Durch Dick & Dünn 💫',
+                content: `
+                    <p>Jeder schöne und schwere Moment mit dir hat uns geformt.</p>
+                    <p><span class="moment-highlight">Die Lacher, die Tränen, die stillen Momente.</span> <span class="moment-emoji">💫</span></p>
+                    <p>Wenn's leicht war, haben wir zusammen gefeiert.</p>
+                    <p>Wenn's schwer war, haben wir uns gegenseitig gehalten. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            16: {
+                title: 'Meine Familie 👨‍👩‍👦',
+                content: `
+                    <p>Es ist dir mega wichtig, was meine Familie über dich denkt.</p>
+                    <p><span class="moment-highlight">Du strahlst jedes Mal, wenn meine Mutter gut über dich redet.</span> <span class="moment-emoji">✨</span></p>
+                    <p>Weil du Teil meines Lebens sein willst. Nicht nur von mir – von allem.</p>
+                    <p>Und meine Familie liebt dich. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            17: {
+                title: 'One of the Girls 🎵',
+                content: `
+                    <p>Du hast an deiner Fensterbank gesessen, "One of the Girls" gehört.</p>
+                    <p><span class="moment-highlight">Du wolltest mich blocken. 5-6 Mal versucht.</span> <span class="moment-emoji">📱</span></p>
+                    <p>Aber irgendwas kam immer dazwischen. Als würde Gott sagen: Nein.</p>
+                    <p>Und genau in dem Moment hast du was gespürt, was dich geschockt hat. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            18: {
+                title: 'Briefe in deinem iPad 🌹',
+                content: `
+                    <p>Du trägst meine Zettel in deinem iPad mit dir rum.</p>
+                    <p><span class="moment-highlight">Überall wo du hingehst, hab ich ein kleines Stück dabei.</span> <span class="moment-emoji">📱</span></p>
+                    <p>Als wär ich immer bei dir. Auch wenn ich nicht da bin.</p>
+                `
+            },
+            19: {
+                title: 'Deine Bilder 📸',
+                content: `
+                    <p>Du hast mir Bilder geschickt – nur für mich.</p>
+                    <p><span class="moment-highlight">Nicht für andere. Nur für mich.</span> <span class="moment-emoji">📸</span></p>
+                    <p>Das zeigt Vertrauen. Das zeigt Intimität.</p>
+                    <p>Du wolltest, dass ich dich sehe. Die echte Suzan. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            20: {
+                title: '"Amen" 💍',
+                content: `
+                    <p>Ich hab gesagt: "Inshallah heiraten wir."</p>
+                    <p><span class="moment-highlight">Du hast geantwortet: "Amen."</span> <span class="moment-emoji">💍</span></p>
+                    <p>Kein Nein. Kein Lachen. Kein Witz. Ein "Amen".</p>
+                    <p>Das war deine Art zu sagen: Ja, das will ich auch. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            21: {
+                title: 'Ich weck dich morgens 🌟',
+                content: `
+                    <p>Jeden Morgen das Gleiche: Ich ruf dich an und weck dich.</p>
+                    <p><span class="moment-highlight">Das ist unser Ritual. Unser "Guten Morgen".</span> <span class="moment-emoji">☀️</span></p>
+                    <p>Nicht weil wir müssen. Weil wir wollen.</p>
+                    <p>Weil der Tag ohne einander einfach nicht richtig anfängt. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            22: {
+                title: 'Abschiedsrituale 🎈',
+                content: `
+                    <p>Wir legen nie einfach auf.</p>
+                    <p><span class="moment-highlight">"Hab dich lieb, schlaf gut, bis morgen."</span> <span class="moment-emoji">💕</span></p>
+                    <p>Jedes Mal. Ohne Ausnahme.</p>
+                    <p>Weil selbst "Tschüss" bei uns was Besonderes ist.</p>
+                `
+            },
+            23: {
+                title: 'Du schützt dich 🍫',
+                content: `
+                    <p>Du hast mich vor deiner Mutter verteidigt.</p>
+                    <p><span class="moment-highlight">Das hast du noch nie für jemanden gemacht.</span> <span class="moment-emoji">🛡️</span></p>
+                    <p>Du hast dich gegen deine Mutter gestellt – für mich.</p>
+                    <p>Das zeigt, wie wichtig ich dir bin. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            24: {
+                title: 'Zusammen einschlafen 🎪',
+                content: `
+                    <p>Am Telefon. Deine Atmung wird ruhiger.</p>
+                    <p><span class="moment-highlight">Ich höre, wie du wegdriftest.</span> <span class="moment-emoji">🌙</span></p>
+                    <p>Und ich bleibe wach, nur um sicherzugehen, dass du sicher eingeschlafen bist.</p>
+                    <p>Das ist Liebe. Stille, ruhige, beschützende Liebe. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            25: {
+                title: 'Du sorgst dich 🦋',
+                content: `
+                    <p>"Hast du gegessen?" "Hast du getrunken?" "Schlaf genug!"</p>
+                    <p><span class="moment-highlight">Du passt auf mich auf.</span> <span class="moment-emoji">🩺</span></p>
+                    <p>Auch wenn du's manchmal streng sagst – ich weiß, dass es aus Liebe kommt.</p>
+                    <p>Du willst, dass es mir gut geht. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            26: {
+                title: 'Meine Ruhe, dein Feuer 🌈',
+                content: `
+                    <p>Ich bin ruhig. Du bist Feuer.</p>
+                    <p><span class="moment-highlight">Aber zusammen? Perfekt.</span> <span class="moment-emoji">🌙☀️</span></p>
+                    <p>Meine Ruhe beruhigt dein Feuer. Dein Feuer wärmt meine Ruhe.</p>
+                    <p>Wir ergänzen uns. Wie Mond und Sonne. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            27: {
+                title: 'Deine Stimme 🎨',
+                content: `
+                    <p>Deine Stimme wird weicher, wenn du mit mir redest.</p>
+                    <p><span class="moment-highlight">Nicht die harte, kalte Suzan von außen.</span> <span class="moment-emoji">🌸</span></p>
+                    <p>Sondern die weiche, verletzliche, echte Suzan.</p>
+                    <p>Die Suzan, die nur ich kenne. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            28: {
+                title: '"Wenn du so bleibst" 🔥',
+                content: `
+                    <p>"Warum sollte ich dich verlassen, wenn du so bleibst wie du bist?"</p>
+                    <p><span class="moment-highlight">Das hast du gesagt.</span> <span class="moment-emoji">💕</span></p>
+                    <p>Das heißt: Ich will, dass du bleibst. Ich seh dich in meinem Leben.</p>
+                    <p>Und ich bleib. Für immer. <span class="moment-emoji">💍</span></p>
+                `
+            },
+            29: {
+                title: 'Keine körperliche Nähe 🎭',
+                content: `
+                    <p>Wir hatten keine Dates. Keine körperliche Nähe. Keine Ablenkung.</p>
+                    <p><span class="moment-highlight">Nur unsere Stimmen. Nur unsere Seelen.</span> <span class="moment-emoji">💕</span></p>
+                    <p>Unsere Bindung ist nicht aus Gewohnheit entstanden.</p>
+                    <p>Sie ist aus echter Verbindung entstanden. <span class="moment-emoji">🌙☀️</span></p>
+                `
+            },
+            30: {
+                title: 'Der Bär 🐻',
+                content: `
+                    <p>Ich bin dein Bär. Ruhig, loyal, beschützend.</p>
+                    <p><span class="moment-highlight">Immer da, wenn du mich brauchst.</span> <span class="moment-emoji">🐻</span></p>
+                    <p>Ich halt dich fest, wenn du fällst. Ich wärm dich, wenn dir kalt ist.</p>
+                    <p>Ich bin dein sicherer Ort. <span class="moment-emoji">💕</span></p>
+                `
+            },
+            31: {
+                title: 'Das Küken 🐣',
+                content: `
+                    <p>Du bist mein Küken. Meine kleine Sonne.</p>
+                    <p><span class="moment-highlight">Ich beschütze dich, auch wenn du stark bist.</span> <span class="moment-emoji">🐣</span></p>
+                    <p>Ich bin da, auch wenn du mich wegstößt.</p>
+                    <p>Weil ich weiß: Unter den Mauern ist ein weiches Herz, das Liebe braucht.</p>
+                    <p>Und ich geb dir all die Liebe, die du verdienst. <span class="moment-emoji">💕🌙☀️</span></p>
+                `
+            }
+        };
+
+        function openMoment(day) {
+            const moment = moments[day];
+            const modal = document.getElementById('momentModal');
+            const body = document.getElementById('momentBody');
+            
+            body.innerHTML = `
+                <h3>${moment.title}</h3>
+                ${moment.content}
+                <div class="letter-signature">
+                    Emin <span class="bear-emoji">🐻</span>
+                </div>
+            `;
+            
+            modal.classList.add('show');
+        }
+
+        function closeMoment() {
+            document.getElementById('momentModal').classList.remove('show');
+        }
+
+        document.getElementById('momentModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeMoment();
+            }
+        });
+
+        // LOVE LETTERS
+        const letters = {
+            miss: {
+                title: 'Open when you miss me 💭',
+                content: `
+                    <p>Hey mi amor,</p>
+                    
+                    <p>Ich weiß genau, wie sich das anfühlt. Dieser Moment, wo du mich gerade vermisst. Wo du dir wünschst, ich wär jetzt da. Wo du meine Stimme hören willst, meine Ruhe spüren willst.</p>
+                    
+                    <p>Aber weißt du was? Auch wenn ich nich direkt bei dir bin – ich bin immer da. In jedem Lied, das dich an mich erinnert. In jedem ruhigen Moment, wo du an uns denkst. In jedem Lächeln, das einfach kommt, wenn du an irgendwas denkst, was wir gesagt haben.</p>
+                    
+                    <p><strong>Du bist nie allein.</strong></p>
+                    
+                    <p>Ich trag dich in meinem Herzen, egal wo ich bin. Und du weißt, der Mond scheint immer für die Sonne – auch wenn sie ihn grad nicht sieht. So bin ich für dich. Immer da. Immer am Leuchten. Immer am Warten.</p>
+                    
+                    <p>Mach die Augen zu. Atme tief ein. Und fühl, wie sehr ich dich liebe. Fühl, wie stolz ich auf dich bin. Fühl, wie sehr ich mich freue, bald wieder bei dir zu sein.</p>
+                    
+                    <p><strong>Bis dahin: Ich hab dich. Immer. 🌙</strong></p>
+                `
+            },
+            sad: {
+                title: 'Open when you\'re sad 🌧️',
+                content: `
+                    <p>Mi corazón,</p>
+                    
+                    <p>Ich weiß, dass du grad nicht okay bist. Und das ist okay. Du musst nicht immer die starke, strahlende Sonne sein. Manchmal darfst du auch einfach nur Suzan sein – die Suzan, die müde ist, die verletzt ist, die zweifelt.</p>
+                    
+                    <p>Du hast so lange alleine gegen alles gekämpft. Du hast deine Mauern hochgezogen, um dich zu schützen. Aber mit mir musst du das nicht mehr. Du kannst fallen. Du kannst weinen. Du kannst schwach sein.</p>
+                    
+                    <p><strong>Ich fang dich auf.</strong></p>
+                    
+                    <p>Was auch immer grad passiert ist – ob's deine Migräne ist, ob dich jemand verletzt hat, ob deine eigenen Gedanken dich fertig machen – du bist nicht alleine damit. Ich bin da. Und ich geh nirgendwo hin.</p>
+                    
+                    <p>Erinner dich: Die Sonne geht manchmal unter. Aber sie geht immer wieder auf. Und der Mond? Der wartet. Geduldig. Ruhig. Loyal.</p>
+                    
+                    <p><strong>Ich warte auf dich. Und ich liebe dich – besonders dann, wenn du dich selbst nicht lieben kannst. 💕</strong></p>
+                `
+            },
+            sleep: {
+                title: 'Open when you can\'t sleep 🌙',
+                content: `
+                    <p>Meine Sonne,</p>
+                    
+                    <p>Es ist spät. Du liegst im Bett, aber dein Kopf will nicht aufhören zu denken, oder? Die Gedanken kreisen, die Stille ist zu laut, und du würdest alles dafür geben, einfach nur einzuschlafen.</p>
+                    
+                    <p>Ich wünschte, ich könnt jetzt bei dir sein. Ich würd dich einfach festhalten, bis du ruhig wirst. Ich würd dir ne Gutenacht-Geschichte erzählen – von Mond und Sonne, wie immer.</p>
+                    
+                    <p><strong>Aber da ich nicht da sein kann, lass mich dir das sagen:</strong></p>
+                    
+                    <p>Mach die Augen zu. Atme tief ein. Atme langsam aus. Stell dir vor, du liegst neben mir. Meine Hand hält deine. Meine Ruhe fließt in dich rein. Alles, was dich beschäftigt, kann bis morgen warten.</p>
+                    
+                    <p>Die Nacht gehört dir. Lass los. Du bist sicher. Du bist geliebt. Und morgen früh bin ich immer noch da.</p>
+                    
+                    <p><strong>Schlaf gut, mi amor. Der Mond wacht über dich. 🌙✨</strong></p>
+                `
+            },
+            smile: {
+                title: 'Open when you need a smile 😊',
+                content: `
+                    <p>Hey du! 🐣</p>
+                    
+                    <p>Okay, ich hab ne Mission: Dich zum Lächeln bringen. Und ich weiß genau, wie das geht.</p>
+                    
+                    <p><strong>Erinnerst du dich noch?</strong></p>
+                    
+                    <p>An den Moment, wo du das erste Mal "Ich hab dich mehr lieb" gesagt hast – unbewusst, einfach so rausgerutscht? Ich bin innerlich geschmolzen.</p>
+                    
+                    <p>An unsere Morgen-Routinen? Wie wir zusammen aufwachen, noch verschlafen, aber trotzdem am Lächeln?</p>
+                    
+                    <p>An jeden dummen Witz, den wir gemacht haben? An jeden Moment, wo wir einfach nur gelacht haben, ohne Grund?</p>
+                    
+                    <p><strong>Du bist mein Lächeln.</strong> Jeden Tag. Selbst wenn du grad nicht lächelst – du bringst Licht in mein Leben.</p>
+                    
+                    <p>Also hier ist mein Geschenk an dich: Ein virtuelles Lächeln von mir. Stell dir vor, wie ich dich anschau – mit dem Blick, der nur für dich ist. Und jetzt lächel zurück.</p>
+                    
+                    <p><strong>Da ist es. Genau dieses Lächeln. Das ist alles, was ich wollte. 🌟💕</strong></p>
+                `
+            },
+            strong: {
+                title: 'Open when you need strength 💪',
+                content: `
+                    <p>Mi amor,</p>
+                    
+                    <p>Ich weiß, dass du grad zweifelst. Vielleicht zweifelst du an dir selbst. Vielleicht fühlst du dich nicht stark genug. Vielleicht denkst du, du schaffst das nicht.</p>
+                    
+                    <p><strong>Aber lass mich dir was sagen:</strong></p>
+                    
+                    <p>Ich hab dich gesehen. Die echte Suzan. Das kleine Mädchen, das sich hinter den Mauern versteckt. Und weißt du, was ich gesehen hab?</p>
+                    
+                    <p>Die stärkste Frau, die ich kenne.</p>
+                    
+                    <p>Du hast so viel durchgemacht. Du hast so viele Kämpfe gekämpft – allein. Du hast dich immer wieder aufgerappelt, auch wenn's keiner gesehen hat. Du hast überlebt, wo andere aufgegeben hätten.</p>
+                    
+                    <p><strong>Du bist nicht schwach. Du bist müde. Und das ist ein Unterschied.</strong></p>
+                    
+                    <p>Aber weißt du was? Jetzt musst du nicht mehr alles alleine tragen. Ich bin da. Lehn dich an mich. Nimm dir meine Stärke, wenn deine grad nicht reicht.</p>
+                    
+                    <p>Du schaffst das. Und falls nicht heute – dann morgen. Und ich werd jeden einzelnen Tag an deiner Seite sein.</p>
+                    
+                    <p><strong>Du bist stärker als du denkst. Und du bist nie allein. 🌙💪</strong></p>
+                `
+            },
+            love: {
+                title: 'Open when you need to feel loved 💕',
+                content: `
+                    <p>Suzan,</p>
+                    
+                    <p>Du öffnest diesen Brief, weil du Liebe spüren willst. Weil du vielleicht grad daran zweifelst. Weil du dich vielleicht leer fühlst. Weil du vergessen hast, wie geliebt du bist.</p>
+                    
+                    <p><strong>Also lass mich dich daran erinnern:</strong></p>
+                    
+                    <p>Ich liebe dich, wenn du strahlst. Ich liebe dich, wenn du zusammenbrichst. Ich liebe dich, wenn du lachst. Ich liebe dich, wenn du weinst. Ich liebe dich, wenn du stark bist. Ich liebe dich, wenn du schwach bist.</p>
+                    
+                    <p>Ich liebe die Art, wie du manchmal unbewusst "Ich hab dich mehr lieb" sagst. Ich liebe deine Mauern, weil ich weiß, was sie beschützen. Ich liebe dein inneres Kind. Ich liebe deine Stärke. Ich liebe deine Verletzlichkeit.</p>
+                    
+                    <p><strong>Ich liebe dich nicht trotz deiner Fehler – ich liebe dich MIT ihnen.</strong></p>
+                    
+                    <p>Du bist die Sonne. Du bist mein Licht. Und ich bin der Mond – der niemals aufhört, für dich zu leuchten. Egal wie dunkel es wird. Egal wie weit du weg bist. Egal wie sehr du zweifelst.</p>
+                    
+                    <p><strong>Ich liebe dich. Heute. Morgen. Immer. 🌙☀️💕</strong></p>
+                    
+                    <p style="text-align: center; margin-top: 50px; font-size: 2rem;">∞</p>
+                `
+            }
+        };
+
+        // Populate letter content wird nicht mehr gebraucht - Briefe sind leer bis Fullscreen
+
+        function openEnvelope(type, wrapper) {
+            // Erst Umschlag öffnen (smooth animation)
+            wrapper.classList.add('opened');
+            
+            // Nach 1.9 Sekunden Vollbild-Brief zeigen (genau wenn Brief rausgekommen ist)
+            setTimeout(() => {
+                const fullscreen = document.getElementById('letterFullscreen');
+                const content = document.getElementById('letterFullContent');
+                
+                content.innerHTML = `
+                    <div class="letter-full-text">
+                        ${letters[type].content}
+                    </div>
+                    <div class="letter-signature">
+                        Emin <span class="bear-emoji">🐻</span>
+                    </div>
+                `;
+                fullscreen.classList.add('show');
+                
+                // Reset Umschlag nach Modal geschlossen wird
+            }, 1900);
+        }
+
+        function closeFullLetter() {
+            document.getElementById('letterFullscreen').classList.remove('show');
+            
+            // Reset alle Umschläge nach Schließen
+            setTimeout(() => {
+                document.querySelectorAll('.envelope-wrapper').forEach(w => {
+                    w.classList.remove('opened');
+                });
+            }, 300);
+        }
+
+        // Click außerhalb schließt Brief
+        document.getElementById('letterFullscreen').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeFullLetter();
+            }
+        });
+        
+
+        // Navigation
+        function showStory() {
+            document.getElementById('mainPage').classList.remove('show');
+            document.getElementById('storyPage').classList.add('active');
+            document.getElementById('moonSunPage').classList.remove('active');
+            document.getElementById('momentsPage').classList.remove('active');
+            document.getElementById('questionPage').classList.remove('active');
+            document.getElementById('forYouPage').classList.remove('active');
+        }
+        
+        function showMoonSun() {
+            document.getElementById('mainPage').classList.remove('show');
+            document.getElementById('storyPage').classList.remove('active');
+            document.getElementById('moonSunPage').classList.add('active');
+            document.getElementById('momentsPage').classList.remove('active');
+            document.getElementById('questionPage').classList.remove('active');
+            document.getElementById('forYouPage').classList.remove('active');
+        }
+
+        function showMoments() {
+            document.getElementById('mainPage').classList.remove('show');
+            document.getElementById('storyPage').classList.remove('active');
+            document.getElementById('moonSunPage').classList.remove('active');
+            document.getElementById('momentsPage').classList.add('active');
+            document.getElementById('questionPage').classList.remove('active');
+            document.getElementById('forYouPage').classList.remove('active');
+        }
+
+        function showQuestion() {
+            document.getElementById('mainPage').classList.remove('show');
+            document.getElementById('storyPage').classList.remove('active');
+            document.getElementById('moonSunPage').classList.remove('active');
+            document.getElementById('momentsPage').classList.remove('active');
+            document.getElementById('questionPage').classList.add('active');
+            document.getElementById('forYouPage').classList.remove('active');
+            
+            noClickCount = 0;
+            yesBtn.style.fontSize = '';
+            yesBtn.style.padding = '';
+            noBtn.style.fontSize = '';
+            noBtn.style.padding = '';
+            noBtn.style.opacity = '';
+            document.getElementById('questionContent').style.display = 'block';
+            document.getElementById('celebration').classList.remove('show');
+        }
+
+        function showForYou() {
+            document.getElementById('mainPage').classList.remove('show');
+            document.getElementById('storyPage').classList.remove('active');
+            document.getElementById('moonSunPage').classList.remove('active');
+            document.getElementById('momentsPage').classList.remove('active');
+            document.getElementById('questionPage').classList.remove('active');
+            document.getElementById('forYouPage').classList.add('active');
+        }
+
+        function showMoments() {
+            document.getElementById('mainPage').classList.remove('show');
+            document.getElementById('storyPage').classList.remove('active');
+            document.getElementById('moonSunPage').classList.remove('active');
+            document.getElementById('questionPage').classList.remove('active');
+            document.getElementById('forYouPage').classList.remove('active');
+            document.getElementById('momentsPage').classList.add('active');
+        }
+        
+        function showHome() {
+            document.getElementById('storyPage').classList.remove('active');
+            document.getElementById('moonSunPage').classList.remove('active');
+            document.getElementById('momentsPage').classList.remove('active');
+            document.getElementById('questionPage').classList.remove('active');
+            document.getElementById('forYouPage').classList.remove('active');
+            document.getElementById('mainPage').classList.add('show');
+        }
+    </script>
+</body>
+</html>
