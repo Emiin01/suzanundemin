@@ -1852,6 +1852,226 @@
             justify-content: center;
             font-size: 3rem;
         }
+
+        /* WISHLIST SECTION 📝✨ */
+        .wishlist-container {
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.08), rgba(199, 21, 133, 0.08));
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 105, 180, 0.3);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .wishlist-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .wishlist-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #FF69B4;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .wishlist-subtitle {
+            font-family: 'Lora', serif;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-style: italic;
+        }
+
+        .add-wish-form {
+            margin-bottom: 40px;
+        }
+
+        .wish-input {
+            width: 100%;
+            padding: 18px 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 105, 180, 0.3);
+            border-radius: 15px;
+            color: #fff;
+            font-family: 'Lora', serif;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .wish-input:focus {
+            outline: none;
+            border-color: #FF69B4;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+        }
+
+        .wish-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .priority-selector {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+        }
+
+        .priority-label {
+            font-family: 'Lora', serif;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+        }
+
+        .stars-selector {
+            display: flex;
+            gap: 8px;
+        }
+
+        .star-btn {
+            font-size: 1.8rem;
+            cursor: pointer;
+            opacity: 0.3;
+            transition: all 0.3s ease;
+            filter: grayscale(100%);
+        }
+
+        .star-btn:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+            transform: scale(1.2);
+        }
+
+        .star-btn.active {
+            opacity: 1;
+            filter: grayscale(0%);
+            animation: starPulse 0.3s ease;
+        }
+
+        @keyframes starPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        .add-wish-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.3), rgba(199, 21, 133, 0.3));
+            border: 2px solid rgba(255, 105, 180, 0.5);
+            color: #FF69B4;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-wish-btn:hover {
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.5), rgba(199, 21, 133, 0.5));
+            border-color: #FF1493;
+            box-shadow: 0 10px 30px rgba(255, 20, 147, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .wishes-list {
+            margin-bottom: 30px;
+        }
+
+        .wish-item {
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.1), rgba(199, 21, 133, 0.1));
+            border: 2px solid rgba(255, 105, 180, 0.3);
+            border-radius: 15px;
+            padding: 20px 25px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            animation: wishSlideIn 0.4s ease;
+        }
+
+        @keyframes wishSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .wish-item:hover {
+            border-color: #FF69B4;
+            box-shadow: 0 5px 20px rgba(255, 20, 147, 0.3);
+            transform: translateX(5px);
+        }
+
+        .wish-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .wish-stars {
+            font-size: 1.2rem;
+            display: flex;
+            gap: 2px;
+        }
+
+        .wish-text {
+            font-family: 'Lora', serif;
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        .wish-delete {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 105, 180, 0.3);
+            color: #FF69B4;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .wish-delete:hover {
+            background: rgba(255, 20, 147, 0.3);
+            border-color: #FF1493;
+            transform: scale(1.1);
+        }
+
+        .wishlist-footer {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 105, 180, 0.2);
+        }
+
+        .wishlist-note {
+            font-family: 'Lora', serif;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            font-style: italic;
+        }
+
+        .empty-wishlist {
+            text-align: center;
+            padding: 60px 20px;
+            color: rgba(255, 255, 255, 0.5);
+            font-family: 'Lora', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -2849,6 +3069,50 @@
             <div class="heel-image-card">
                 <div class="placeholder-heel">👠</div>
                 <div class="heel-image-caption">Your Favorite 9</div>
+            </div>
+        </div>
+
+        <!-- WISHLIST SECTION 📝✨ -->
+        <div style="max-width: 800px; margin: 80px auto 60px; padding: 0 20px;">
+            <div class="handwritten" style="margin-bottom: 40px;">
+                "Things I dream about... 💭✨"
+            </div>
+
+            <!-- Wishlist Container -->
+            <div class="wishlist-container">
+                <div class="wishlist-header">
+                    <h3 class="wishlist-title">✨ My Wishlist ✨</h3>
+                    <p class="wishlist-subtitle">Tell me what makes your heart happy</p>
+                </div>
+
+                <!-- Add Wish Form -->
+                <div class="add-wish-form">
+                    <input 
+                        type="text" 
+                        id="wishInput" 
+                        class="wish-input" 
+                        placeholder="Type your wish here..."
+                        maxlength="100"
+                    >
+                    <div class="priority-selector">
+                        <span class="priority-label">How important?</span>
+                        <div class="stars-selector">
+                            <span class="star-btn" onclick="setWishPriority(1)" data-priority="1">⭐</span>
+                            <span class="star-btn" onclick="setWishPriority(2)" data-priority="2">⭐</span>
+                            <span class="star-btn" onclick="setWishPriority(3)" data-priority="3">⭐</span>
+                        </div>
+                    </div>
+                    <button class="add-wish-btn" onclick="addWish()">+ Add to Wishlist</button>
+                </div>
+
+                <!-- Wishes List -->
+                <div id="wishesList" class="wishes-list">
+                    <!-- Wishes will be added here dynamically -->
+                </div>
+
+                <div class="wishlist-footer">
+                    <p class="wishlist-note">💕 Emin can see everything you add here</p>
+                </div>
             </div>
         </div>
 
@@ -3940,6 +4204,122 @@
                 container.innerHTML = '';
             }
         }
+
+        // WISHLIST FUNCTIONALITY 📝✨
+        let currentPriority = 1;
+        let wishes = [];
+
+        // Load wishes from storage on page load
+        document.addEventListener('DOMContentLoaded', async function() {
+            await loadWishes();
+        });
+
+        async function loadWishes() {
+            try {
+                const result = await window.storage.get('suzan-wishlist');
+                if (result && result.value) {
+                    wishes = JSON.parse(result.value);
+                    renderWishes();
+                }
+            } catch (error) {
+                console.log('Loading wishes for first time');
+                wishes = [];
+            }
+        }
+
+        async function saveWishes() {
+            try {
+                await window.storage.set('suzan-wishlist', JSON.stringify(wishes));
+            } catch (error) {
+                console.error('Error saving wishes:', error);
+            }
+        }
+
+        function setWishPriority(priority) {
+            currentPriority = priority;
+            
+            // Update UI
+            document.querySelectorAll('.star-btn').forEach((star, index) => {
+                if (index < priority) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+
+        async function addWish() {
+            const input = document.getElementById('wishInput');
+            const wishText = input.value.trim();
+            
+            if (!wishText) {
+                alert('Please enter your wish! 💕');
+                return;
+            }
+            
+            const wish = {
+                id: Date.now(),
+                text: wishText,
+                priority: currentPriority,
+                date: new Date().toISOString()
+            };
+            
+            wishes.unshift(wish);
+            await saveWishes();
+            renderWishes();
+            
+            // Reset form
+            input.value = '';
+            setWishPriority(1);
+            
+            // Show success feedback
+            input.placeholder = '✨ Wish added! Add another?';
+            setTimeout(() => {
+                input.placeholder = 'Type your wish here...';
+            }, 2000);
+        }
+
+        async function deleteWish(wishId) {
+            if (confirm('Remove this wish? 💕')) {
+                wishes = wishes.filter(w => w.id !== wishId);
+                await saveWishes();
+                renderWishes();
+            }
+        }
+
+        function renderWishes() {
+            const container = document.getElementById('wishesList');
+            
+            if (wishes.length === 0) {
+                container.innerHTML = '<div class="empty-wishlist">No wishes yet... Start adding what makes you happy! ✨</div>';
+                return;
+            }
+            
+            container.innerHTML = wishes.map(wish => {
+                const stars = '⭐'.repeat(wish.priority);
+                return `
+                    <div class="wish-item">
+                        <div class="wish-content">
+                            <div class="wish-stars">${stars}</div>
+                            <div class="wish-text">${wish.text}</div>
+                        </div>
+                        <button class="wish-delete" onclick="deleteWish(${wish.id})">×</button>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Allow Enter key to add wish
+        document.addEventListener('DOMContentLoaded', function() {
+            const wishInput = document.getElementById('wishInput');
+            if (wishInput) {
+                wishInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        addWish();
+                    }
+                });
+            }
+        });
     </script>
 </body>
 </html>
