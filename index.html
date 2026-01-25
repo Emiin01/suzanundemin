@@ -4218,20 +4218,27 @@
         });
 
         async function loadWishes() {
-            console.log('🔄 Loading wishes from SHARED storage...');
+            console.log('🔄 Loading wishes...');
             try {
-                const result = await window.storage.get('suzan-wishlist', true); // shared: true!
-                console.log('📦 Storage result:', result);
-                
-                if (result && result.value) {
-                    wishes = JSON.parse(result.value);
-                    console.log('✅ Loaded', wishes.length, 'shared wishes');
-                    renderWishes();
+                // Check if window.storage is available
+                if (window.storage && typeof window.storage.get === 'function') {
+                    const result = await window.storage.get('suzan-wishlist', true);
+                    console.log('📦 Shared storage result:', result);
+                    
+                    if (result && result.value) {
+                        wishes = JSON.parse(result.value);
+                        console.log('✅ Loaded', wishes.length, 'shared wishes');
+                    }
                 } else {
-                    console.log('ℹ️ No wishes found');
-                    wishes = [];
-                    renderWishes();
+                    // Fallback to localStorage
+                    console.log('⚠️ Using localStorage fallback');
+                    const stored = localStorage.getItem('suzan-wishlist');
+                    if (stored) {
+                        wishes = JSON.parse(stored);
+                        console.log('✅ Loaded', wishes.length, 'local wishes');
+                    }
                 }
+                renderWishes();
             } catch (error) {
                 console.error('❌ Error loading:', error);
                 wishes = [];
@@ -4242,14 +4249,22 @@
         async function saveWishes() {
             try {
                 const wishesJson = JSON.stringify(wishes);
-                await window.storage.set('suzan-wishlist', wishesJson, true); // shared: true!
-                console.log('✅ SAVED to SHARED storage:', wishes.length);
+                
+                // Try window.storage first
+                if (window.storage && typeof window.storage.set === 'function') {
+                    await window.storage.set('suzan-wishlist', wishesJson, true);
+                    console.log('✅ Saved to SHARED storage:', wishes.length);
+                } else {
+                    // Fallback to localStorage
+                    localStorage.setItem('suzan-wishlist', wishesJson);
+                    console.log('✅ Saved to LOCAL storage:', wishes.length);
+                }
                 
                 // Show feedback
                 const input = document.getElementById('wishInput');
                 if (input) {
                     const orig = input.placeholder;
-                    input.placeholder = '💾 Saved for both of us!';
+                    input.placeholder = '💾 Saved!';
                     setTimeout(() => { input.placeholder = orig; }, 1500);
                 }
             } catch (error) {
