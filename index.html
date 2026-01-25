@@ -3944,7 +3944,7 @@
             stopHeelsRain();
         }
 
-        function showOnlySuzan() {
+        async function showOnlySuzan() {
             document.getElementById('mainPage').classList.remove('show');
             document.getElementById('storyPage').classList.remove('active');
             document.getElementById('moonSunPage').classList.remove('active');
@@ -3956,9 +3956,7 @@
             startHeelsRain();
             
             // Load wishlist when page opens
-            setTimeout(() => {
-                loadWishes();
-            }, 100);
+            await loadWishes();
         }
 
         function showMoments() {
@@ -4214,52 +4212,51 @@
         let currentPriority = 1;
         let wishes = [];
 
-        // Load wishes from localStorage on page load
+        // Load wishes from SHARED storage on page load
         document.addEventListener('DOMContentLoaded', async function() {
-            loadWishes();
+            await loadWishes();
         });
 
-        function loadWishes() {
-            console.log('🔄 Loading wishes from localStorage...');
+        async function loadWishes() {
+            console.log('🔄 Loading wishes from SHARED storage...');
             try {
-                const stored = localStorage.getItem('suzan-wishlist');
-                console.log('📦 Raw storage data:', stored);
+                const result = await window.storage.get('suzan-wishlist', true); // shared: true!
+                console.log('📦 Storage result:', result);
                 
-                if (stored) {
-                    wishes = JSON.parse(stored);
-                    console.log('✅ Loaded wishes:', wishes.length, wishes);
+                if (result && result.value) {
+                    wishes = JSON.parse(result.value);
+                    console.log('✅ Loaded', wishes.length, 'shared wishes');
                     renderWishes();
                 } else {
-                    console.log('ℹ️ No wishes found in storage');
+                    console.log('ℹ️ No wishes found');
                     wishes = [];
+                    renderWishes();
                 }
             } catch (error) {
-                console.error('❌ Error loading wishes:', error);
+                console.error('❌ Error loading:', error);
                 wishes = [];
+                renderWishes();
             }
         }
 
-        function saveWishes() {
+        async function saveWishes() {
             try {
                 const wishesJson = JSON.stringify(wishes);
-                localStorage.setItem('suzan-wishlist', wishesJson);
-                console.log('✅ SAVED wishes:', wishes.length, wishes);
+                await window.storage.set('suzan-wishlist', wishesJson, true); // shared: true!
+                console.log('✅ SAVED to SHARED storage:', wishes.length);
                 
-                // Verify it was saved
-                const verification = localStorage.getItem('suzan-wishlist');
-                console.log('✅ VERIFIED storage:', verification);
-                
-                // Show user feedback
+                // Show feedback
                 const input = document.getElementById('wishInput');
                 if (input) {
-                    const originalPlaceholder = input.placeholder;
-                    input.placeholder = '💾 Saved!';
-                    setTimeout(() => {
-                        input.placeholder = originalPlaceholder;
-                    }, 1000);
+                    const orig = input.placeholder;
+                    input.placeholder = '💾 Saved for both of us!';
+                    setTimeout(() => { input.placeholder = orig; }, 1500);
                 }
             } catch (error) {
-                console.error('❌ ERROR saving wishes:', error);
+                console.error('❌ Save error:', error);
+                alert('Could not save: ' + error.message);
+            }
+        }
                 alert('Could not save wish: ' + error.message);
             }
         }
