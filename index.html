@@ -4209,17 +4209,18 @@
         let currentPriority = 1;
         let wishes = [];
 
-        // Load wishes from storage on page load
+        // Load wishes from localStorage on page load
         document.addEventListener('DOMContentLoaded', async function() {
-            await loadWishes();
+            loadWishes();
         });
 
-        async function loadWishes() {
+        function loadWishes() {
             try {
-                const result = await window.storage.get('suzan-wishlist');
-                if (result && result.value) {
-                    wishes = JSON.parse(result.value);
+                const stored = localStorage.getItem('suzan-wishlist');
+                if (stored) {
+                    wishes = JSON.parse(stored);
                     renderWishes();
+                    console.log('Loaded wishes:', wishes.length);
                 }
             } catch (error) {
                 console.log('Loading wishes for first time');
@@ -4227,11 +4228,13 @@
             }
         }
 
-        async function saveWishes() {
+        function saveWishes() {
             try {
-                await window.storage.set('suzan-wishlist', JSON.stringify(wishes));
+                localStorage.setItem('suzan-wishlist', JSON.stringify(wishes));
+                console.log('Saved wishes:', wishes.length);
             } catch (error) {
                 console.error('Error saving wishes:', error);
+                alert('Could not save wish. Please try again!');
             }
         }
 
@@ -4248,7 +4251,7 @@
             });
         }
 
-        async function addWish() {
+        function addWish() {
             const input = document.getElementById('wishInput');
             const wishText = input.value.trim();
             
@@ -4265,7 +4268,7 @@
             };
             
             wishes.unshift(wish);
-            await saveWishes();
+            saveWishes();
             renderWishes();
             
             // Reset form
@@ -4279,16 +4282,18 @@
             }, 2000);
         }
 
-        async function deleteWish(wishId) {
+        function deleteWish(wishId) {
             if (confirm('Remove this wish? 💕')) {
                 wishes = wishes.filter(w => w.id !== wishId);
-                await saveWishes();
+                saveWishes();
                 renderWishes();
             }
         }
 
         function renderWishes() {
             const container = document.getElementById('wishesList');
+            
+            if (!container) return;
             
             if (wishes.length === 0) {
                 container.innerHTML = '<div class="empty-wishlist">No wishes yet... Start adding what makes you happy! ✨</div>';
