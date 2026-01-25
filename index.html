@@ -3534,9 +3534,21 @@
 
             // Update progress bar
             currentAudio.addEventListener('timeupdate', updateProgress);
-            currentAudio.addEventListener('loadedmetadata', function() {
-                document.getElementById('duration').textContent = formatTime(currentAudio.duration);
-            });
+            
+            // Set duration - try multiple ways
+            const updateDuration = () => {
+                if (currentAudio.duration && !isNaN(currentAudio.duration) && isFinite(currentAudio.duration)) {
+                    document.getElementById('duration').textContent = formatTime(currentAudio.duration);
+                }
+            };
+            
+            // Try immediately if already loaded
+            updateDuration();
+            
+            // Also listen for these events
+            currentAudio.addEventListener('loadedmetadata', updateDuration);
+            currentAudio.addEventListener('durationchange', updateDuration);
+            currentAudio.addEventListener('canplay', updateDuration);
 
             // Auto play next song
             currentAudio.addEventListener('ended', function() {
