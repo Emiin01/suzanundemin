@@ -2072,6 +2072,193 @@
             font-size: 1.1rem;
             font-style: italic;
         }
+
+        /* SUZAN'S FAVORITES SECTION 💄👜 */
+        .category-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .category-tab {
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.15), rgba(199, 21, 133, 0.15));
+            border: 2px solid rgba(255, 105, 180, 0.3);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 12px 25px;
+            border-radius: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .category-tab:hover {
+            border-color: #FF69B4;
+            color: #FF69B4;
+            transform: translateY(-2px);
+        }
+
+        .category-tab.active {
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.3), rgba(199, 21, 133, 0.3));
+            border-color: #FF1493;
+            color: #FF69B4;
+            box-shadow: 0 5px 20px rgba(255, 20, 147, 0.3);
+        }
+
+        .favorites-container {
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.08), rgba(199, 21, 133, 0.08));
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 105, 180, 0.3);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .category-content {
+            display: none;
+        }
+
+        .category-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .add-product-form {
+            margin-bottom: 30px;
+        }
+
+        .product-input {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 105, 180, 0.3);
+            border-radius: 12px;
+            color: #fff;
+            font-family: 'Lora', serif;
+            font-size: 1rem;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .product-input:focus {
+            outline: none;
+            border-color: #FF69B4;
+            box-shadow: 0 0 15px rgba(255, 105, 180, 0.3);
+        }
+
+        .product-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .add-product-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.3), rgba(199, 21, 133, 0.3));
+            border: 2px solid rgba(255, 105, 180, 0.5);
+            color: #FF69B4;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-product-btn:hover {
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.5), rgba(199, 21, 133, 0.5));
+            border-color: #FF1493;
+            box-shadow: 0 8px 25px rgba(255, 20, 147, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .products-list {
+            margin-top: 25px;
+        }
+
+        .product-item {
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.1), rgba(199, 21, 133, 0.1));
+            border: 2px solid rgba(255, 105, 180, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+            animation: slideInLeft 0.4s ease;
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .product-item:hover {
+            border-color: #FF69B4;
+            box-shadow: 0 5px 20px rgba(255, 20, 147, 0.3);
+            transform: translateX(5px);
+        }
+
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .product-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: #FF69B4;
+            font-weight: 700;
+        }
+
+        .product-details {
+            font-family: 'Lora', serif;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .product-label {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        .product-delete {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 105, 180, 0.3);
+            color: #FF69B4;
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .product-delete:hover {
+            background: rgba(255, 20, 147, 0.3);
+            border-color: #FF1493;
+            transform: scale(1.1);
+        }
+
+        .empty-products {
+            text-align: center;
+            padding: 40px 20px;
+            color: rgba(255, 255, 255, 0.5);
+            font-family: 'Lora', serif;
+            font-size: 1rem;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -3034,42 +3221,6 @@
                 <div class="placeholder-heel">👠</div>
                 <div class="heel-image-caption">Your Favorite 3</div>
             </div>
-
-            <!-- Placeholder 4 -->
-            <div class="heel-image-card">
-                <div class="placeholder-heel">👠</div>
-                <div class="heel-image-caption">Your Favorite 4</div>
-            </div>
-
-            <!-- Placeholder 5 -->
-            <div class="heel-image-card">
-                <div class="placeholder-heel">👠</div>
-                <div class="heel-image-caption">Your Favorite 5</div>
-            </div>
-
-            <!-- Placeholder 6 -->
-            <div class="heel-image-card">
-                <div class="placeholder-heel">👠</div>
-                <div class="heel-image-caption">Your Favorite 6</div>
-            </div>
-
-            <!-- Placeholder 7 -->
-            <div class="heel-image-card">
-                <div class="placeholder-heel">👠</div>
-                <div class="heel-image-caption">Your Favorite 7</div>
-            </div>
-
-            <!-- Placeholder 8 -->
-            <div class="heel-image-card">
-                <div class="placeholder-heel">👠</div>
-                <div class="heel-image-caption">Your Favorite 8</div>
-            </div>
-
-            <!-- Placeholder 9 -->
-            <div class="heel-image-card">
-                <div class="placeholder-heel">👠</div>
-                <div class="heel-image-caption">Your Favorite 9</div>
-            </div>
         </div>
 
         <!-- WISHLIST SECTION 📝✨ -->
@@ -3112,6 +3263,73 @@
 
                 <div class="wishlist-footer">
                     <p class="wishlist-note">💕 Emin can see everything you add here</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUZAN'S FAVORITES SECTION 💄👜 -->
+        <div style="max-width: 900px; margin: 80px auto 60px; padding: 0 20px;">
+            <div class="page-header" style="margin-bottom: 40px;">
+                <h2 class="page-title">💕 Suzan's Favorites 💕</h2>
+                <p class="page-subtitle">Things she loves - documented by Emin</p>
+            </div>
+
+            <!-- Category Tabs -->
+            <div class="category-tabs">
+                <button class="category-tab active" onclick="showCategory('makeup')" data-category="makeup">💄 Makeup</button>
+                <button class="category-tab" onclick="showCategory('bags')" data-category="bags">👜 Bags</button>
+                <button class="category-tab" onclick="showCategory('nails')" data-category="nails">💅 Nails</button>
+                <button class="category-tab" onclick="showCategory('fashion')" data-category="fashion">👗 Fashion</button>
+            </div>
+
+            <!-- Categories Content -->
+            <div class="favorites-container">
+                <!-- Makeup Category -->
+                <div id="category-makeup" class="category-content active">
+                    <div class="add-product-form">
+                        <input type="text" id="makeup-name" class="product-input" placeholder="Product name (e.g., Rare Beauty Blush)">
+                        <input type="text" id="makeup-brand" class="product-input" placeholder="Brand (e.g., Rare Beauty)">
+                        <input type="text" id="makeup-color" class="product-input" placeholder="Color/Shade (e.g., Bliss)">
+                        <input type="text" id="makeup-notes" class="product-input" placeholder="Notes (e.g., Cream blush)">
+                        <button class="add-product-btn" onclick="addProduct('makeup')">+ Add Makeup Product</button>
+                    </div>
+                    <div id="makeup-list" class="products-list"></div>
+                </div>
+
+                <!-- Bags Category -->
+                <div id="category-bags" class="category-content">
+                    <div class="add-product-form">
+                        <input type="text" id="bags-name" class="product-input" placeholder="Bag name (e.g., Dior Saddle Bag)">
+                        <input type="text" id="bags-brand" class="product-input" placeholder="Brand (e.g., Dior)">
+                        <input type="text" id="bags-color" class="product-input" placeholder="Color (e.g., Black)">
+                        <input type="text" id="bags-notes" class="product-input" placeholder="Notes (e.g., Her dream bag)">
+                        <button class="add-product-btn" onclick="addProduct('bags')">+ Add Bag</button>
+                    </div>
+                    <div id="bags-list" class="products-list"></div>
+                </div>
+
+                <!-- Nails Category -->
+                <div id="category-nails" class="category-content">
+                    <div class="add-product-form">
+                        <input type="text" id="nails-name" class="product-input" placeholder="Product name (e.g., OPI Gel)">
+                        <input type="text" id="nails-brand" class="product-input" placeholder="Brand (e.g., OPI)">
+                        <input type="text" id="nails-color" class="product-input" placeholder="Color (e.g., Ballet Slippers)">
+                        <input type="text" id="nails-notes" class="product-input" placeholder="Notes (e.g., Go-to color)">
+                        <button class="add-product-btn" onclick="addProduct('nails')">+ Add Nail Product</button>
+                    </div>
+                    <div id="nails-list" class="products-list"></div>
+                </div>
+
+                <!-- Fashion Category -->
+                <div id="category-fashion" class="category-content">
+                    <div class="add-product-form">
+                        <input type="text" id="fashion-name" class="product-input" placeholder="Item name (e.g., Black Mini Dress)">
+                        <input type="text" id="fashion-brand" class="product-input" placeholder="Brand (e.g., Zara)">
+                        <input type="text" id="fashion-color" class="product-input" placeholder="Color/Style (e.g., Black, Elegant)">
+                        <input type="text" id="fashion-notes" class="product-input" placeholder="Notes (e.g., Her favorite look)">
+                        <button class="add-product-btn" onclick="addProduct('fashion')">+ Add Fashion Item</button>
+                    </div>
+                    <div id="fashion-list" class="products-list"></div>
                 </div>
             </div>
         </div>
@@ -4308,6 +4526,7 @@
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
             loadWishes();
+            loadFavorites();
             
             const wishInput = document.getElementById('wishInput');
             if (wishInput) {
@@ -4318,6 +4537,128 @@
                 });
             }
         });
+
+        // SUZAN'S FAVORITES FUNCTIONALITY 💄👜
+        let favorites = {
+            makeup: [],
+            bags: [],
+            nails: [],
+            fashion: []
+        };
+        let currentCategory = 'makeup';
+
+        function loadFavorites() {
+            try {
+                const stored = localStorage.getItem('suzan-favorites');
+                if (stored) {
+                    favorites = JSON.parse(stored);
+                }
+                renderAllCategories();
+            } catch (error) {
+                favorites = { makeup: [], bags: [], nails: [], fashion: [] };
+            }
+        }
+
+        function saveFavorites() {
+            try {
+                localStorage.setItem('suzan-favorites', JSON.stringify(favorites));
+            } catch (error) {
+                console.error('Save error:', error);
+            }
+        }
+
+        function showCategory(category) {
+            currentCategory = category;
+            
+            // Update tabs
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelector(`[data-category="${category}"]`).classList.add('active');
+            
+            // Update content
+            document.querySelectorAll('.category-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(`category-${category}`).classList.add('active');
+        }
+
+        function addProduct(category) {
+            const name = document.getElementById(`${category}-name`).value.trim();
+            const brand = document.getElementById(`${category}-brand`).value.trim();
+            const color = document.getElementById(`${category}-color`).value.trim();
+            const notes = document.getElementById(`${category}-notes`).value.trim();
+            
+            if (!name) {
+                alert('Please enter a product name! 💕');
+                return;
+            }
+            
+            const product = {
+                id: Date.now(),
+                name: name,
+                brand: brand,
+                color: color,
+                notes: notes,
+                date: new Date().toISOString()
+            };
+            
+            favorites[category].unshift(product);
+            saveFavorites();
+            renderCategory(category);
+            
+            // Clear inputs
+            document.getElementById(`${category}-name`).value = '';
+            document.getElementById(`${category}-brand`).value = '';
+            document.getElementById(`${category}-color`).value = '';
+            document.getElementById(`${category}-notes`).value = '';
+        }
+
+        function deleteProduct(category, productId) {
+            if (confirm('Remove this product? 💕')) {
+                favorites[category] = favorites[category].filter(p => p.id !== productId);
+                saveFavorites();
+                renderCategory(category);
+            }
+        }
+
+        function renderCategory(category) {
+            const container = document.getElementById(`${category}-list`);
+            if (!container) return;
+            
+            const products = favorites[category];
+            
+            if (products.length === 0) {
+                container.innerHTML = '<div class="empty-products">No products yet... Add her favorites! 💕</div>';
+                return;
+            }
+            
+            container.innerHTML = products.map(product => {
+                let details = '';
+                if (product.brand) details += `<span class="product-label">Brand:</span> ${product.brand}<br>`;
+                if (product.color) details += `<span class="product-label">Color:</span> ${product.color}<br>`;
+                if (product.notes) details += `<span class="product-label">Notes:</span> ${product.notes}`;
+                
+                return `
+                    <div class="product-item">
+                        <div class="product-header">
+                            <div>
+                                <div class="product-name">📍 ${product.name}</div>
+                                <div class="product-details">${details}</div>
+                            </div>
+                            <button class="product-delete" onclick="deleteProduct('${category}', ${product.id})">×</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderAllCategories() {
+            renderCategory('makeup');
+            renderCategory('bags');
+            renderCategory('nails');
+            renderCategory('fashion');
+        }
     </script>
 </body>
 </html>
