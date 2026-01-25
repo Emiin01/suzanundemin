@@ -1163,6 +1163,30 @@
             animation: slideUp 0.5s ease;
         }
 
+        .back-btn-player {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 20, 147, 0.15);
+            border: 2px solid rgba(255, 105, 180, 0.4);
+            color: #FF69B4;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            font-family: 'Lora', serif;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .back-btn-player:hover {
+            background: rgba(255, 20, 147, 0.3);
+            border-color: #FF1493;
+            box-shadow: 0 5px 20px rgba(255, 20, 147, 0.4);
+            transform: translateY(-50%) scale(1.05);
+        }
+
         @keyframes slideUp {
             from {
                 transform: translateY(100%);
@@ -2587,7 +2611,7 @@
         <div class="songs-grid">
             <!-- Song 1: One Of The Girls -->
             <div class="song-card" onclick="playSong('one_of_the_girls')">
-                <div class="song-icon">💕</div>
+                <div class="song-icon">👰🏽‍♀️🤵🏻</div>
                 <div class="song-title">One Of The Girls</div>
                 <div class="song-subtitle">Our Main Song</div>
             </div>
@@ -2622,6 +2646,7 @@
 
         <!-- Music Player Bar -->
         <div id="musicPlayer" class="music-player">
+            <button class="back-btn-player" onclick="showHome()" title="Zurück zur Startseite">← Home</button>
             <div class="player-info">
                 <span class="now-playing">🎵 Now Playing: <span id="currentSongName">---</span></span>
             </div>
@@ -3591,10 +3616,16 @@
             
             const progressBar = document.getElementById('progressBar');
             const currentTime = document.getElementById('currentTime');
+            const durationEl = document.getElementById('duration');
             
             const progress = (currentAudio.currentTime / currentAudio.duration) * 100;
             progressBar.value = progress;
             currentTime.textContent = formatTime(currentAudio.currentTime);
+            
+            // Also update duration if not set yet or changed
+            if (currentAudio.duration && !isNaN(currentAudio.duration) && isFinite(currentAudio.duration)) {
+                durationEl.textContent = formatTime(currentAudio.duration);
+            }
         }
 
         function formatTime(seconds) {
@@ -3639,6 +3670,7 @@
             document.getElementById('forYouPage').classList.remove('active');
             document.getElementById('ourSongsPage').classList.remove('active');
             document.getElementById('ourSongsPage').classList.add('active');
+            // Music player bleibt wie er ist (visible wenn Song spielt, hidden wenn nicht)
         }
 
         function showHome() {
