@@ -3944,7 +3944,7 @@
             stopHeelsRain();
         }
 
-        async function showOnlySuzan() {
+        function showOnlySuzan() {
             document.getElementById('mainPage').classList.remove('show');
             document.getElementById('storyPage').classList.remove('active');
             document.getElementById('moonSunPage').classList.remove('active');
@@ -3954,9 +3954,6 @@
             document.getElementById('ourSongsPage').classList.remove('active');
             document.getElementById('onlySuzanPage').classList.add('active');
             startHeelsRain();
-            
-            // Load wishlist when page opens
-            await loadWishes();
         }
 
         function showMoments() {
@@ -4208,78 +4205,34 @@
             }
         }
 
-        // WISHLIST FUNCTIONALITY 📝✨
+        // WISHLIST FUNCTIONALITY 📝✨ - SIMPLE VERSION
         let currentPriority = 1;
         let wishes = [];
 
-        // Load wishes from SHARED storage on page load
-        document.addEventListener('DOMContentLoaded', async function() {
-            await loadWishes();
-        });
-
-        async function loadWishes() {
-            console.log('🔄 Loading wishes...');
+        // Load wishes from localStorage
+        function loadWishes() {
             try {
-                // Check if window.storage is available
-                if (window.storage && typeof window.storage.get === 'function') {
-                    const result = await window.storage.get('suzan-wishlist', true);
-                    console.log('📦 Shared storage result:', result);
-                    
-                    if (result && result.value) {
-                        wishes = JSON.parse(result.value);
-                        console.log('✅ Loaded', wishes.length, 'shared wishes');
-                    }
-                } else {
-                    // Fallback to localStorage
-                    console.log('⚠️ Using localStorage fallback');
-                    const stored = localStorage.getItem('suzan-wishlist');
-                    if (stored) {
-                        wishes = JSON.parse(stored);
-                        console.log('✅ Loaded', wishes.length, 'local wishes');
-                    }
+                const stored = localStorage.getItem('suzan-wishlist');
+                if (stored) {
+                    wishes = JSON.parse(stored);
                 }
                 renderWishes();
             } catch (error) {
-                console.error('❌ Error loading:', error);
                 wishes = [];
                 renderWishes();
             }
         }
 
-        async function saveWishes() {
+        function saveWishes() {
             try {
-                const wishesJson = JSON.stringify(wishes);
-                
-                // Try window.storage first
-                if (window.storage && typeof window.storage.set === 'function') {
-                    await window.storage.set('suzan-wishlist', wishesJson, true);
-                    console.log('✅ Saved to SHARED storage:', wishes.length);
-                } else {
-                    // Fallback to localStorage
-                    localStorage.setItem('suzan-wishlist', wishesJson);
-                    console.log('✅ Saved to LOCAL storage:', wishes.length);
-                }
-                
-                // Show feedback
-                const input = document.getElementById('wishInput');
-                if (input) {
-                    const orig = input.placeholder;
-                    input.placeholder = '💾 Saved!';
-                    setTimeout(() => { input.placeholder = orig; }, 1500);
-                }
+                localStorage.setItem('suzan-wishlist', JSON.stringify(wishes));
             } catch (error) {
-                console.error('❌ Save error:', error);
-                alert('Could not save: ' + error.message);
-            }
-        }
-                alert('Could not save wish: ' + error.message);
+                console.error('Save error:', error);
             }
         }
 
         function setWishPriority(priority) {
             currentPriority = priority;
-            
-            // Update UI
             document.querySelectorAll('.star-btn').forEach((star, index) => {
                 if (index < priority) {
                     star.classList.add('active');
@@ -4352,8 +4305,10 @@
             }).join('');
         }
 
-        // Allow Enter key to add wish
+        // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
+            loadWishes();
+            
             const wishInput = document.getElementById('wishInput');
             if (wishInput) {
                 wishInput.addEventListener('keypress', function(e) {
