@@ -1747,6 +1747,111 @@
                 height: 300px;
             }
         }
+
+        /* ONLY SUZAN PAGE - HIGH HEELS RAIN 👠 */
+        .heels-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            overflow: hidden;
+        }
+
+        .heel {
+            position: absolute;
+            font-size: 2rem;
+            animation: fall linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes fall {
+            0% {
+                top: -10%;
+                opacity: 0.7;
+            }
+            100% {
+                top: 110%;
+                opacity: 0;
+            }
+        }
+
+        .heels-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .heel-image-card {
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.1), rgba(199, 21, 133, 0.1));
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 105, 180, 0.3);
+            border-radius: 20px;
+            padding: 15px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .heel-image-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .heel-image-card:hover {
+            transform: translateY(-10px);
+            border-color: #FF1493;
+            box-shadow: 0 20px 60px rgba(255, 20, 147, 0.4);
+        }
+
+        .heel-image-card:hover::before {
+            opacity: 1;
+        }
+
+        .heel-image-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: transform 0.4s ease;
+        }
+
+        .heel-image-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .heel-image-caption {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            color: #FF69B4;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        .placeholder-heel {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.2), rgba(199, 21, 133, 0.2));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
     </style>
 </head>
 <body>
@@ -1794,6 +1899,7 @@
                 <button class="nav-btn" onclick="showMoments()">Moments</button>
                 <button class="nav-btn" onclick="showQuestion()">A Question</button>
                 <button class="nav-btn" onclick="showOurSongs()">Our Songs</button>
+                <button class="nav-btn" onclick="showOnlySuzan()">Only Suzan 👠</button>
                 <button class="nav-btn" onclick="showForYou()">For You</button>
             </div>
         </div>
@@ -2674,6 +2780,81 @@
         <button class="back-btn" onclick="showHome()" style="margin-top: 50px;">← Zurück zur Startseite</button>
     </div>
 
+    <!-- ONLY SUZAN PAGE - HIGH HEELS RAIN 👠 -->
+    <div id="onlySuzanPage" class="story-page">
+        <!-- Falling High Heels Animation -->
+        <div class="heels-container" id="heelsRain"></div>
+        
+        <div class="page-header">
+            <h2 class="page-title">👠 Only Suzan 👠</h2>
+            <p class="page-subtitle">Because you're fabulous and you love high heels</p>
+        </div>
+
+        <div class="handwritten">
+            "Every heel tells a story of elegance and confidence.<br>
+            Just like you. 💕"
+        </div>
+
+        <!-- High Heels Gallery -->
+        <div class="heels-gallery">
+            <!-- Placeholder 1 -->
+            <div class="heel-image-card">
+                <div class="placeholder-heel">👠</div>
+                <div class="heel-image-caption">Your Favorite 1</div>
+            </div>
+
+            <!-- Placeholder 2 -->
+            <div class="heel-image-card">
+                <div class="placeholder-heel">👠</div>
+                <div class="heel-image-caption">Your Favorite 2</div>
+            </div>
+
+            <!-- Placeholder 3 -->
+            <div class="heel-image-card">
+                <div class="placeholder-heel">👠</div>
+                <div class="heel-image-caption">Your Favorite 3</div>
+            </div>
+
+            <!-- Placeholder 4 -->
+            <div class="heel-image-card">
+                <div class="placeholder-heel">👠</div>
+                <div class="heel-image-caption">Your Favorite 4</div>
+            </div>
+
+            <!-- Placeholder 5 -->
+            <div class="heel-image-card">
+                <div class="placeholder-heel">👠</div>
+                <div class="heel-image-caption">Your Favorite 5</div>
+            </div>
+
+            <!-- Placeholder 6 -->
+            <div class="heel-image-card">
+                <div class="placeholder-heel">👠</div>
+                <div class="heel-image-caption">Your Favorite 6</div>
+            </div>
+
+            <!-- Placeholder 7 -->
+            <div class="heel-image-card">
+                <div class="placeholder-heel">👠</div>
+                <div class="heel-image-caption">Your Favorite 7</div>
+            </div>
+
+            <!-- Placeholder 8 -->
+            <div class="heel-image-card">
+                <div class="placeholder-heel">👠</div>
+                <div class="heel-image-caption">Your Favorite 8</div>
+            </div>
+
+            <!-- Placeholder 9 -->
+            <div class="heel-image-card">
+                <div class="placeholder-heel">👠</div>
+                <div class="heel-image-caption">Your Favorite 9</div>
+            </div>
+        </div>
+
+        <button class="back-btn" onclick="showHome()" style="margin-top: 50px;">← Zurück zur Startseite</button>
+    </div>
+
     <!-- LETTER FULLSCREEN MODAL -->
     <div id="letterFullscreen" class="letter-fullscreen">
         <span class="letter-close-full" onclick="closeFullLetter()">✕</span>
@@ -3439,7 +3620,8 @@
             document.getElementById('questionPage').classList.remove('active');
             document.getElementById('forYouPage').classList.remove('active');
             document.getElementById('ourSongsPage').classList.remove('active');
-            document.getElementById('ourSongsPage').classList.remove('active');
+            document.getElementById('onlySuzanPage').classList.remove('active');
+            stopHeelsRain();
         }
         
         function showMoonSun() {
@@ -3450,7 +3632,8 @@
             document.getElementById('questionPage').classList.remove('active');
             document.getElementById('forYouPage').classList.remove('active');
             document.getElementById('ourSongsPage').classList.remove('active');
-            document.getElementById('ourSongsPage').classList.remove('active');
+            document.getElementById('onlySuzanPage').classList.remove('active');
+            stopHeelsRain();
         }
 
         function showMoments() {
@@ -3461,6 +3644,8 @@
             document.getElementById('questionPage').classList.remove('active');
             document.getElementById('forYouPage').classList.remove('active');
             document.getElementById('ourSongsPage').classList.remove('active');
+            document.getElementById('onlySuzanPage').classList.remove('active');
+            stopHeelsRain();
         }
 
         function showQuestion() {
@@ -3471,6 +3656,8 @@
             document.getElementById('questionPage').classList.add('active');
             document.getElementById('forYouPage').classList.remove('active');
             document.getElementById('ourSongsPage').classList.remove('active');
+            document.getElementById('onlySuzanPage').classList.remove('active');
+            stopHeelsRain();
             
             noClickCount = 0;
             yesBtn.style.fontSize = '';
@@ -3488,7 +3675,21 @@
             document.getElementById('moonSunPage').classList.remove('active');
             document.getElementById('momentsPage').classList.remove('active');
             document.getElementById('questionPage').classList.remove('active');
+            document.getElementById('onlySuzanPage').classList.remove('active');
             document.getElementById('forYouPage').classList.add('active');
+            stopHeelsRain();
+        }
+
+        function showOnlySuzan() {
+            document.getElementById('mainPage').classList.remove('show');
+            document.getElementById('storyPage').classList.remove('active');
+            document.getElementById('moonSunPage').classList.remove('active');
+            document.getElementById('momentsPage').classList.remove('active');
+            document.getElementById('questionPage').classList.remove('active');
+            document.getElementById('forYouPage').classList.remove('active');
+            document.getElementById('ourSongsPage').classList.remove('active');
+            document.getElementById('onlySuzanPage').classList.add('active');
+            startHeelsRain();
         }
 
         function showMoments() {
@@ -3673,8 +3874,10 @@
             document.getElementById('momentsPage').classList.remove('active');
             document.getElementById('questionPage').classList.remove('active');
             document.getElementById('forYouPage').classList.remove('active');
+            document.getElementById('onlySuzanPage').classList.remove('active');
             document.getElementById('ourSongsPage').classList.remove('active');
             document.getElementById('ourSongsPage').classList.add('active');
+            stopHeelsRain();
             // Music player bleibt wie er ist (visible wenn Song spielt, hidden wenn nicht)
         }
 
@@ -3685,8 +3888,57 @@
             document.getElementById('questionPage').classList.remove('active');
             document.getElementById('forYouPage').classList.remove('active');
             document.getElementById('ourSongsPage').classList.remove('active');
-            document.getElementById('ourSongsPage').classList.remove('active');
+            document.getElementById('onlySuzanPage').classList.remove('active');
             document.getElementById('mainPage').classList.add('show');
+            stopHeelsRain();
+        }
+
+        // HIGH HEELS RAIN ANIMATION 👠
+        let heelsInterval = null;
+        
+        function startHeelsRain() {
+            const container = document.getElementById('heelsRain');
+            if (!container) return;
+            
+            // Clear existing heels
+            container.innerHTML = '';
+            
+            // Create falling heels
+            function createHeel() {
+                const heel = document.createElement('div');
+                heel.className = 'heel';
+                heel.textContent = '👠';
+                heel.style.left = Math.random() * 100 + '%';
+                heel.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                heel.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(heel);
+                
+                // Remove after animation
+                setTimeout(() => {
+                    if (heel.parentNode) {
+                        heel.parentNode.removeChild(heel);
+                    }
+                }, 5000);
+            }
+            
+            // Create initial heels
+            for (let i = 0; i < 15; i++) {
+                setTimeout(createHeel, i * 200);
+            }
+            
+            // Keep creating new heels
+            heelsInterval = setInterval(createHeel, 400);
+        }
+        
+        function stopHeelsRain() {
+            if (heelsInterval) {
+                clearInterval(heelsInterval);
+                heelsInterval = null;
+            }
+            const container = document.getElementById('heelsRain');
+            if (container) {
+                container.innerHTML = '';
+            }
         }
     </script>
 </body>
