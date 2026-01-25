@@ -3954,6 +3954,11 @@
             document.getElementById('ourSongsPage').classList.remove('active');
             document.getElementById('onlySuzanPage').classList.add('active');
             startHeelsRain();
+            
+            // Load wishlist when page opens
+            setTimeout(() => {
+                loadWishes();
+            }, 100);
         }
 
         function showMoments() {
@@ -4215,26 +4220,47 @@
         });
 
         function loadWishes() {
+            console.log('🔄 Loading wishes from localStorage...');
             try {
                 const stored = localStorage.getItem('suzan-wishlist');
+                console.log('📦 Raw storage data:', stored);
+                
                 if (stored) {
                     wishes = JSON.parse(stored);
+                    console.log('✅ Loaded wishes:', wishes.length, wishes);
                     renderWishes();
-                    console.log('Loaded wishes:', wishes.length);
+                } else {
+                    console.log('ℹ️ No wishes found in storage');
+                    wishes = [];
                 }
             } catch (error) {
-                console.log('Loading wishes for first time');
+                console.error('❌ Error loading wishes:', error);
                 wishes = [];
             }
         }
 
         function saveWishes() {
             try {
-                localStorage.setItem('suzan-wishlist', JSON.stringify(wishes));
-                console.log('Saved wishes:', wishes.length);
+                const wishesJson = JSON.stringify(wishes);
+                localStorage.setItem('suzan-wishlist', wishesJson);
+                console.log('✅ SAVED wishes:', wishes.length, wishes);
+                
+                // Verify it was saved
+                const verification = localStorage.getItem('suzan-wishlist');
+                console.log('✅ VERIFIED storage:', verification);
+                
+                // Show user feedback
+                const input = document.getElementById('wishInput');
+                if (input) {
+                    const originalPlaceholder = input.placeholder;
+                    input.placeholder = '💾 Saved!';
+                    setTimeout(() => {
+                        input.placeholder = originalPlaceholder;
+                    }, 1000);
+                }
             } catch (error) {
-                console.error('Error saving wishes:', error);
-                alert('Could not save wish. Please try again!');
+                console.error('❌ ERROR saving wishes:', error);
+                alert('Could not save wish: ' + error.message);
             }
         }
 
