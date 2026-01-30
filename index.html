@@ -2259,6 +2259,67 @@
             font-size: 1rem;
             font-style: italic;
         }
+
+        /* DISTANCE VISUALIZATION - MINIMAL CURVED */
+        .distance-container {
+            max-width: 400px;
+            margin: 90px auto;
+            padding: 0 20px;
+        }
+
+        .distance-visual {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .city-label {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+        }
+
+        .city-label.top {
+            margin-bottom: -5px;
+        }
+
+        .city-label.bottom {
+            margin-top: -5px;
+        }
+
+        .location-pin {
+            display: block;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            filter: drop-shadow(0 2px 8px rgba(255, 105, 180, 0.3));
+        }
+
+        .city-name {
+            display: block;
+            font-family: 'Lora', serif;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .km-info {
+            display: block;
+            font-family: 'Lora', serif;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-style: italic;
+        }
+
+        .curved-connection {
+            width: 100px;
+            height: 200px;
+            display: block;
+            opacity: 0.8;
+            margin: 10px 0;
+        }
+
     </style>
 </head>
 <body>
@@ -2360,6 +2421,38 @@
                 <div class="timeline-content">
                     <div class="timeline-date">Heute</div>
                     <div class="timeline-text">Du hast mir was gegeben, wonach ich nie gesucht hab. Aber was ich scheinbar mein ganzes Leben gebraucht hab.</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DISTANCE VISUALIZATION -->
+        <div class="distance-container">
+            <div class="distance-visual">
+                <div class="city-label top">
+                    <span class="location-pin">📍</span>
+                    <span class="city-name">Solingen</span>
+                    <span class="km-info">(45km)</span>
+                </div>
+                
+                <svg class="curved-connection" viewBox="0 0 60 200" preserveAspectRatio="xMidYMid meet">
+                    <defs>
+                        <linearGradient id="curveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#FF69B4;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#FF69B4;stop-opacity:0.5" />
+                            <stop offset="100%" style="stop-color:#FF69B4;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M 30 8 Q 15 50, 30 90 T 30 192" 
+                          stroke="url(#curveGradient)" 
+                          stroke-width="1.5" 
+                          fill="none"
+                          stroke-linecap="round"/>
+                </svg>
+                
+                <div class="city-label bottom">
+                    <span class="location-pin">📍</span>
+                    <span class="city-name">Mönchengladbach</span>
+                    <span class="km-info">(0km)</span>
                 </div>
             </div>
         </div>
