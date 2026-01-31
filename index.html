@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suzan & Emin - Our Story</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lora:wght@400;500;600&family=Caveat:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lora:wght@400;500;600&family=Caveat:wght@400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap');
         
         * {
             margin: 0;
@@ -2320,6 +2320,235 @@
             margin: 10px 0;
         }
 
+
+        /* GET WELL LETTER - FOLDED PAPER 💕 */
+        .get-well-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            padding: 20px;
+        }
+
+        .get-well-modal.active {
+            display: flex;
+        }
+
+        .letter-container {
+            position: relative;
+            perspective: 1500px;
+        }
+
+        .folded-letter {
+            width: 350px;
+            height: 250px;
+            position: relative;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            transition: transform 0.6s ease;
+        }
+
+        .folded-letter:hover {
+            transform: scale(1.05) rotateY(5deg);
+        }
+
+        .letter-fold {
+            position: absolute;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(135deg, #f5deb3 0%, #d2b48c 100%);
+            box-shadow: 
+                inset 0 0 30px rgba(0, 0, 0, 0.1),
+                0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .fold-top {
+            top: 0;
+            border-bottom: 2px solid rgba(139, 69, 19, 0.2);
+            transform-origin: bottom;
+        }
+
+        .fold-bottom {
+            bottom: 0;
+            border-top: 2px solid rgba(139, 69, 19, 0.2);
+            transform-origin: top;
+        }
+
+        .folded-letter.opening .fold-top {
+            transform: rotateX(-180deg);
+        }
+
+        .folded-letter.opening .fold-bottom {
+            transform: rotateX(180deg);
+        }
+
+        .letter-front {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .letter-label {
+            text-align: center;
+        }
+
+        .letter-label p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #8b4513;
+            margin: 10px 0;
+            font-weight: 600;
+        }
+
+        .tap-hint {
+            font-family: 'Lora', serif;
+            font-size: 0.9rem !important;
+            color: rgba(139, 69, 19, 0.6) !important;
+            font-style: italic;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .opened-letter {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 90vw;
+            max-width: 700px;
+            max-height: 85vh;
+            opacity: 0;
+            transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 10;
+        }
+
+        .opened-letter.show {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        .letter-paper-inner {
+            background: linear-gradient(to bottom, #f5deb3 0%, #e8d4a8 100%);
+            border: 1px solid rgba(139, 69, 19, 0.3);
+            border-radius: 5px;
+            padding: 50px 40px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.6),
+                inset 0 0 40px rgba(255, 248, 220, 0.3),
+                inset 0 0 100px rgba(139, 69, 19, 0.05);
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .letter-paper-inner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 30px,
+                    rgba(139, 69, 19, 0.03) 30px,
+                    rgba(139, 69, 19, 0.03) 31px
+                );
+            pointer-events: none;
+        }
+
+        .letter-paper-inner::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .letter-paper-inner::-webkit-scrollbar-track {
+            background: rgba(139, 69, 19, 0.1);
+            border-radius: 5px;
+        }
+
+        .letter-paper-inner::-webkit-scrollbar-thumb {
+            background: rgba(139, 69, 19, 0.3);
+            border-radius: 5px;
+        }
+
+        .paper-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .letter-greeting {
+            font-family: 'Lora', serif;
+            font-size: 1.3rem;
+            color: #000;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .paper-content p {
+            font-family: 'Lora', serif;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .letter-love {
+            font-weight: 600;
+            margin-top: 30px !important;
+        }
+
+        .letter-signature {
+            text-align: right;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .letter-signature p {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.6rem;
+            color: #000;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .continue-btn {
+            display: block;
+            width: 100%;
+            margin-top: 30px;
+            padding: 15px;
+            background: linear-gradient(135deg, #8b4513, #a0522d);
+            border: 2px solid rgba(139, 69, 19, 0.5);
+            border-radius: 8px;
+            color: #fff;
+            font-family: 'Lora', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(139, 69, 19, 0.3);
+        }
+
+        .continue-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(139, 69, 19, 0.5);
+            background: linear-gradient(135deg, #a0522d, #8b4513);
+        }
+
     </style>
 </head>
 <body>
@@ -3430,6 +3659,48 @@
         <button class="back-btn" onclick="showHome()" style="margin-top: 50px;">← Zurück zur Startseite</button>
     </div>
 
+    <!-- SPECIAL GET WELL LETTER MODAL 💕 -->
+    <div id="getWellLetter" class="get-well-modal">
+        <div class="letter-container">
+            <div class="folded-letter" id="foldedLetter" onclick="openLetter()">
+                <div class="letter-fold fold-top"></div>
+                <div class="letter-fold fold-bottom"></div>
+                <div class="letter-front">
+                    <div class="letter-label">
+                        <p>Für Suzan 💕</p>
+                        <p class="tap-hint">Zum Öffnen antippen</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="opened-letter" id="openedLetter">
+                <div class="letter-paper-inner">
+                    <div class="paper-content">
+                        <p class="letter-greeting">Hi mein Duckel,</p>
+                        
+                        <p>ich weiß, dass die letzten Tage und Stunden nicht so einfach waren, aber das ist nur ein Teil in der Zukunft von unserer Vergangenheit, um uns wiederzuzeigen, wie stark wir zusammen sind.</p>
+                        
+                        <p>Ich wollte dir einfach nur sagen, wie unglaublich stolz und dankbar ich dafür bin, dich in meinem Leben zu haben. Es ist so ein schönes Gefühl, was ich in Worte kaum fassen kann. Ich sehe tagtäglich, wie stark du eigentlich bist, und ich staune jedes Mal aufs Neue. Ich bewundere dich.</p>
+                        
+                        <p>Auch wenn ich weiß, wie sehr du auf mich scheißen kannst, will ich dir nur eins sagen: Ich werde dich immer lieben, egal was ist, und dich auf deinem Weg immer unterstützen.</p>
+                        
+                        <p>Bald ist Duckel hoffentlich wieder gesund, und Grisly wartet schon mit offenen Armen auf sie.</p>
+                        
+                        <p>Du bist so unglaublich toll, Suzan. In meinen Augen wirst du immer dieser kleine Duckel mit ihrem kleinen Schaf-Plüschtier in der Hand bleiben. Und so klein und rein wie dein Herz ist, werde ich immer drauf aufpassen... versprochen.</p>
+                        
+                        <p class="letter-love">Ich liebe dich über alles, mein Engel.</p>
+                        
+                        <div class="letter-signature">
+                            <p>Dein Grisly 🐻</p>
+                        </div>
+                        
+                        <button class="continue-btn" onclick="continueToSite()">Weiter zur Seite →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- LETTER FULLSCREEN MODAL -->
     <div id="letterFullscreen" class="letter-fullscreen">
         <span class="letter-close-full" onclick="closeFullLetter()">✕</span>
@@ -3611,7 +3882,8 @@
                     msg.style.color = '#2d5016';
                     setTimeout(() => {
                         lockScreen.classList.add('hide');
-                        mainPage.classList.add('show');
+                        // Show letter instead of main page
+                        document.getElementById('getWellLetter').classList.add('active');
                     }, 1000);
                 } else {
                     msg.textContent = '❌ Falscher Code!';
@@ -3625,6 +3897,30 @@
                     }, 1500);
                 }
             }
+        }
+
+        // Letter functions
+        function openLetter() {
+            const foldedLetter = document.getElementById('foldedLetter');
+            const openedLetter = document.getElementById('openedLetter');
+            
+            // Add opening class to trigger fold animation
+            foldedLetter.classList.add('opening');
+            
+            // Hide folded letter and show opened letter
+            setTimeout(() => {
+                foldedLetter.style.opacity = '0';
+                foldedLetter.style.transform = 'scale(0.5)';
+            }, 800);
+            
+            setTimeout(() => {
+                openedLetter.classList.add('show');
+            }, 1200);
+        }
+
+        function continueToSite() {
+            document.getElementById('getWellLetter').classList.remove('active');
+            mainPage.classList.add('show');
         }
         
         d2.addEventListener('keydown', (e) => {
