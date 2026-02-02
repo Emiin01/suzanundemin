@@ -2321,6 +2321,246 @@
         }
 
 
+        /* MINI GAME STYLES 🎮 */
+        .game-card {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.2), rgba(168, 85, 247, 0.2)) !important;
+            border-color: rgba(168, 85, 247, 0.5) !important;
+        }
+
+        .game-card:hover {
+            border-color: #a855f7 !important;
+            box-shadow: 0 15px 40px rgba(168, 85, 247, 0.5) !important;
+        }
+
+        .high-score {
+            font-family: 'Lora', serif;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .game-wrapper {
+            background: linear-gradient(135deg, #1a1a2e, #0f0f1e);
+            border: 2px solid rgba(168, 85, 247, 0.4);
+            border-radius: 25px;
+            padding: 30px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .game-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #a855f7;
+            margin-bottom: 20px;
+        }
+
+        .game-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .game-stat {
+            background: rgba(168, 85, 247, 0.2);
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 2px solid rgba(168, 85, 247, 0.3);
+        }
+
+        .stat-label {
+            font-family: 'Lora', serif;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-right: 8px;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            color: #a855f7;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .game-area {
+            width: 100%;
+            height: 500px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 3px solid rgba(168, 85, 247, 0.4);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .game-instructions {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            font-family: 'Lora', serif;
+        }
+
+        .game-instructions h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #a855f7;
+            margin-bottom: 20px;
+        }
+
+        .game-instructions p {
+            font-size: 1.1rem;
+            margin: 10px 0;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .start-game-btn {
+            margin-top: 30px;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #a855f7, #9333ea);
+            border: none;
+            border-radius: 15px;
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .start-game-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.5);
+        }
+
+        .duckel-target {
+            position: absolute;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+
+        .duckel-target:hover {
+            transform: scale(1.2);
+        }
+
+        .click-effect {
+            position: absolute;
+            pointer-events: none;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #a855f7;
+            animation: scorePopup 1s ease forwards;
+        }
+
+        @keyframes scorePopup {
+            0% {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2) translateY(-50px);
+                opacity: 0;
+            }
+        }
+
+        .game-over-screen {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .game-over-screen.active {
+            display: block;
+        }
+
+        .game-over-screen h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #a855f7;
+            margin-bottom: 30px;
+        }
+
+        .final-score {
+            margin: 30px 0;
+        }
+
+        .final-score p {
+            font-family: 'Lora', serif;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        .score-big {
+            font-family: 'Playfair Display', serif !important;
+            font-size: 4rem !important;
+            color: #a855f7 !important;
+            font-weight: 700 !important;
+            text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+        }
+
+        .high-score-display {
+            font-family: 'Lora', serif;
+            font-size: 1.1rem;
+            color: #FFD700;
+            margin: 20px 0;
+            font-weight: 600;
+        }
+
+        .retry-btn {
+            display: inline-block;
+            margin: 20px 10px;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #a855f7, #9333ea);
+            border: none;
+            border-radius: 15px;
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .retry-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(168, 85, 247, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .game-area {
+                height: 400px;
+            }
+
+            .game-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .duckel-target {
+                font-size: 2.5rem;
+            }
+        }
+
         /* LIVE STATS WIDGET 📊 */
         .live-stats-widget {
             position: fixed;
@@ -3748,7 +3988,7 @@
     <div id="liveStats" class="live-stats-widget">
         <div class="stats-header">📊 Live Stats</div>
         <div class="stat-item">
-            <div class="stat-label">Suzan's Süßheit</div>
+            <div class="stat-label">Suzan's Süßigkeit</div>
             <div class="stat-bar-container">
                 <div class="stat-bar" style="width: 100%; background: linear-gradient(90deg, #FF1493, #FF69B4);">
                     <span class="stat-value">1000%</span>
@@ -3817,6 +4057,14 @@
                     <div class="card-title">Beziehungs-App</div>
                     <div class="card-desc">Live Stats & Updates</div>
                 </div>
+
+                <!-- Option 6: MINI GAME 🎮 -->
+                <div class="funny-card game-card" onclick="startMiniGame()">
+                    <div class="card-icon">🎮</div>
+                    <div class="card-title">Catch the Duckel!</div>
+                    <div class="card-desc">Click Duckel before she flies away!</div>
+                    <div class="high-score" id="gameHighScore">High Score: 0</div>
+                </div>
             </div>
 
             <button class="skip-btn" onclick="skipToSite()">Direkt zur Seite →</button>
@@ -3828,6 +4076,51 @@
                 <button class="close-content" onclick="closeFunnyContent()">✕</button>
                 <div id="funnyContentInner"></div>
                 <button class="continue-funny-btn" onclick="skipToSite()">Weiter zur Seite →</button>
+            </div>
+        </div>
+
+        <!-- MINI GAME MODAL 🎮 -->
+        <div id="gameModal" class="content-modal">
+            <div class="game-wrapper">
+                <button class="close-content" onclick="closeGame()">✕</button>
+                
+                <div class="game-header">
+                    <h2>🎮 Catch the Duckel! 🐥</h2>
+                    <div class="game-stats">
+                        <div class="game-stat">
+                            <span class="stat-label">Score:</span>
+                            <span class="stat-number" id="gameScore">0</span>
+                        </div>
+                        <div class="game-stat">
+                            <span class="stat-label">Time:</span>
+                            <span class="stat-number" id="gameTimer">30</span>
+                        </div>
+                        <div class="game-stat">
+                            <span class="stat-label">Combo:</span>
+                            <span class="stat-number" id="gameCombo">0x</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="gameArea" class="game-area">
+                    <div class="game-instructions">
+                        <h3>How to Play:</h3>
+                        <p>Click on Duckel 🐥 before she flies away!</p>
+                        <p>Build combos for bonus points!</p>
+                        <button class="start-game-btn" onclick="initGame()">START GAME 🎮</button>
+                    </div>
+                </div>
+
+                <div id="gameOver" class="game-over-screen">
+                    <h2>Game Over!</h2>
+                    <div class="final-score">
+                        <p>Your Score:</p>
+                        <p class="score-big" id="finalScore">0</p>
+                    </div>
+                    <div class="high-score-display" id="highScoreDisplay"></div>
+                    <button class="retry-btn" onclick="initGame()">Play Again 🔄</button>
+                    <button class="continue-funny-btn" onclick="closeGame()">Back to Menu</button>
+                </div>
             </div>
         </div>
     </div>
@@ -4239,6 +4532,201 @@
             setTimeout(() => {
                 document.getElementById('liveStats').classList.add('active');
             }, 500);
+        }
+
+        // MINI GAME LOGIC 🎮
+        let gameActive = false;
+        let gameScore = 0;
+        let gameTime = 30;
+        let gameCombo = 0;
+        let gameInterval;
+        let spawnInterval;
+        let comboTimeout;
+        let duckelSpeed = 2000;
+
+        function startMiniGame() {
+            document.getElementById('gameModal').classList.add('active');
+            loadHighScore();
+        }
+
+        function closeGame() {
+            gameActive = false;
+            clearInterval(gameInterval);
+            clearInterval(spawnInterval);
+            document.getElementById('gameModal').classList.remove('active');
+            document.getElementById('gameOver').classList.remove('active');
+            document.getElementById('gameArea').querySelector('.game-instructions').style.display = 'block';
+        }
+
+        function loadHighScore() {
+            const highScore = localStorage.getItem('duckel-game-highscore') || 0;
+            document.getElementById('gameHighScore').textContent = `High Score: ${highScore}`;
+        }
+
+        function saveHighScore(score) {
+            const currentHigh = parseInt(localStorage.getItem('duckel-game-highscore') || 0);
+            if (score > currentHigh) {
+                localStorage.setItem('duckel-game-highscore', score);
+                return true;
+            }
+            return false;
+        }
+
+        function initGame() {
+            // Reset
+            gameScore = 0;
+            gameTime = 30;
+            gameCombo = 0;
+            duckelSpeed = 2000;
+            gameActive = true;
+
+            // Hide instructions and game over
+            document.getElementById('gameArea').querySelector('.game-instructions').style.display = 'none';
+            document.getElementById('gameOver').classList.remove('active');
+
+            // Clear any existing duckels
+            const gameArea = document.getElementById('gameArea');
+            const existingDuckels = gameArea.querySelectorAll('.duckel-target');
+            existingDuckels.forEach(d => d.remove());
+
+            // Update UI
+            updateGameUI();
+
+            // Start timer
+            gameInterval = setInterval(() => {
+                gameTime--;
+                updateGameUI();
+
+                if (gameTime <= 0) {
+                    endGame();
+                }
+            }, 1000);
+
+            // Start spawning
+            spawnDuckel();
+            spawnInterval = setInterval(() => {
+                if (gameActive) spawnDuckel();
+            }, duckelSpeed);
+        }
+
+        function updateGameUI() {
+            document.getElementById('gameScore').textContent = gameScore;
+            document.getElementById('gameTimer').textContent = gameTime;
+            document.getElementById('gameCombo').textContent = gameCombo + 'x';
+        }
+
+        function spawnDuckel() {
+            if (!gameActive) return;
+
+            const gameArea = document.getElementById('gameArea');
+            const duckel = document.createElement('div');
+            duckel.className = 'duckel-target';
+            duckel.textContent = '🐥';
+
+            // Random position
+            const maxX = gameArea.clientWidth - 60;
+            const maxY = gameArea.clientHeight - 60;
+            const x = Math.random() * maxX;
+            const y = Math.random() * maxY;
+
+            duckel.style.left = x + 'px';
+            duckel.style.top = y + 'px';
+
+            duckel.onclick = () => catchDuckel(duckel, x, y);
+
+            gameArea.appendChild(duckel);
+
+            // Remove after timeout
+            setTimeout(() => {
+                if (duckel.parentNode) {
+                    duckel.remove();
+                    // Miss - reset combo
+                    gameCombo = 0;
+                    updateGameUI();
+                }
+            }, 1500);
+        }
+
+        function catchDuckel(duckel, x, y) {
+            if (!gameActive) return;
+
+            // Remove duckel
+            duckel.remove();
+
+            // Increase combo
+            gameCombo++;
+            clearTimeout(comboTimeout);
+
+            // Calculate points (with combo bonus)
+            const points = 10 * gameCombo;
+            gameScore += points;
+
+            // Show score popup
+            showScorePopup(x, y, '+' + points);
+
+            // Update UI
+            updateGameUI();
+
+            // Increase difficulty
+            if (gameScore > 100 && duckelSpeed > 1000) {
+                duckelSpeed = 1500;
+                clearInterval(spawnInterval);
+                spawnInterval = setInterval(() => {
+                    if (gameActive) spawnDuckel();
+                }, duckelSpeed);
+            }
+
+            // Reset combo after 2 seconds
+            comboTimeout = setTimeout(() => {
+                gameCombo = 0;
+                updateGameUI();
+            }, 2000);
+        }
+
+        function showScorePopup(x, y, text) {
+            const gameArea = document.getElementById('gameArea');
+            const popup = document.createElement('div');
+            popup.className = 'click-effect';
+            popup.textContent = text;
+            popup.style.left = x + 'px';
+            popup.style.top = y + 'px';
+
+            gameArea.appendChild(popup);
+
+            setTimeout(() => popup.remove(), 1000);
+        }
+
+        function endGame() {
+            gameActive = false;
+            clearInterval(gameInterval);
+            clearInterval(spawnInterval);
+
+            // Clear duckels
+            const gameArea = document.getElementById('gameArea');
+            const duckels = gameArea.querySelectorAll('.duckel-target');
+            duckels.forEach(d => d.remove());
+
+            // Show final score
+            document.getElementById('finalScore').textContent = gameScore;
+
+            // Check high score
+            const isNewHigh = saveHighScore(gameScore);
+            const highScoreDisplay = document.getElementById('highScoreDisplay');
+
+            if (isNewHigh) {
+                highScoreDisplay.textContent = '🎉 NEW HIGH SCORE! 🎉';
+                highScoreDisplay.style.color = '#FFD700';
+            } else {
+                const highScore = localStorage.getItem('duckel-game-highscore');
+                highScoreDisplay.textContent = `High Score: ${highScore}`;
+                highScoreDisplay.style.color = 'rgba(255, 255, 255, 0.7)';
+            }
+
+            // Update card high score
+            loadHighScore();
+
+            // Show game over screen
+            document.getElementById('gameOver').classList.add('active');
         }
 
         // Letter functions
