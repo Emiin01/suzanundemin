@@ -2321,8 +2321,137 @@
         }
 
 
-        /* GET WELL LETTER - FOLDED PAPER 💕 */
-        .get-well-modal {
+        /* LIVE STATS WIDGET 📊 */
+        .live-stats-widget {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 105, 180, 0.4);
+            border-radius: 15px;
+            padding: 20px;
+            width: 280px;
+            z-index: 9999;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            display: none;
+        }
+
+        .live-stats-widget.active {
+            display: block;
+            animation: slideInRight 0.5s ease;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .stats-header {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: #FF69B4;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 105, 180, 0.3);
+        }
+
+        .stat-item {
+            margin-bottom: 20px;
+        }
+
+        .stat-label {
+            font-family: 'Lora', serif;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 8px;
+        }
+
+        .stat-bar-container {
+            width: 100%;
+            height: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .stat-bar {
+            height: 100%;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            transition: width 1s ease;
+            position: relative;
+            animation: pulse-bar 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-bar {
+            0%, 100% {
+                opacity: 0.9;
+            }
+            50% {
+                opacity: 1;
+                box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+            }
+        }
+
+        .stat-value {
+            font-family: 'Lora', serif;
+            font-size: 0.85rem;
+            color: white;
+            font-weight: 700;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+            white-space: nowrap;
+        }
+
+        .stats-footer {
+            font-family: 'Lora', serif;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            text-align: center;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .live-stats-widget {
+                top: 10px;
+                right: 10px;
+                width: 220px;
+                padding: 15px;
+            }
+
+            .stats-header {
+                font-size: 1.1rem;
+            }
+
+            .stat-label {
+                font-size: 0.8rem;
+            }
+
+            .stat-bar-container {
+                height: 20px;
+            }
+
+            .stat-value {
+                font-size: 0.75rem;
+            }
+        }
+
+        /* FUNNY WELCOME SCREEN 😂 */
+        .funny-modal {
             position: fixed;
             top: 0;
             left: 0;
@@ -2334,219 +2463,175 @@
             justify-content: center;
             z-index: 10000;
             padding: 20px;
+            overflow-y: auto;
         }
 
-        .get-well-modal.active {
+        .funny-modal.active {
             display: flex;
         }
 
-        .letter-container {
-            position: relative;
-            perspective: 1500px;
-        }
-
-        .folded-letter {
-            width: 350px;
-            height: 250px;
-            position: relative;
-            transform-style: preserve-3d;
-            cursor: pointer;
-            transition: transform 0.6s ease;
-        }
-
-        .folded-letter:hover {
-            transform: scale(1.05) rotateY(5deg);
-        }
-
-        .letter-fold {
-            position: absolute;
+        .funny-container {
+            max-width: 900px;
             width: 100%;
-            height: 50%;
-            background: linear-gradient(135deg, #f5deb3 0%, #d2b48c 100%);
-            box-shadow: 
-                inset 0 0 30px rgba(0, 0, 0, 0.1),
-                0 10px 30px rgba(0, 0, 0, 0.3);
-            transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
-        .fold-top {
-            top: 0;
-            border-bottom: 2px solid rgba(139, 69, 19, 0.2);
-            transform-origin: bottom;
+        .funny-header {
+            text-align: center;
+            margin-bottom: 50px;
         }
 
-        .fold-bottom {
-            bottom: 0;
-            border-top: 2px solid rgba(139, 69, 19, 0.2);
-            transform-origin: top;
+        .funny-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #FF69B4;
+            margin-bottom: 15px;
         }
 
-        .folded-letter.opening .fold-top {
-            transform: rotateX(-180deg);
+        .funny-subtitle {
+            font-family: 'Lora', serif;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-style: italic;
         }
 
-        .folded-letter.opening .fold-bottom {
-            transform: rotateX(180deg);
+        .funny-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
         }
 
-        .letter-front {
-            position: absolute;
+        .funny-card {
+            background: linear-gradient(135deg, rgba(255, 105, 180, 0.1), rgba(199, 21, 133, 0.1));
+            border: 2px solid rgba(255, 105, 180, 0.3);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .funny-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: #FF69B4;
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.4);
+            background: linear-gradient(135deg, rgba(255, 105, 180, 0.2), rgba(199, 21, 133, 0.2));
+        }
+
+        .card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #FF69B4;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .card-desc {
+            font-family: 'Lora', serif;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+        }
+
+        .skip-btn {
+            display: block;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            font-family: 'Lora', serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .skip-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+            color: #fff;
+        }
+
+        .content-modal {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            display: flex;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
             align-items: center;
             justify-content: center;
-            z-index: 1;
+            z-index: 10001;
+            padding: 20px;
         }
 
-        .letter-label {
-            text-align: center;
+        .content-modal.active {
+            display: flex;
         }
 
-        .letter-label p {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: #8b4513;
-            margin: 10px 0;
-            font-weight: 600;
-        }
-
-        .tap-hint {
-            font-family: 'Lora', serif;
-            font-size: 0.9rem !important;
-            color: rgba(139, 69, 19, 0.6) !important;
-            font-style: italic;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        .opened-letter {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            width: 90vw;
-            max-width: 700px;
-            max-height: 85vh;
-            opacity: 0;
-            transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            z-index: 10;
-        }
-
-        .opened-letter.show {
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 1;
-        }
-
-        .letter-paper-inner {
-            background: linear-gradient(to bottom, #f5deb3 0%, #e8d4a8 100%);
-            border: 1px solid rgba(139, 69, 19, 0.3);
-            border-radius: 5px;
-            padding: 50px 40px;
-            box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.6),
-                inset 0 0 40px rgba(255, 248, 220, 0.3),
-                inset 0 0 100px rgba(139, 69, 19, 0.05);
-            max-height: 85vh;
+        .content-wrapper {
+            background: linear-gradient(135deg, #1a1a2e, #0f0f1e);
+            border: 2px solid rgba(255, 105, 180, 0.3);
+            border-radius: 25px;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
             overflow-y: auto;
             position: relative;
         }
 
-        .letter-paper-inner::before {
-            content: '';
+        .close-content {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 30px,
-                    rgba(139, 69, 19, 0.03) 30px,
-                    rgba(139, 69, 19, 0.03) 31px
-                );
-            pointer-events: none;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 105, 180, 0.2);
+            border: 2px solid rgba(255, 105, 180, 0.4);
+            color: #FF69B4;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .letter-paper-inner::-webkit-scrollbar {
-            width: 10px;
+        .close-content:hover {
+            background: rgba(255, 105, 180, 0.3);
+            transform: rotate(90deg);
         }
 
-        .letter-paper-inner::-webkit-scrollbar-track {
-            background: rgba(139, 69, 19, 0.1);
-            border-radius: 5px;
-        }
-
-        .letter-paper-inner::-webkit-scrollbar-thumb {
-            background: rgba(139, 69, 19, 0.3);
-            border-radius: 5px;
-        }
-
-        .paper-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .letter-greeting {
-            font-family: 'Lora', serif;
-            font-size: 1.3rem;
-            color: #000;
-            font-weight: 600;
-            margin-bottom: 25px;
-        }
-
-        .paper-content p {
-            font-family: 'Lora', serif;
-            font-size: 1.05rem;
-            line-height: 1.9;
-            color: #1a1a1a;
-            margin-bottom: 20px;
-            text-align: justify;
-        }
-
-        .letter-love {
-            font-weight: 600;
-            margin-top: 30px !important;
-        }
-
-        .letter-signature {
-            text-align: right;
-            margin-top: 40px;
-            margin-bottom: 40px;
-        }
-
-        .letter-signature p {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.6rem;
-            color: #000;
-            margin: 0;
-            font-weight: 600;
-        }
-
-        .continue-btn {
+        .continue-funny-btn {
             display: block;
             width: 100%;
             margin-top: 30px;
             padding: 15px;
-            background: linear-gradient(135deg, #8b4513, #a0522d);
-            border: 2px solid rgba(139, 69, 19, 0.5);
-            border-radius: 8px;
-            color: #fff;
-            font-family: 'Lora', serif;
+            background: linear-gradient(135deg, #FF69B4, #FF1493);
+            border: none;
+            border-radius: 15px;
+            color: white;
+            font-family: 'Playfair Display', serif;
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(139, 69, 19, 0.3);
         }
 
-        .continue-btn:hover {
+        .continue-funny-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(139, 69, 19, 0.5);
-            background: linear-gradient(135deg, #a0522d, #8b4513);
+            box-shadow: 0 8px 30px rgba(255, 105, 180, 0.5);
         }
 
     </style>
@@ -3659,44 +3744,90 @@
         <button class="back-btn" onclick="showHome()" style="margin-top: 50px;">← Zurück zur Startseite</button>
     </div>
 
-    <!-- SPECIAL GET WELL LETTER MODAL 💕 -->
-    <div id="getWellLetter" class="get-well-modal">
-        <div class="letter-container">
-            <div class="folded-letter" id="foldedLetter" onclick="openLetter()">
-                <div class="letter-fold fold-top"></div>
-                <div class="letter-fold fold-bottom"></div>
-                <div class="letter-front">
-                    <div class="letter-label">
-                        <p>Für Suzan 💕</p>
-                        <p class="tap-hint">Zum Öffnen antippen</p>
-                    </div>
+    <!-- LIVE STATS WIDGET 📊 -->
+    <div id="liveStats" class="live-stats-widget">
+        <div class="stats-header">📊 Live Stats</div>
+        <div class="stat-item">
+            <div class="stat-label">Suzan's Süßigkeit</div>
+            <div class="stat-bar-container">
+                <div class="stat-bar" style="width: 100%; background: linear-gradient(90deg, #FF1493, #FF69B4);">
+                    <span class="stat-value">1000%</span>
                 </div>
             </div>
-            
-            <div class="opened-letter" id="openedLetter">
-                <div class="letter-paper-inner">
-                    <div class="paper-content">
-                        <p class="letter-greeting">Hi mein Duckel,</p>
-                        
-                        <p>ich weiß, dass die letzten Tage und Stunden nicht so einfach waren, aber das ist nur ein Teil in der Zukunft von unserer Vergangenheit, um uns wiederzuzeigen, wie stark wir zusammen sind.</p>
-                        
-                        <p>Ich wollte dir einfach nur sagen, wie unglaublich stolz und dankbar ich dafür bin, dich in meinem Leben zu haben. Es ist so ein schönes Gefühl, was ich in Worte kaum fassen kann. Ich sehe tagtäglich, wie stark du eigentlich bist, und ich staune jedes Mal aufs Neue. Ich bewundere dich.</p>
-                        
-                        <p>Auch wenn ich weiß, wie sehr du auf mich scheißen kannst, will ich dir nur eins sagen: Ich werde dich immer lieben, egal was ist, und dich auf deinem Weg immer unterstützen.</p>
-                        
-                        <p>Bald ist Duckel hoffentlich wieder gesund, und Grisly wartet schon mit offenen Armen auf sie.</p>
-                        
-                        <p>Du bist so unglaublich toll, Suzan. In meinen Augen wirst du immer dieser kleine Duckel mit ihrem kleinen Schaf-Plüschtier in der Hand bleiben. Und so klein und rein wie dein Herz ist, werde ich immer drauf aufpassen... versprochen.</p>
-                        
-                        <p class="letter-love">Ich liebe dich über alles, mein Engel.</p>
-                        
-                        <div class="letter-signature">
-                            <p>Dein Grisly 🐻</p>
-                        </div>
-                        
-                        <button class="continue-btn" onclick="continueToSite()">Weiter zur Seite →</button>
-                    </div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-label">Grisly's Geduld</div>
+            <div class="stat-bar-container">
+                <div class="stat-bar" style="width: 10%; background: linear-gradient(90deg, #ff6b6b, #ff8787);">
+                    <span class="stat-value">10%</span>
                 </div>
+            </div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-label">Wie sauer ist Suzan</div>
+            <div class="stat-bar-container">
+                <div class="stat-bar" style="width: 90%; background: linear-gradient(90deg, #9b59b6, #c56cf0);">
+                    <span class="stat-value">90%</span>
+                </div>
+            </div>
+        </div>
+        <div class="stats-footer">Updated: Just now</div>
+    </div>
+
+    <!-- FUNNY WELCOME SCREEN 😂 -->
+    <div id="funnyWelcome" class="funny-modal">
+        <div class="funny-container">
+            <div class="funny-header">
+                <h1>Willkommen zurück, Duckel! 🐥</h1>
+                <p class="funny-subtitle">Grisly hat dir was vorbereitet... 😏</p>
+            </div>
+
+            <div class="funny-grid">
+                <!-- Option 1: Complaint Department -->
+                <div class="funny-card" onclick="showFunnyContent('complaint')">
+                    <div class="card-icon">📋</div>
+                    <div class="card-title">Beschwerde-Büro</div>
+                    <div class="card-desc">Grisly's offizielle Beschwerden</div>
+                </div>
+
+                <!-- Option 2: Certificate -->
+                <div class="funny-card" onclick="showFunnyContent('certificate')">
+                    <div class="card-icon">🏆</div>
+                    <div class="card-title">Zertifikat</div>
+                    <div class="card-desc">Offiziell bestätigt</div>
+                </div>
+
+                <!-- Option 3: Daily Stats -->
+                <div class="funny-card" onclick="showFunnyContent('stats')">
+                    <div class="card-icon">📊</div>
+                    <div class="card-title">Tages-Statistik</div>
+                    <div class="card-desc">Grisly's Tag in Zahlen</div>
+                </div>
+
+                <!-- Option 4: Emergency Button -->
+                <div class="funny-card" onclick="showFunnyContent('emergency')">
+                    <div class="card-icon">🚨</div>
+                    <div class="card-title">Notfall-Knopf</div>
+                    <div class="card-desc">Nur für Emergencies!</div>
+                </div>
+
+                <!-- Option 5: Dashboard -->
+                <div class="funny-card" onclick="showFunnyContent('dashboard')">
+                    <div class="card-icon">💕</div>
+                    <div class="card-title">Beziehungs-App</div>
+                    <div class="card-desc">Live Stats & Updates</div>
+                </div>
+            </div>
+
+            <button class="skip-btn" onclick="skipToSite()">Direkt zur Seite →</button>
+        </div>
+
+        <!-- Content Modals -->
+        <div id="funnyContentModal" class="content-modal">
+            <div class="content-wrapper">
+                <button class="close-content" onclick="closeFunnyContent()">✕</button>
+                <div id="funnyContentInner"></div>
+                <button class="continue-funny-btn" onclick="skipToSite()">Weiter zur Seite →</button>
             </div>
         </div>
     </div>
@@ -3882,8 +4013,8 @@
                     msg.style.color = '#2d5016';
                     setTimeout(() => {
                         lockScreen.classList.add('hide');
-                        // Show letter instead of main page
-                        document.getElementById('getWellLetter').classList.add('active');
+                        // Show funny screen
+                        document.getElementById('funnyWelcome').classList.add('active');
                     }, 1000);
                 } else {
                     msg.textContent = '❌ Falscher Code!';
@@ -3899,10 +4030,226 @@
             }
         }
 
+        // Funny Content Functions
+        function showFunnyContent(type) {
+            const modal = document.getElementById('funnyContentModal');
+            const content = document.getElementById('funnyContentInner');
+            
+            let html = '';
+            
+            if (type === 'stats') {
+                html = `
+                    <h2 style="text-align:center; color:#FF69B4; font-family:'Playfair Display',serif; font-size:2rem; margin-bottom:30px;">
+                        📊 Grisly's Tages-Verteilung
+                    </h2>
+                    <div style="text-align:center; margin:40px 0;">
+                        <div style="width:300px; height:300px; margin:0 auto; border-radius:50%; background: conic-gradient(
+                            #FF69B4 0deg 216deg,
+                            #FFB6C1 216deg 324deg,
+                            #FFC0CB 324deg 360deg
+                        ); box-shadow: 0 10px 40px rgba(255,105,180,0.4);"></div>
+                    </div>
+                    <div style="text-align:left; max-width:400px; margin:0 auto; font-family:'Lora',serif;">
+                        <div style="margin:15px 0; display:flex; align-items:center; gap:15px;">
+                            <div style="width:30px; height:30px; background:#FF69B4; border-radius:5px;"></div>
+                            <span style="color:rgba(255,255,255,0.9);">60% - An Duckel denken</span>
+                        </div>
+                        <div style="margin:15px 0; display:flex; align-items:center; gap:15px;">
+                            <div style="width:30px; height:30px; background:#FFB6C1; border-radius:5px;"></div>
+                            <span style="color:rgba(255,255,255,0.9);">30% - Duckel vermissen</span>
+                        </div>
+                        <div style="margin:15px 0; display:flex; align-items:center; gap:15px;">
+                            <div style="width:30px; height:30px; background:#FFC0CB; border-radius:5px;"></div>
+                            <span style="color:rgba(255,255,255,0.9);">10% - Alles andere (unwichtig)</span>
+                        </div>
+                    </div>
+                    <p style="text-align:center; color:rgba(255,255,255,0.6); font-style:italic; margin-top:30px; font-family:'Lora',serif;">
+                        *Wissenschaftlich bewiesen von Grisly 🐻
+                    </p>
+                `;
+            }
+            else if (type === 'certificate') {
+                html = `
+                    <div style="background:linear-gradient(135deg, #f5f5dc, #fffacd); padding:40px; border-radius:15px; border:5px double #8b4513; box-shadow:0 20px 60px rgba(0,0,0,0.4);">
+                        <h2 style="text-align:center; color:#8b4513; font-family:'Playfair Display',serif; font-size:2.5rem; margin-bottom:20px; text-decoration:underline;">
+                            📜 Official Certificate 📜
+                        </h2>
+                        <p style="text-align:center; color:#8b4513; font-family:'Lora',serif; font-size:1.1rem; margin:20px 0;">
+                            This is to certify that
+                        </p>
+                        <h3 style="text-align:center; color:#FF1493; font-family:'Playfair Display',serif; font-size:2rem; margin:20px 0;">
+                            Suzan (aka Duckel)
+                        </h3>
+                        <p style="text-align:center; color:#8b4513; font-family:'Lora',serif; font-size:1.1rem; margin:20px 0;">
+                            has been officially declared
+                        </p>
+                        <h3 style="text-align:center; color:#FF1493; font-family:'Playfair Display',serif; font-size:2.2rem; margin:30px 0; text-shadow:0 0 10px rgba(255,105,180,0.5);">
+                            "TOO CUTE TO HANDLE"
+                        </h3>
+                        <p style="text-align:center; color:#8b4513; font-family:'Lora',serif; font-style:italic; margin:30px 0; font-size:1rem;">
+                            Reason: Macht Grisly komplett verrückt mit ihrer Süßigkeit
+                        </p>
+                        <div style="display:flex; justify-content:space-between; margin-top:50px;">
+                            <div style="text-align:left;">
+                                <p style="color:#8b4513; font-family:'Lora',serif;">Gültig bis:</p>
+                                <p style="color:#FF1493; font-family:'Playfair Display',serif; font-size:1.3rem;">Forever ∞</p>
+                            </div>
+                            <div style="text-align:right;">
+                                <p style="color:#8b4513; font-family:'Lora',serif;">Unterschrift:</p>
+                                <p style="color:#FF1493; font-family:'Dancing Script',cursive; font-size:1.8rem;">Grisly 🐻</p>
+                            </div>
+                        </div>
+                        <div style="text-align:center; margin-top:30px; font-size:3rem;">
+                            🐻
+                        </div>
+                    </div>
+                `;
+            }
+            else if (type === 'emergency') {
+                html = `
+                    <h2 style="text-align:center; color:#FF1493; font-family:'Playfair Display',serif; font-size:2rem; margin-bottom:30px;">
+                        🚨 Emergency Duckel System 🚨
+                    </h2>
+                    <div style="text-align:center; margin:50px 0;">
+                        <button onclick="triggerEmergency()" style="
+                            width:250px;
+                            height:250px;
+                            border-radius:50%;
+                            background:linear-gradient(135deg, #ff0000, #ff6b6b);
+                            border:5px solid #8B0000;
+                            color:white;
+                            font-family:'Playfair Display',serif;
+                            font-size:1.5rem;
+                            font-weight:700;
+                            cursor:pointer;
+                            box-shadow:0 10px 40px rgba(255,0,0,0.5);
+                            transition:all 0.3s ease;
+                        " onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                            PRESS FOR<br>EMERGENCY<br>DUCKEL
+                        </button>
+                    </div>
+                    <p style="text-align:center; color:rgba(255,255,255,0.6); font-family:'Lora',serif; font-style:italic;">
+                        ⚠️ Use responsibly ⚠️
+                    </p>
+                    <div id="emergencyResponse" style="margin-top:30px; text-align:center; font-family:'Lora',serif; color:#FF69B4; font-size:1.2rem;"></div>
+                `;
+            }
+            else if (type === 'complaint') {
+                html = `
+                    <h2 style="text-align:center; color:#FF69B4; font-family:'Playfair Display',serif; font-size:2rem; margin-bottom:30px;">
+                        😤 Grisly's Official Complaints
+                    </h2>
+                    <div style="font-family:'Lora',serif;">
+                        <div style="background:rgba(255,105,180,0.1); border-left:4px solid #FF69B4; padding:20px; margin:20px 0; border-radius:8px;">
+                            <div style="color:#FF1493; font-weight:700; margin-bottom:10px;">Beschwerde #001</div>
+                            <div style="color:rgba(255,255,255,0.9); margin-bottom:10px;">Duckel ist zu süß - kann nicht mehr normal funktionieren</div>
+                            <div style="color:rgba(255,255,255,0.5); font-style:italic;">Status: UNGELÖST</div>
+                        </div>
+                        <div style="background:rgba(255,105,180,0.1); border-left:4px solid #FF69B4; padding:20px; margin:20px 0; border-radius:8px;">
+                            <div style="color:#FF1493; font-weight:700; margin-bottom:10px;">Beschwerde #002</div>
+                            <div style="color:rgba(255,255,255,0.9); margin-bottom:10px;">Duckel ignored Grisly für 5 Minuten - emotionaler Schaden</div>
+                            <div style="color:rgba(255,255,255,0.5); font-style:italic;">Status: TRAUMATISIERT</div>
+                        </div>
+                        <div style="background:rgba(255,105,180,0.1); border-left:4px solid #FF69B4; padding:20px; margin:20px 0; border-radius:8px;">
+                            <div style="color:#FF1493; font-weight:700; margin-bottom:10px;">Beschwerde #003</div>
+                            <div style="color:rgba(255,255,255,0.9); margin-bottom:10px;">Duckel schläft ohne Grisly - illegal</div>
+                            <div style="color:rgba(255,255,255,0.5); font-style:italic;">Status: INAKZEPTABEL</div>
+                        </div>
+                        <div style="background:rgba(255,105,180,0.1); border-left:4px solid #FF69B4; padding:20px; margin:20px 0; border-radius:8px;">
+                            <div style="color:#FF1493; font-weight:700; margin-bottom:10px;">Beschwerde #004</div>
+                            <div style="color:rgba(255,255,255,0.9); margin-bottom:10px;">Duckel ist krank - Grisly's Herz ist gebrochen</div>
+                            <div style="color:rgba(255,255,255,0.5); font-style:italic;">Status: GUT DASS ICH DA BIN 💕</div>
+                        </div>
+                    </div>
+                    <p style="text-align:center; color:rgba(255,255,255,0.6); font-family:'Lora',serif; font-style:italic; margin-top:30px;">
+                        Weitere Beschwerden werden täglich hinzugefügt 🐻
+                    </p>
+                `;
+            }
+            else if (type === 'dashboard') {
+                html = `
+                    <h2 style="text-align:center; color:#FF69B4; font-family:'Playfair Display',serif; font-size:2rem; margin-bottom:30px;">
+                        💕 Relationship Status Dashboard
+                    </h2>
+                    <div style="font-family:'Lora',serif;">
+                        <div style="background:rgba(255,105,180,0.15); padding:25px; border-radius:15px; margin:20px 0;">
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin:15px 0;">
+                                <span style="color:rgba(255,255,255,0.9);">Grisly's Patience Level:</span>
+                                <span style="color:#FF1493; font-size:1.3rem; font-weight:700;">15%</span>
+                            </div>
+                            <div style="height:10px; background:rgba(255,255,255,0.1); border-radius:10px; overflow:hidden;">
+                                <div style="width:15%; height:100%; background:linear-gradient(90deg, #FF1493, #FF69B4);"></div>
+                            </div>
+                        </div>
+                        <div style="background:rgba(255,105,180,0.15); padding:25px; border-radius:15px; margin:20px 0;">
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin:15px 0;">
+                                <span style="color:rgba(255,255,255,0.9);">Duckel's Cuteness:</span>
+                                <span style="color:#FF1493; font-size:1.3rem; font-weight:700;">OVER 9000 💥</span>
+                            </div>
+                            <div style="height:10px; background:rgba(255,255,255,0.1); border-radius:10px; overflow:hidden;">
+                                <div style="width:100%; height:100%; background:linear-gradient(90deg, #FF1493, #FF69B4); animation:pulse 1s infinite;"></div>
+                            </div>
+                        </div>
+                        <div style="background:rgba(255,105,180,0.15); padding:25px; border-radius:15px; margin:20px 0;">
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <span style="color:rgba(255,255,255,0.9);">Days since last fight:</span>
+                                <span style="color:#FF1493; font-size:1.3rem; font-weight:700;">0.5</span>
+                            </div>
+                        </div>
+                        <div style="background:rgba(255,105,180,0.15); padding:25px; border-radius:15px; margin:20px 0;">
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <span style="color:rgba(255,255,255,0.9);">Grisly's Love Level:</span>
+                                <span style="color:#FF1493; font-size:1.3rem; font-weight:700;">∞ Forever</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="text-align:center; color:rgba(255,255,255,0.6); font-family:'Lora',serif; font-style:italic; margin-top:30px;">
+                        📱 Live updates • Last synced: Just now
+                    </p>
+                `;
+            }
+            
+            content.innerHTML = html;
+            modal.classList.add('active');
+        }
+
+        function closeFunnyContent() {
+            document.getElementById('funnyContentModal').classList.remove('active');
+        }
+
+        function triggerEmergency() {
+            const response = document.getElementById('emergencyResponse');
+            const messages = [
+                "🚨 ALERT: Grisly has been notified! 🐻",
+                "💕 Emergency cuddles dispatched!",
+                "🚁 Helicopter Grisly incoming!",
+                "⚠️ Warning: Extreme cuteness detected!",
+                "🐻 Grisly is already on his way!",
+                "💖 Love reinforcements activated!"
+            ];
+            const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+            response.textContent = randomMsg;
+            response.style.animation = 'fadeIn 0.5s ease';
+        }
+
+        function skipToSite() {
+            document.getElementById('funnyWelcome').classList.remove('active');
+            mainPage.classList.add('show');
+            // Show live stats
+            setTimeout(() => {
+                document.getElementById('liveStats').classList.add('active');
+            }, 500);
+        }
+
         // Letter functions
         function openLetter() {
             const foldedLetter = document.getElementById('foldedLetter');
             const openedLetter = document.getElementById('openedLetter');
+            
+            if (!foldedLetter || !openedLetter) {
+                console.error('Letter elements not found');
+                return;
+            }
             
             // Add opening class to trigger fold animation
             foldedLetter.classList.add('opening');
@@ -3919,7 +4266,10 @@
         }
 
         function continueToSite() {
-            document.getElementById('getWellLetter').classList.remove('active');
+            const funnyWelcome = document.getElementById('funnyWelcome');
+            if (funnyWelcome) {
+                funnyWelcome.classList.remove('active');
+            }
             mainPage.classList.add('show');
         }
         
