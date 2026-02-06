@@ -5300,12 +5300,21 @@
             <div id="valentineQuestionScreen">
                 <img src="bär.png" alt="Grisly & Duckel" class="valentine-image-main">
                 
-                <div class="valentine-message" id="valentineMessage"></div>
+                <h2 class="valentine-instruction">Bitte wähle eine Option und schicke mir einen Screenshot! 📸</h2>
 
-                <div class="valentine-buttons-container">
-                    <button class="valentine-btn valentine-btn-yes" onclick="sayYesValentine()">YES! 💕</button>
-                    <button class="valentine-btn valentine-btn-no" id="valentineNoBtn" onclick="moveNoButtonValentine()">No 😢</button>
+                <div class="valentine-checkboxes">
+                    <label class="checkbox-option">
+                        <input type="checkbox" id="yesCheckbox" onchange="handleCheckbox('yes')">
+                        <span class="checkbox-label">✅ YES! Ich will dein Valentine Date sein! 💕</span>
+                    </label>
+
+                    <label class="checkbox-option">
+                        <input type="checkbox" id="noCheckbox" onchange="handleCheckbox('no')">
+                        <span class="checkbox-label">❌ No 😢</span>
+                    </label>
                 </div>
+
+                <div class="valentine-message" id="valentineMessage"></div>
             </div>
 
             <!-- Success Screen -->
