@@ -2489,6 +2489,422 @@
             }
         }
 
+
+        /* VALENTINE PAGE STYLES 💕 */
+        .valentine-special {
+            background: linear-gradient(135deg, #FF69B4, #FF1493) !important;
+            animation: valentinePulse 2s infinite;
+        }
+
+        @keyframes valentinePulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 5px 20px rgba(255, 20, 147, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 8px 30px rgba(255, 20, 147, 0.6);
+            }
+        }
+
+        .valentine-hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .valentine-floating-heart {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.6;
+            animation: valentineFloatHeart 15s infinite ease-in-out;
+        }
+
+        @keyframes valentineFloatHeart {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .valentine-heart-border {
+            position: fixed;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .valentine-heart-border.valentine-top {
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .valentine-heart-border.valentine-bottom {
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .valentine-heart-border.valentine-left {
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .valentine-heart-border.valentine-right {
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .valentine-border-heart {
+            font-size: 2.5rem;
+            animation: valentineHeartBeat 2s infinite;
+        }
+
+        @keyframes valentineHeartBeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        .valentine-container-main {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            background: linear-gradient(135deg, #FFE5F0, #FFD6E8);
+            border-radius: 30px;
+            padding: 50px 40px;
+            max-width: 600px;
+            width: 90%;
+            margin: 100px auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .valentine-image-main {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+            margin-bottom: 40px;
+            animation: valentineImageAppear 1s ease-out;
+        }
+
+        @keyframes valentineImageAppear {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .valentine-message {
+            font-size: 1.3rem;
+            color: #C71585;
+            margin-bottom: 30px;
+            min-height: 40px;
+            font-weight: 600;
+            animation: valentineMessageChange 0.5s ease;
+        }
+
+        @keyframes valentineMessageChange {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* VALENTINE CHECKBOXES 💕 */
+        .valentine-instruction {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #FF1493;
+            margin: 30px 0;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .valentine-checkboxes {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin: 40px 0;
+            align-items: center;
+        }
+
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px 30px;
+            background: white;
+            border: 3px solid #FF69B4;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 400px;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.2);
+        }
+
+        .checkbox-option:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.4);
+            border-color: #FF1493;
+        }
+
+        .checkbox-option input[type="checkbox"] {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            accent-color: #FF1493;
+        }
+
+        .checkbox-label {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .checkbox-option.checked {
+            background: linear-gradient(135deg, #FFE4E9, #FFF0F5);
+            border-color: #FF1493;
+            transform: scale(1.05);
+        }
+
+        .valentine-buttons-container {
+            position: relative;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .valentine-btn {
+            padding: 20px 50px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .valentine-btn-yes {
+            background: linear-gradient(135deg, #FF69B4, #FF1493);
+            color: white;
+            box-shadow: 0 5px 20px rgba(255, 20, 147, 0.4);
+            animation: valentineYesPulse 2s infinite;
+            position: relative !important;
+            z-index: 20 !important;
+        }
+
+        @keyframes valentineYesPulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .valentine-btn-yes:hover {
+            transform: scale(1.1) !important;
+            box-shadow: 0 8px 30px rgba(255, 20, 147, 0.6);
+        }
+
+        .valentine-btn-no {
+            background: transparent;
+            color: #666;
+            position: absolute;
+            transition: all 0.3s ease;
+            z-index: 10;
+            border: 3px dotted #DC143C !important;
+        }
+
+        .valentine-btn-no:hover {
+            background: rgba(220, 20, 60, 0.1);
+        }
+
+        .valentine-success-screen {
+            display: none;
+            text-align: center;
+        }
+
+        .valentine-success-screen.active {
+            display: block;
+            animation: valentineSuccessAppear 0.8s ease-out;
+        }
+
+        @keyframes valentineSuccessAppear {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .valentine-success-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 3rem;
+            color: #FF1493;
+            margin-bottom: 20px;
+        }
+
+        .valentine-success-message {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .valentine-success-emoji {
+            font-size: 5rem;
+            margin: 20px 0;
+            animation: valentineEmojiSpin 2s ease-in-out infinite;
+        }
+
+        @keyframes valentineEmojiSpin {
+            0%, 100% {
+                transform: rotate(0deg) scale(1);
+            }
+            50% {
+                transform: rotate(15deg) scale(1.1);
+            }
+        }
+
+        .valentine-confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #FF69B4;
+            animation: valentineConfettiFall 3s linear;
+        }
+
+        @keyframes valentineConfettiFall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .valentine-container-main {
+                padding: 30px 20px;
+            }
+
+            .valentine-instruction {
+                font-size: 1.1rem;
+            }
+
+            .checkbox-option {
+                min-width: 90%;
+                padding: 15px 20px;
+            }
+
+            .checkbox-label {
+                font-size: 1rem;
+            }
+
+            .valentine-buttons-container {
+                height: 200px;
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .valentine-image-main {
+                max-width: 300px;
+            }
+
+            .valentine-btn {
+                padding: 15px 35px;
+                font-size: 1.2rem;
+            }
+
+            .valentine-message {
+                font-size: 1rem;
+                min-height: 60px;
+            }
+
+            .valentine-success-title {
+                font-size: 2rem;
+            }
+
+            .valentine-success-message {
+                font-size: 1rem;
+            }
+
+            .valentine-border-heart {
+                font-size: 1.5rem;
+            }
+
+            .valentine-heart-border {
+                width: 60px;
+                height: 60px;
+            }
+
+            .valentine-heart-border.valentine-top,
+            .valentine-heart-border.valentine-bottom {
+                height: 50px;
+            }
+
+            .valentine-heart-border.valentine-left,
+            .valentine-heart-border.valentine-right {
+                width: 50px;
+            }
+        }
+
         /* MINI GAME STYLES 🎮 */
         .game-card {
             background: linear-gradient(135deg, rgba(147, 51, 234, 0.2), rgba(168, 85, 247, 0.2)) !important;
@@ -3147,6 +3563,238 @@
             }
         }
 
+        /* VALENTINE SCREEN 💕 */
+        .valentine-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #FF69B4 0%, #FF1493 100%);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9997;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .valentine-screen.active {
+            display: flex;
+        }
+
+        .valentine-screen::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="40">💕</text></svg>') repeat;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .valentine-container-main {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            background: white;
+            border-radius: 30px;
+            padding: 50px 40px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .valentine-image-main {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+            margin-bottom: 30px;
+            animation: valentineImageAppear 1s ease-out;
+        }
+
+        @keyframes valentineImageAppear {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .valentine-message {
+            font-size: 1.2rem;
+            color: #FF1493;
+            margin-bottom: 30px;
+            min-height: 40px;
+            font-weight: 600;
+            animation: valentineMessageChange 0.5s ease;
+        }
+
+        @keyframes valentineMessageChange {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .valentine-buttons {
+            position: relative;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .valentine-btn {
+            padding: 20px 50px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Lora', serif;
+        }
+
+        .valentine-btn-yes {
+            background: linear-gradient(135deg, #FF69B4, #FF1493);
+            color: white;
+            box-shadow: 0 5px 20px rgba(255, 20, 147, 0.4);
+            animation: valentineYesPulse 2s infinite;
+            position: relative !important;
+            z-index: 100;
+        }
+
+        @keyframes valentineYesPulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .valentine-btn-yes:hover {
+            transform: scale(1.1) !important;
+            box-shadow: 0 8px 30px rgba(255, 20, 147, 0.6);
+        }
+
+        .valentine-btn-no {
+            background: #E0E0E0;
+            color: #666;
+            position: absolute;
+            transition: all 0.3s ease;
+            z-index: 50;
+        }
+
+        .valentine-btn-no:hover {
+            background: #D0D0D0;
+        }
+
+        .valentine-success {
+            display: none;
+            text-align: center;
+        }
+
+        .valentine-success.active {
+            display: block;
+            animation: valentineSuccessAppear 0.8s ease-out;
+        }
+
+        @keyframes valentineSuccessAppear {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .success-emoji-big {
+            font-size: 5rem;
+            margin: 20px 0;
+            animation: emojiSpinBig 2s ease-in-out infinite;
+        }
+
+        @keyframes emojiSpinBig {
+            0%, 100% {
+                transform: rotate(0deg) scale(1);
+            }
+            50% {
+                transform: rotate(15deg) scale(1.1);
+            }
+        }
+
+        .success-title-big {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: #FF1493;
+            margin-bottom: 20px;
+        }
+
+        .success-message-big {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .valentine-continue-btn {
+            padding: 18px 40px;
+            background: linear-gradient(135deg, #FF69B4, #FF1493);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-family: 'Lora', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 20, 147, 0.4);
+            margin-top: 20px;
+        }
+
+        .valentine-continue-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 20, 147, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .valentine-container-main {
+                padding: 30px 20px;
+            }
+
+            .valentine-image-main {
+                max-width: 300px;
+            }
+
+            .valentine-btn {
+                padding: 15px 35px;
+                font-size: 1.2rem;
+            }
+
+            .success-title-big {
+                font-size: 2rem;
+            }
+
+            .success-emoji-big {
+                font-size: 3.5rem;
+            }
+        }
+
         /* LIVE STATS WIDGET 📊 */
         .live-stats-widget {
             position: fixed;
@@ -3590,7 +4238,7 @@
                 <div class="disclaimer-list">
                     <div class="disclaimer-item">
                         <span class="item-icon">💕</span>
-                        <span class="item-text">Das Risiko, sich zu verlieben, ist <strong>EXTREM HOCH</strong></span>
+                        <span class="item-text">Das Risiko, sich hoffnungslos zu verlieben, ist <strong>EXTREM HOCH</strong></span>
                     </div>
                     <div class="disclaimer-item">
                         <span class="item-icon">🐻</span>
@@ -3612,7 +4260,7 @@
 
                 <p class="disclaimer-footer">
                     Alle Inhalte erfolgen auf <strong>EIGENE GEFAHR</strong>.<br>
-                    Der Ersteller übernimmt keine Haftung für verliebte Herzen oder übermäßige Glücksgefühle.
+                    Der Ersteller übernimmt keine Haftung für gebrochene Herzen oder übermäßige Glücksgefühle.
                 </p>
 
                 <button class="disclaimer-btn" onclick="acceptDisclaimer()">
@@ -3625,9 +4273,39 @@
     <!-- ROSES SCREEN 🌹 -->
     <div id="rosesScreen" class="roses-screen">
         <div class="roses-container">
-            <img src="roses-vase.png" alt="Roses" class="roses-image">
+            <img src="rosen.png" alt="Roses" class="roses-image">
+            <h2 class="roses-message">You mean the world to me</h2>
             <button class="roses-btn" onclick="continueToWebsite()">
                 Weiter zur Website →
+            </button>
+        </div>
+    </div>
+
+    <!-- VALENTINE SCREEN 💕 -->
+    <div id="valentineScreen" class="valentine-screen">
+        <div class="valentine-container-main">
+            <img src="bär.png" alt="Grisly & Duckel" class="valentine-image-main">
+            
+            <div class="valentine-message" id="valentineMessage"></div>
+
+            <div class="valentine-buttons">
+                <button class="valentine-btn valentine-btn-yes" onclick="sayYesToValentine()">YES! 💕</button>
+                <button class="valentine-btn valentine-btn-no" id="valentineNoBtn" onclick="moveNoButtonValentine()">No 😢</button>
+            </div>
+        </div>
+
+        <!-- Success Screen -->
+        <div class="valentine-success" id="valentineSuccess">
+            <div class="success-emoji-big">🐻💕🐥</div>
+            <h1 class="success-title-big">YAAAY! 🎉</h1>
+            <p class="success-message-big">
+                Grisly ist SO GLÜCKLICH! 💕<br>
+                Das wird der beste Valentine's Day ever! 🌹<br>
+                Ich liebe dich, mein kleines Duckel! 🐥
+            </p>
+            <div class="success-emoji-big">❤️✨💫</div>
+            <button class="valentine-continue-btn" onclick="skipToMainPage()">
+                Zur Website →
             </button>
         </div>
     </div>
@@ -3656,6 +4334,7 @@
                 <button class="nav-btn" onclick="showMoonSun()">The Moon & The Sun</button>
                 <button class="nav-btn" onclick="showMoments()">Moments</button>
                 <button class="nav-btn" onclick="showQuestion()">A Question</button>
+                <button class="nav-btn valentine-special" onclick="showValentine()">💕 Valentine's Date</button>
                 <button class="nav-btn" onclick="showOurSongs()">Our Songs</button>
                 <button class="nav-btn" onclick="showOnlySuzan()">Only Suzan 👠</button>
                 <button class="nav-btn" onclick="showForYou()">For You</button>
@@ -4570,6 +5249,88 @@
         <button class="back-btn" onclick="showHome()" style="margin-top: 50px;">← Zurück zur Startseite</button>
     </div>
 
+    <!-- VALENTINE'S DATE PAGE 💕 -->
+    <div id="valentinePage" class="story-page" style="background: linear-gradient(135deg, #FFE5F0 0%, #FFD6E8 100%); overflow: hidden;">
+        <!-- NO floating hearts background anymore -->
+
+        <!-- Heart Borders -->
+        <div class="valentine-heart-border valentine-top">
+            <span class="valentine-border-heart">❤️</span>
+            <span class="valentine-border-heart">💕</span>
+            <span class="valentine-border-heart">❤️</span>
+            <span class="valentine-border-heart">💕</span>
+            <span class="valentine-border-heart">❤️</span>
+            <span class="valentine-border-heart">💕</span>
+            <span class="valentine-border-heart">❤️</span>
+            <span class="valentine-border-heart">💕</span>
+        </div>
+        <div class="valentine-heart-border valentine-bottom">
+            <span class="valentine-border-heart">💕</span>
+            <span class="valentine-border-heart">❤️</span>
+            <span class="valentine-border-heart">💕</span>
+            <span class="valentine-border-heart">❤️</span>
+            <span class="valentine-border-heart">💕</span>
+            <span class="valentine-border-heart">❤️</span>
+            <span class="valentine-border-heart">💕</span>
+            <span class="valentine-border-heart">❤️</span>
+        </div>
+        <div class="valentine-heart-border valentine-left">
+            <span class="valentine-border-heart">❤️</span>
+            <span class="valentine-border-heart">💕</span>
+            <span class="valentine-border-heart">❤️</span>
+            <span class="valentine-border-heart">💕</span>
+            <span class="valentine-border-heart">❤️</span>
+            <span class="valentine-border-heart">💕</span>
+            <span class="valentine-border-heart">❤️</span>
+        </div>
+        <div class="valentine-heart-border valentine-right">
+            <span class="valentine-border-heart">💕</span>
+            <span class="valentine-border-heart">❤️</span>
+            <span class="valentine-border-heart">💕</span>
+            <span class="valentine-border-heart">❤️</span>
+            <span class="valentine-border-heart">💕</span>
+            <span class="valentine-border-heart">❤️</span>
+            <span class="valentine-border-heart">💕</span>
+        </div>
+
+        <!-- Main Container -->
+        <div class="valentine-container-main">
+            <!-- Question Screen -->
+            <div id="valentineQuestionScreen">
+                <img src="bär.png" alt="Grisly & Duckel" class="valentine-image-main">
+                
+                <h2 class="valentine-instruction">Bitte wähle eine Option und schicke mir einen Screenshot! 📸</h2>
+
+                <div class="valentine-checkboxes">
+                    <label class="checkbox-option">
+                        <input type="checkbox" id="yesCheckbox" onchange="handleCheckbox('yes')">
+                        <span class="checkbox-label">✅ YES! Ich will dein Valentine Date sein! 💕</span>
+                    </label>
+
+                    <label class="checkbox-option">
+                        <input type="checkbox" id="noCheckbox" onchange="handleCheckbox('no')">
+                        <span class="checkbox-label">❌ No 😢</span>
+                    </label>
+                </div>
+
+                <div class="valentine-message" id="valentineMessage"></div>
+            </div>
+
+            <!-- Success Screen -->
+            <div class="valentine-success-screen" id="valentineSuccessScreen">
+                <div class="valentine-success-emoji">🐻💕🐥</div>
+                <h1 class="valentine-success-title">YAAAY! 🎉</h1>
+                <p class="valentine-success-message">
+                    Grisly ist SO GLÜCKLICH! 💕<br>
+                    Das wird der beste Valentine's Day ever! 🌹<br>
+                    Ich liebe dich, mein kleines Duckel! 🐥
+                </p>
+                <div class="valentine-success-emoji">❤️✨💫</div>
+                <button class="back-btn" onclick="showHome()" style="margin-top: 30px;">← Zurück zur Startseite</button>
+            </div>
+        </div>
+    </div>
+
     <!-- ONLY SUZAN PAGE - HIGH HEELS RAIN 👠 -->
     <div id="onlySuzanPage" class="story-page">
         <!-- Falling High Heels Animation -->
@@ -5118,6 +5879,119 @@
             rosesScreen.classList.remove('active');
             mainPage.style.display = 'block';
         }
+
+        function skipToMainPage() {
+            const valentineScreen = document.getElementById('valentineScreen');
+            const mainPage = document.getElementById('mainPage');
+
+            valentineScreen.classList.remove('active');
+            mainPage.style.display = 'block';
+        }
+
+        // VALENTINE LOGIC 💕
+        const valentineMessages = [
+            "Bitte? 🥺",
+            "Komm schon Duckel... 💕",
+            "Grisly ist traurig 😢",
+            "Nur ein Date! 🌹",
+            "Du weißt du willst... 😏",
+            "Bitte bitte bitte! 🐻",
+            "Ich verspreche es wird schön! 💖",
+            "Okay du hast keine Wahl mehr! 💪"
+        ];
+
+        let valentineNoClickCount = 0;
+
+        function moveNoButtonValentine() {
+            const noBtn = document.getElementById('valentineNoBtn');
+            const message = document.getElementById('valentineMessage');
+            const container = document.querySelector('.valentine-buttons');
+            
+            valentineNoClickCount++;
+            
+            // Show message
+            if (valentineNoClickCount <= valentineMessages.length) {
+                message.textContent = valentineMessages[valentineNoClickCount - 1];
+                message.style.animation = 'none';
+                setTimeout(() => {
+                    message.style.animation = 'valentineMessageChange 0.5s ease';
+                }, 10);
+            }
+
+            // Move button to random position
+            const containerRect = container.getBoundingClientRect();
+            const maxX = containerRect.width - noBtn.offsetWidth - 40;
+            const maxY = containerRect.height - noBtn.offsetHeight - 40;
+            
+            const randomX = Math.max(0, Math.random() * maxX);
+            const randomY = Math.max(0, Math.random() * maxY);
+            
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+
+            // Make button smaller
+            const newSize = Math.max(0.3, 1 - (valentineNoClickCount * 0.1));
+            noBtn.style.transform = `scale(${newSize})`;
+
+            // After 8 tries, remove No button
+            if (valentineNoClickCount >= 8) {
+                noBtn.style.display = 'none';
+                message.textContent = "Nur noch YES übrig! 😏💕";
+            }
+        }
+
+        function sayYesToValentine() {
+            const container = document.querySelector('.valentine-container-main');
+            const success = document.getElementById('valentineSuccess');
+            
+            // Hide question
+            container.style.display = 'none';
+            
+            // Show success
+            success.classList.add('active');
+
+            // Create confetti
+            createValentineConfetti();
+        }
+
+        function createValentineConfetti() {
+            const colors = ['#FF69B4', '#FF1493', '#FFB6C1', '#DC143C', '#FF69B4'];
+            
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.style.position = 'fixed';
+                    confetti.style.left = Math.random() * window.innerWidth + 'px';
+                    confetti.style.top = '-10px';
+                    confetti.style.width = (Math.random() * 10 + 5) + 'px';
+                    confetti.style.height = confetti.style.width;
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.borderRadius = '50%';
+                    confetti.style.zIndex = '10000';
+                    confetti.style.pointerEvents = 'none';
+                    confetti.style.animation = 'confettiFallValentine 3s linear forwards';
+                    document.body.appendChild(confetti);
+
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 30);
+            }
+        }
+
+        // Add confetti animation
+        const valentineStyle = document.createElement('style');
+        valentineStyle.textContent = `
+            @keyframes confettiFallValentine {
+                0% {
+                    transform: translateY(0) rotate(0deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(100vh) rotate(720deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(valentineStyle);
 
         // Funny Content Functions
         function showFunnyContent(type) {
@@ -6352,51 +7226,59 @@
 
         // Navigation
         function showStory() {
-            document.getElementById('mainPage').classList.remove('show');
+            document.getElementById('mainPage').style.display = 'none';
             document.getElementById('storyPage').classList.add('active');
             document.getElementById('moonSunPage').classList.remove('active');
             document.getElementById('momentsPage').classList.remove('active');
             document.getElementById('questionPage').classList.remove('active');
+            document.getElementById('valentinePage').classList.remove('active');
             document.getElementById('forYouPage').classList.remove('active');
             document.getElementById('ourSongsPage').classList.remove('active');
             document.getElementById('onlySuzanPage').classList.remove('active');
             stopHeelsRain();
+            window.scrollTo(0, 0);
         }
         
         function showMoonSun() {
-            document.getElementById('mainPage').classList.remove('show');
+            document.getElementById('mainPage').style.display = 'none';
             document.getElementById('storyPage').classList.remove('active');
             document.getElementById('moonSunPage').classList.add('active');
             document.getElementById('momentsPage').classList.remove('active');
             document.getElementById('questionPage').classList.remove('active');
+            document.getElementById('valentinePage').classList.remove('active');
             document.getElementById('forYouPage').classList.remove('active');
             document.getElementById('ourSongsPage').classList.remove('active');
             document.getElementById('onlySuzanPage').classList.remove('active');
             stopHeelsRain();
+            window.scrollTo(0, 0);
         }
 
         function showMoments() {
-            document.getElementById('mainPage').classList.remove('show');
+            document.getElementById('mainPage').style.display = 'none';
             document.getElementById('storyPage').classList.remove('active');
             document.getElementById('moonSunPage').classList.remove('active');
             document.getElementById('momentsPage').classList.add('active');
             document.getElementById('questionPage').classList.remove('active');
+            document.getElementById('valentinePage').classList.remove('active');
             document.getElementById('forYouPage').classList.remove('active');
             document.getElementById('ourSongsPage').classList.remove('active');
             document.getElementById('onlySuzanPage').classList.remove('active');
             stopHeelsRain();
+            window.scrollTo(0, 0);
         }
 
         function showQuestion() {
-            document.getElementById('mainPage').classList.remove('show');
+            document.getElementById('mainPage').style.display = 'none';
             document.getElementById('storyPage').classList.remove('active');
             document.getElementById('moonSunPage').classList.remove('active');
             document.getElementById('momentsPage').classList.remove('active');
             document.getElementById('questionPage').classList.add('active');
+            document.getElementById('valentinePage').classList.remove('active');
             document.getElementById('forYouPage').classList.remove('active');
             document.getElementById('ourSongsPage').classList.remove('active');
             document.getElementById('onlySuzanPage').classList.remove('active');
             stopHeelsRain();
+            window.scrollTo(0, 0);
             
             noClickCount = 0;
             yesBtn.style.fontSize = '';
@@ -6409,30 +7291,49 @@
         }
 
         function showForYou() {
-            document.getElementById('mainPage').classList.remove('show');
+            document.getElementById('mainPage').style.display = 'none';
             document.getElementById('storyPage').classList.remove('active');
             document.getElementById('moonSunPage').classList.remove('active');
             document.getElementById('momentsPage').classList.remove('active');
             document.getElementById('questionPage').classList.remove('active');
+            document.getElementById('valentinePage').classList.remove('active');
             document.getElementById('onlySuzanPage').classList.remove('active');
             document.getElementById('forYouPage').classList.add('active');
             stopHeelsRain();
+            window.scrollTo(0, 0);
         }
 
-        function showOnlySuzan() {
-            document.getElementById('mainPage').classList.remove('show');
+        function showValentine() {
+            document.getElementById('mainPage').style.display = 'none';
             document.getElementById('storyPage').classList.remove('active');
             document.getElementById('moonSunPage').classList.remove('active');
             document.getElementById('momentsPage').classList.remove('active');
             document.getElementById('questionPage').classList.remove('active');
+            document.getElementById('ourSongsPage').classList.remove('active');
+            document.getElementById('onlySuzanPage').classList.remove('active');
+            document.getElementById('forYouPage').classList.remove('active');
+            document.getElementById('valentinePage').classList.add('active');
+            stopHeelsRain();
+            createValentineFloatingHearts();
+            window.scrollTo(0, 0);
+        }
+
+        function showOnlySuzan() {
+            document.getElementById('mainPage').style.display = 'none';
+            document.getElementById('storyPage').classList.remove('active');
+            document.getElementById('moonSunPage').classList.remove('active');
+            document.getElementById('momentsPage').classList.remove('active');
+            document.getElementById('questionPage').classList.remove('active');
+            document.getElementById('valentinePage').classList.remove('active');
             document.getElementById('forYouPage').classList.remove('active');
             document.getElementById('ourSongsPage').classList.remove('active');
             document.getElementById('onlySuzanPage').classList.add('active');
             startHeelsRain();
+            window.scrollTo(0, 0);
         }
 
         function showMoments() {
-            document.getElementById('mainPage').classList.remove('show');
+            document.getElementById('mainPage').style.display = 'none';
             document.getElementById('storyPage').classList.remove('active');
             document.getElementById('moonSunPage').classList.remove('active');
             document.getElementById('questionPage').classList.remove('active');
@@ -6607,16 +7508,19 @@
         });
 
         function showOurSongs() {
-            document.getElementById('mainPage').classList.remove('show');
+            document.getElementById('mainPage').style.display = 'none';
             document.getElementById('storyPage').classList.remove('active');
             document.getElementById('moonSunPage').classList.remove('active');
             document.getElementById('momentsPage').classList.remove('active');
             document.getElementById('questionPage').classList.remove('active');
+            document.getElementById('valentinePage').classList.remove('active');
             document.getElementById('forYouPage').classList.remove('active');
             document.getElementById('onlySuzanPage').classList.remove('active');
             document.getElementById('ourSongsPage').classList.remove('active');
             document.getElementById('ourSongsPage').classList.add('active');
             stopHeelsRain();
+            window.scrollTo(0, 0);
+            window.scrollTo(0, 0);
             // Music player bleibt wie er ist (visible wenn Song spielt, hidden wenn nicht)
         }
 
@@ -6625,11 +7529,13 @@
             document.getElementById('moonSunPage').classList.remove('active');
             document.getElementById('momentsPage').classList.remove('active');
             document.getElementById('questionPage').classList.remove('active');
+            document.getElementById('valentinePage').classList.remove('active');
             document.getElementById('forYouPage').classList.remove('active');
             document.getElementById('ourSongsPage').classList.remove('active');
             document.getElementById('onlySuzanPage').classList.remove('active');
-            document.getElementById('mainPage').classList.add('show');
+            document.getElementById('mainPage').style.display = 'block';
             stopHeelsRain();
+            window.scrollTo(0, 0);
         }
 
         // HIGH HEELS RAIN ANIMATION 👠
@@ -6916,6 +7822,75 @@
             renderCategory('nails');
             renderCategory('fashion');
         }
+
+        // VALENTINE PAGE LOGIC 💕
+        function createValentineFloatingHearts() {
+            const bg = document.getElementById('valentineHeartsBg');
+            if (!bg) return;
+            
+            bg.innerHTML = ''; // Clear existing
+            const hearts = ['💕', '💖', '💗', '💓', '💝', '💞'];
+            
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'valentine-floating-heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 15 + 's';
+                heart.style.animationDuration = (15 + Math.random() * 10) + 's';
+                bg.appendChild(heart);
+            }
+        }
+
+        // Handle Checkbox Selection
+        function handleCheckbox(choice) {
+            const yesCheckbox = document.getElementById('yesCheckbox');
+            const noCheckbox = document.getElementById('noCheckbox');
+            const message = document.getElementById('valentineMessage');
+
+            if (choice === 'yes') {
+                // Uncheck NO if YES is checked
+                if (yesCheckbox.checked) {
+                    noCheckbox.checked = false;
+                    message.textContent = '🎉 PERFEKT! Bitte schicke mir jetzt einen Screenshot! 📸';
+                    message.style.color = '#00C853';
+                    createValentineConfetti();
+                } else {
+                    message.textContent = '';
+                }
+            } else if (choice === 'no') {
+                // Uncheck YES if NO is checked
+                if (noCheckbox.checked) {
+                    yesCheckbox.checked = false;
+                    message.textContent = '😢 Bitte überleg es dir nochmal... Grisly ist traurig 🐻';
+                    message.style.color = '#FF1493';
+                } else {
+                    message.textContent = '';
+                }
+            }
+        }
+
+        function createValentineConfetti() {
+            const colors = ['#FF69B4', '#FF1493', '#FFB6C1', '#FF69B4', '#DC143C'];
+            
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.style.position = 'fixed';
+                    confetti.style.left = Math.random() * window.innerWidth + 'px';
+                    confetti.style.top = -10 + 'px';
+                    confetti.style.width = (Math.random() * 10 + 5) + 'px';
+                    confetti.style.height = confetti.style.width;
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.zIndex = '9999';
+                    confetti.style.animation = 'valentineConfettiFall 3s linear forwards';
+                    document.body.appendChild(confetti);
+
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 30);
+            }
+        }
+
     </script>
 </body>
 </html>
