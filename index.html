@@ -2603,17 +2603,44 @@
             }
         }
 
+
+        /* Valentine Back Button */
+        .valentine-back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 3px solid #FF1493;
+            color: #FF1493;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(255, 20, 147, 0.3);
+        }
+
+        .valentine-back-btn:hover {
+            background: #FF1493;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 20, 147, 0.5);
+        }
         .valentine-container-main {
             position: relative;
             z-index: 10;
             text-align: center;
-            background: linear-gradient(135deg, #FFE5F0, #FFD6E8);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 230, 245, 0.98));
             border-radius: 30px;
             padding: 50px 40px;
             max-width: 600px;
             width: 90%;
             margin: 100px auto;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 20px 60px rgba(255, 20, 147, 0.3);
+            border: 3px solid rgba(255, 105, 180, 0.5);
         }
 
         .valentine-image-main {
@@ -2840,21 +2867,40 @@
         }
 
         @media (max-width: 768px) {
+            .valentine-back-btn {
+                top: 10px;
+                left: 10px;
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
             .valentine-container-main {
                 padding: 30px 20px;
+                margin: 80px auto 50px;
+                width: 95%;
             }
 
             .valentine-instruction {
-                font-size: 1.1rem;
+                font-size: 1rem;
+                padding: 0 10px;
             }
 
             .checkbox-option {
-                min-width: 90%;
-                padding: 15px 20px;
+                min-width: 100%;
+                padding: 15px 15px;
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .checkbox-option input[type="checkbox"] {
+                width: 35px;
+                height: 35px;
             }
 
             .checkbox-label {
-                font-size: 1rem;
+                font-size: 0.95rem;
+                line-height: 1.4;
             }
 
             .valentine-buttons-container {
@@ -2864,7 +2910,8 @@
             }
 
             .valentine-image-main {
-                max-width: 300px;
+                max-width: 280px;
+                width: 100%;
             }
 
             .valentine-btn {
@@ -2873,35 +2920,37 @@
             }
 
             .valentine-message {
-                font-size: 1rem;
-                min-height: 60px;
+                font-size: 0.95rem;
+                min-height: 50px;
+                padding: 15px;
             }
 
             .valentine-success-title {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
 
             .valentine-success-message {
-                font-size: 1rem;
+                font-size: 0.95rem;
+                line-height: 1.6;
             }
 
             .valentine-border-heart {
-                font-size: 1.5rem;
+                font-size: 1.2rem;
             }
 
             .valentine-heart-border {
-                width: 60px;
-                height: 60px;
+                width: 50px;
+                height: 50px;
             }
 
             .valentine-heart-border.valentine-top,
             .valentine-heart-border.valentine-bottom {
-                height: 50px;
+                height: 40px;
             }
 
             .valentine-heart-border.valentine-left,
             .valentine-heart-border.valentine-right {
-                width: 50px;
+                width: 40px;
             }
         }
 
@@ -4284,7 +4333,7 @@
     <!-- VALENTINE SCREEN 💕 -->
     <div id="valentineScreen" class="valentine-screen">
         <div class="valentine-container-main">
-            <img src="bär.png" alt="Grisly & Duckel" class="valentine-image-main">
+            <img src="baer.png" alt="Grisly & Duckel" class="valentine-image-main">
             
             <div class="valentine-message" id="valentineMessage"></div>
 
@@ -5250,7 +5299,10 @@
     </div>
 
     <!-- VALENTINE'S DATE PAGE 💕 -->
-    <div id="valentinePage" class="story-page" style="background: linear-gradient(135deg, #FF69B4 0%, #FF1493 100%); overflow: hidden;">
+    <div id="valentinePage" class="story-page" style="background: linear-gradient(135deg, #FFB3D9 0%, #FF69B4 50%, #FF1493 100%); overflow: hidden; position: relative;">
+        <!-- Back Button at Top -->
+        <button class="valentine-back-btn" onclick="showHome()">← Zurück zur Startseite</button>
+
         <!-- Floating Hearts Background -->
         <div class="valentine-hearts-bg" id="valentineHeartsBg"></div>
 
@@ -5298,7 +5350,7 @@
         <div class="valentine-container-main">
             <!-- Question Screen -->
             <div id="valentineQuestionScreen">
-                <img src="bär.png" alt="Grisly & Duckel" class="valentine-image-main">
+                <img src="baer.png" alt="Grisly & Duckel" class="valentine-image-main">
                 
                 <h2 class="valentine-instruction">Bitte wähle eine Option und schicke mir einen Screenshot! 📸</h2>
 
