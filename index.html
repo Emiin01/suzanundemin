@@ -4274,7 +4274,7 @@
     <div id="rosesScreen" class="roses-screen">
         <div class="roses-container">
             <img src="rosen.png" alt="Roses" class="roses-image">
-            <h2 class="roses-message">You mean the world to me</h2>
+            
             <button class="roses-btn" onclick="continueToWebsite()">
                 Weiter zur Website →
             </button>
@@ -5250,8 +5250,9 @@
     </div>
 
     <!-- VALENTINE'S DATE PAGE 💕 -->
-    <div id="valentinePage" class="story-page" style="background: linear-gradient(135deg, #FFE5F0 0%, #FFD6E8 100%); overflow: hidden;">
-        <!-- NO floating hearts background anymore -->
+    <div id="valentinePage" class="story-page" style="background: linear-gradient(135deg, #FF69B4 0%, #FF1493 100%); overflow: hidden;">
+        <!-- Floating Hearts Background -->
+        <div class="valentine-hearts-bg" id="valentineHeartsBg"></div>
 
         <!-- Heart Borders -->
         <div class="valentine-heart-border valentine-top">
@@ -5299,21 +5300,12 @@
             <div id="valentineQuestionScreen">
                 <img src="bär.png" alt="Grisly & Duckel" class="valentine-image-main">
                 
-                <h2 class="valentine-instruction">Bitte wähle eine Option und schicke mir einen Screenshot! 📸</h2>
-
-                <div class="valentine-checkboxes">
-                    <label class="checkbox-option">
-                        <input type="checkbox" id="yesCheckbox" onchange="handleCheckbox('yes')">
-                        <span class="checkbox-label">✅ YES! Ich will dein Valentine Date sein! 💕</span>
-                    </label>
-
-                    <label class="checkbox-option">
-                        <input type="checkbox" id="noCheckbox" onchange="handleCheckbox('no')">
-                        <span class="checkbox-label">❌ No 😢</span>
-                    </label>
-                </div>
-
                 <div class="valentine-message" id="valentineMessage"></div>
+
+                <div class="valentine-buttons-container">
+                    <button class="valentine-btn valentine-btn-yes" onclick="sayYesValentine()">YES! 💕</button>
+                    <button class="valentine-btn valentine-btn-no" id="valentineNoBtn" onclick="moveNoButtonValentine()">No 😢</button>
+                </div>
             </div>
 
             <!-- Success Screen -->
