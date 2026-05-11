@@ -302,6 +302,43 @@ body.hov #cur-ring{width:46px;height:46px;border-color:rgba(212,79,114,.85)}
 .mq-item{font-family:var(--serif);font-size:1rem;font-style:italic;letter-spacing:.1em;color:var(--mute);padding:0 28px;white-space:nowrap}
 .mq-dot{color:var(--rose);margin:0 6px}
 
+/* ══════════════════════════════════════
+   HERO VIDEO SECTION
+══════════════════════════════════════ */
+.hero-video-section{
+  border-bottom:1px solid var(--line);
+  position:relative;
+  overflow:hidden;
+  background:var(--deep);
+}
+.hvs-label{
+  position:absolute;top:22px;left:36px;z-index:5;
+  font-size:.54rem;letter-spacing:.45em;text-transform:uppercase;
+  color:rgba(237,232,248,.38);
+}
+.hvs-wrap{
+  position:relative;
+  width:100%;
+  max-height:600px;
+  overflow:hidden;
+}
+.hvs-vid{
+  width:100%;
+  display:block;
+  object-fit:cover;
+  max-height:600px;
+}
+.hvs-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,
+    rgba(4,3,10,.18) 0%,
+    transparent 30%,
+    transparent 70%,
+    rgba(4,3,10,.55) 100%
+  );
+  pointer-events:none;
+}
+
 /* hero menu grid */
 .hero-grid{
   display:grid;grid-template-columns:repeat(5,1fr);
@@ -361,7 +398,7 @@ body.hov #cur-ring{width:46px;height:46px;border-color:rgba(212,79,114,.85)}
 .tl-body{color:var(--mute);line-height:2.1;font-size:.88rem;font-weight:300}
 
 /* ══════════════════════════════════════
-   MEMORY WALL — The Star Feature
+   MEMORY WALL
 ══════════════════════════════════════ */
 .memory-toolbar{
   display:flex;align-items:center;gap:12px;
@@ -376,16 +413,13 @@ body.hov #cur-ring{width:46px;height:46px;border-color:rgba(212,79,114,.85)}
   cursor:none;transition:all .35s;
 }
 .mem-add-btn:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(212,79,114,.35)}
-.mem-filter{
-  display:flex;gap:6px;
-}
+.mem-filter{display:flex;gap:6px}
 .mf-btn{
   padding:9px 18px;background:var(--surface);border:1px solid var(--line);
   border-radius:60px;color:var(--mute);font-size:.68rem;letter-spacing:.12em;
   text-transform:uppercase;cursor:none;transition:all .3s;
 }
 .mf-btn:hover,.mf-btn.active{border-color:rgba(212,79,114,.5);color:var(--rose-g);background:rgba(212,79,114,.05)}
-
 .memory-grid{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
@@ -405,10 +439,7 @@ body.hov #cur-ring{width:46px;height:46px;border-color:rgba(212,79,114,.85)}
 .mem-title{font-family:var(--serif);font-size:1.25rem;font-weight:600;font-style:italic;margin-bottom:8px;line-height:1.1}
 .mem-text{color:var(--mute);font-size:.82rem;line-height:1.85;font-weight:300}
 .mem-date{font-family:var(--script);font-size:1.1rem;color:rgba(212,79,114,.5);margin-top:14px;display:block}
-.mem-actions{
-  position:absolute;top:14px;right:14px;
-  display:flex;gap:6px;opacity:0;transition:opacity .3s;
-}
+.mem-actions{position:absolute;top:14px;right:14px;display:flex;gap:6px;opacity:0;transition:opacity .3s}
 .mem-card:hover .mem-actions{opacity:1}
 .mem-del{
   width:32px;height:32px;border-radius:50%;
@@ -418,15 +449,12 @@ body.hov #cur-ring{width:46px;height:46px;border-color:rgba(212,79,114,.85)}
   cursor:none;transition:all .25s;
 }
 .mem-del:hover{background:rgba(212,79,114,.4);border-color:var(--rose);color:#fff}
-.mem-empty{
-  grid-column:1/-1;text-align:center;padding:80px 20px;
-  display:flex;flex-direction:column;align-items:center;gap:16px;
-}
+.mem-empty{grid-column:1/-1;text-align:center;padding:80px 20px;display:flex;flex-direction:column;align-items:center;gap:16px}
 .mem-empty-icon{font-size:3rem;opacity:.2}
 .mem-empty-txt{font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--mute)}
 .mem-empty-sub{font-size:.8rem;color:rgba(237,232,248,.22)}
 
-/* MEMORY ADD MODAL */
+/* ADD MEMORY MODAL */
 #addMemMod{
   display:none;position:fixed;inset:0;z-index:12000;
   background:rgba(4,3,10,.92);backdrop-filter:blur(30px);
@@ -730,6 +758,8 @@ input[type=range].vrng{width:68px}
   .cal-grid{grid-template-columns:repeat(4,1fr)}
   .hero-name-block,.hero-right-block{padding:48px 32px}
   #nav{padding:0 20px}.nav-r{display:none}
+  .hvs-vid{max-height:280px}
+  .hvs-wrap{max-height:280px}
 }
 </style>
 </head>
@@ -861,6 +891,24 @@ input[type=range].vrng{width:68px}
         <div class="mq-track" id="mqTrack"></div>
       </div>
 
+      <!-- ══════════ VIDEO ══════════ -->
+      <div class="hero-video-section">
+        <div class="hvs-label">Our Moment</div>
+        <div class="hvs-wrap">
+          <video
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            class="hvs-vid"
+          >
+            <source src="maka.mp4" type="video/mp4">
+          </video>
+          <div class="hvs-overlay"></div>
+        </div>
+      </div>
+
       <!-- GRID -->
       <div class="hero-grid">
         <div class="hg" onclick="go('story')"><span class="hg-n">01</span><div class="hg-t">Our Story</div><div class="hg-arr">&nearr;</div></div>
@@ -887,7 +935,7 @@ input[type=range].vrng{width:68px}
     <div style="padding:0 48px 80px"><button class="bk" onclick="go('home')">&larr; zurück</button></div>
   </div>
 
-  <!-- ─ MEMORIES ─ THE MAIN FEATURE ─ -->
+  <!-- ─ MEMORIES ─ -->
   <div id="pg-memories" class="pg">
     <div class="sec-shell">
       <div class="sec-head">
@@ -1227,120 +1275,31 @@ function go(id){
   setTimeout(setupTilt,100);
 }
 
-/* ═══════════════════════════
-   MEMORY SYSTEM — localStorage
-═══════════════════════════ */
+/* ═══ MEMORY SYSTEM ═══ */
 let memories=[];
 let currentCat='us';
 let filterCat='all';
-
 try{const s=localStorage.getItem('s-e-memories');if(s)memories=JSON.parse(s)}catch(e){}
-
 function saveMems(){try{localStorage.setItem('s-e-memories',JSON.stringify(memories))}catch(e){}}
-
 const catLabels={us:'Wir',special:'Besonderes',daily:'Alltag',feeling:'Gefühle'};
-
 function loadMems(){renderMems()}
-
 function renderMems(){
   const grid=document.getElementById('memGrid');
   const filtered=filterCat==='all'?memories:memories.filter(m=>m.cat===filterCat);
-  if(!filtered.length){
-    grid.innerHTML=`<div class="mem-empty"><div class="mem-empty-icon">&#127801;</div><div class="mem-empty-txt">Noch keine Erinnerungen</div><div class="mem-empty-sub">Füge eure erste Erinnerung hinzu</div></div>`;
-    return;
-  }
-  grid.innerHTML=filtered.map(m=>`
-    <div class="mem-card rv" data-id="${m.id}">
-      ${m.img?`<img class="mem-img" src="${m.img}" alt="">`:`<div class="mem-img-ph">&#127801;</div>`}
-      <div class="mem-body">
-        <div class="mem-tag">${catLabels[m.cat]||m.cat}</div>
-        <div class="mem-title">${m.title}</div>
-        <div class="mem-text">${m.text}</div>
-        <span class="mem-date">${formatDate(m.date)}</span>
-      </div>
-      <div class="mem-actions">
-        <button class="mem-del" onclick="delMem(${m.id},event)">&#10005;</button>
-      </div>
-    </div>
-  `).join('');
-  setTimeout(()=>{
-    grid.querySelectorAll('.rv').forEach(el=>obs.observe(el));
-    setupTilt();
-  },50);
+  if(!filtered.length){grid.innerHTML=`<div class="mem-empty"><div class="mem-empty-icon">&#127801;</div><div class="mem-empty-txt">Noch keine Erinnerungen</div><div class="mem-empty-sub">Füge eure erste Erinnerung hinzu</div></div>`;return}
+  grid.innerHTML=filtered.map(m=>`<div class="mem-card rv" data-id="${m.id}">${m.img?`<img class="mem-img" src="${m.img}" alt="">`:`<div class="mem-img-ph">&#127801;</div>`}<div class="mem-body"><div class="mem-tag">${catLabels[m.cat]||m.cat}</div><div class="mem-title">${m.title}</div><div class="mem-text">${m.text}</div><span class="mem-date">${formatDate(m.date)}</span></div><div class="mem-actions"><button class="mem-del" onclick="delMem(${m.id},event)">&#10005;</button></div></div>`).join('');
+  setTimeout(()=>{grid.querySelectorAll('.rv').forEach(el=>obs.observe(el));setupTilt()},50);
 }
-
-function formatDate(d){
-  if(!d)return'';
-  try{const dt=new Date(d);return dt.toLocaleDateString('de-DE',{day:'numeric',month:'long',year:'numeric'})}catch(e){return d}
-}
-
-function filterMem(cat,btn){
-  filterCat=cat;
-  document.querySelectorAll('.mf-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  renderMems();
-}
-
-function delMem(id,e){
-  e.stopPropagation();
-  memories=memories.filter(m=>m.id!==id);
-  saveMems();renderMems();
-}
-
-/* ADD MEMORY MODAL */
-function openAddMem(){
-  document.getElementById('addMemMod').classList.add('on');
-  document.getElementById('amDate').value=new Date().toISOString().split('T')[0];
-}
+function formatDate(d){if(!d)return'';try{const dt=new Date(d);return dt.toLocaleDateString('de-DE',{day:'numeric',month:'long',year:'numeric'})}catch(e){return d}}
+function filterMem(cat,btn){filterCat=cat;document.querySelectorAll('.mf-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderMems()}
+function delMem(id,e){e.stopPropagation();memories=memories.filter(m=>m.id!==id);saveMems();renderMems()}
+function openAddMem(){document.getElementById('addMemMod').classList.add('on');document.getElementById('amDate').value=new Date().toISOString().split('T')[0]}
 function closeAddMem(){document.getElementById('addMemMod').classList.remove('on');resetAmForm()}
-
-function selCat(btn){
-  document.querySelectorAll('.am-cat').forEach(b=>b.classList.remove('sel'));
-  btn.classList.add('sel');
-  currentCat=btn.dataset.cat;
-}
-
+function selCat(btn){document.querySelectorAll('.am-cat').forEach(b=>b.classList.remove('sel'));btn.classList.add('sel');currentCat=btn.dataset.cat}
 let amImgData='';
-function prevAmImg(inp){
-  const f=inp.files[0];if(!f)return;
-  const r=new FileReader();
-  r.onload=e=>{
-    amImgData=e.target.result;
-    const prev=document.getElementById('amImgPrev');
-    prev.src=amImgData;prev.style.display='block';
-    document.querySelector('.am-img-txt').style.display='none';
-  };
-  r.readAsDataURL(f);
-}
-
-function saveMem(){
-  const title=document.getElementById('amTitle').value.trim();
-  const text=document.getElementById('amText').value.trim();
-  const date=document.getElementById('amDate').value;
-  if(!title)return;
-  const mem={
-    id:Date.now(),
-    title,text,date,
-    cat:currentCat,
-    img:amImgData||'',
-  };
-  memories.unshift(mem);
-  saveMems();
-  closeAddMem();
-  renderMems();
-}
-
-function resetAmForm(){
-  document.getElementById('amTitle').value='';
-  document.getElementById('amText').value='';
-  document.getElementById('amDate').value='';
-  document.getElementById('amImgPrev').style.display='none';
-  document.getElementById('amImgPrev').src='';
-  document.querySelector('.am-img-txt').style.display='block';
-  amImgData='';
-  document.querySelectorAll('.am-cat').forEach((b,i)=>{b.classList.toggle('sel',i===0)});
-  currentCat='us';
-}
+function prevAmImg(inp){const f=inp.files[0];if(!f)return;const r=new FileReader();r.onload=e=>{amImgData=e.target.result;const prev=document.getElementById('amImgPrev');prev.src=amImgData;prev.style.display='block';document.querySelector('.am-img-txt').style.display='none'};r.readAsDataURL(f)}
+function saveMem(){const title=document.getElementById('amTitle').value.trim();const text=document.getElementById('amText').value.trim();const date=document.getElementById('amDate').value;if(!title)return;const mem={id:Date.now(),title,text,date,cat:currentCat,img:amImgData||''};memories.unshift(mem);saveMems();closeAddMem();renderMems()}
+function resetAmForm(){document.getElementById('amTitle').value='';document.getElementById('amText').value='';document.getElementById('amDate').value='';document.getElementById('amImgPrev').style.display='none';document.getElementById('amImgPrev').src='';document.querySelector('.am-img-txt').style.display='block';amImgData='';document.querySelectorAll('.am-cat').forEach((b,i)=>{b.classList.toggle('sel',i===0)});currentCat='us'}
 
 /* ═══ MOMENTS ═══ */
 const mdata={1:{t:'Das erste Telefonat',b:'Weißt du noch? Wir haben angefangen zu telefonieren. Und es war anders. Keine Minute fühlte sich zu lang an.'},2:{t:'Dein Liebesbrief',b:'"Vielleicht schreibe ich gerade einen Liebesbrief oder eine Geschichte für unsere Kinder." Unbewusst. Und ich hab es nie vergessen.'},3:{t:'Deine Routine',b:'Jeden Morgen. Jeden Abend. Gemeinsam einschlafen. Das ist keine Gewohnheit mehr — das ist Heimat.'},4:{t:'Die Box',b:'Du bewahrst alles von mir auf. Jedes Geschenk, jeden Brief. Menschen bewahren nur, was emotionalen Wert hat.'},5:{t:'Ich hab dich mehr lieb',b:'Mitten im Gespräch, aus dem Nichts — einfach so rausgerutscht. Ich bin innerlich geschmolzen.'},6:{t:'Als es mir schlecht ging',b:'Du hast das Kochen unterbrochen — mitten in der Küche. Nur um für mich da zu sein.'},7:{t:'Meine Geschenke',b:'Jedes Geschenk, das ich dir gegeben hab, hast du aufgehoben. Das ist kein Zufall. Das ist Gefühl.'}};
